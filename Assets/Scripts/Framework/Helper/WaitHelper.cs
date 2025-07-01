@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class WaitHelper : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private static Dictionary<float, WaitForSeconds> WaitCache = new();
 
-    // Update is called once per frame
-    void Update()
+    public static WaitForSeconds GetWait(float seconds)
     {
+        float roundedSeconds = Mathf.Round(seconds * 10f) / 10f;
         
+        if (WaitCache.TryGetValue(roundedSeconds, out var wait))
+            return wait;
+
+        return WaitCache[roundedSeconds] = new WaitForSeconds(roundedSeconds);
     }
 }
