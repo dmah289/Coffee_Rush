@@ -354,7 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   width: 4
-  height: 5
+  height: 4
   cellSize: 2
   borderSize: 0.3
 --- !u!1 &2142158908

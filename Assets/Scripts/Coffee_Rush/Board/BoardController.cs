@@ -1,6 +1,4 @@
-using System;
 using Framework.ObjectPooling;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Coffee_Rush
@@ -12,10 +10,6 @@ namespace Coffee_Rush
         TopRightCorner = 2,
         BottomLeftCorner = 3,
         BottomRightCorner = 4,
-        TopBorder = 5,
-        BottomBorder = 6,
-        LeftBorder = 7,
-        RightBorder = 8,
     }
     
     public class BoardController : MonoBehaviour
@@ -23,8 +17,8 @@ namespace Coffee_Rush
         [Header("Self Components")]
         [SerializeField] private Transform selfTransform;
         
-        [Header("Board Components")]
-        [SerializeField] private Transform[][] cells;
+        [Header("Board Manager")]
+        private Transform[][] cells;
         
         [Header("Board Configuration")]
         [SerializeField] private int width;
@@ -42,11 +36,6 @@ namespace Coffee_Rush
                 return CellPosType.TopRightCorner;
             if (row == height - 1 && col == 0)
                 return CellPosType.TopLeftCorner;
-            
-            if (row == height - 1) return CellPosType.TopBorder;
-            if (row == 0) return CellPosType.BottomBorder;
-            if (col == 0) return CellPosType.LeftBorder;
-            if (col == width - 1) return CellPosType.RightBorder;
 
             return CellPosType.Inner;
         }
@@ -88,13 +77,12 @@ namespace Coffee_Rush
                     else posY = (i - halfHeight) * cellSize;
                     
                     cell.position = new Vector3(posX, posY, 0f);
-                    
+#if UNITY_EDITOR
                     cell.name = $"Cell_{i}_{j}";
-                    
+#endif
                     cells[i][j] = cell;
 
                     CellPosType type = GetCellPosType(i, j);
-                    Transform border, corner;
                     switch (type)
                     {
                         case CellPosType.Inner:
@@ -115,74 +103,92 @@ namespace Coffee_Rush
                 }
             }
             
-            SetupRightBorder();
-            SetupLeftBorder();
-            SetupBottomBorder();
-            SetupTopBorder();
+            SetupVerticalBorder();
+            SetupHorizontalBorder();
         }
 
         private void SetupTopLeftCorner(float posX, float posY)
         {
-            Transform corner;
-            corner = ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
+            Transform corner = ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
             corner.position = new Vector3(posX - cellSize / 2, posY  + cellSize / 2, 0f);
             corner.eulerAngles = new Vector3(0, 0, 270f);
+#if UNITY_EDITOR
+            corner.name = "top_left_corner";
+#endif
         }
 
         private void SetupTopRightCorner(float posX, float posY)
         {
-            Transform corner;
-            corner = ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
+            Transform corner = ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
             corner.position = new Vector3(posX + cellSize / 2, posY  + cellSize / 2, 0f);
             corner.eulerAngles = new Vector3(0, 0, 180f);
+#if UNITY_EDITOR
+            corner.name = $"top_right_corner";
+#endif
         }
 
         private void SetupBottomRightCorner(float posX, float posY)
         {
-            Transform corner;
-            corner= ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
+            Transform corner= ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
             corner.position = new Vector3(posX + cellSize / 2, posY - cellSize / 2, 0f);
             corner.eulerAngles = new Vector3(0, 0, 90f);
+#if UNITY_EDITOR
+            corner.name = "bottom_right_corner";
+#endif
         }
 
         private void SetupBottomLeftCorner(float posX, float posY)
         {
-            Transform corner;
-            corner = ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
+            Transform corner = ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
             corner.position = new Vector3(posX - cellSize / 2, posY - cellSize / 2, 0f);
             corner.eulerAngles = Vector3.zero;
+#if UNITY_EDITOR
+            corner.name = "bottom_left_corner";
+#endif
         }
 
-        private void SetupRightBorder()
+        private void SetupVerticalBorder()
         {
-            Transform border = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-            border.position = new Vector3(cellSize * width / 2, -cellSize * width / 2, 0);
-            border.eulerAngles = new float3(0, 0, 90);
-            border.localScale = new Vector3(cellSize * (height - 1), 1f, 1f);
+            Vector3 verticalEulerAngles = new Vector3(0, 0, 90);
+            Vector3 verticalLocalScale = new Vector3(cellSize * (height - 1), 1f, 1f);
+            
+            Transform rightBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
+            rightBorder.position = new Vector3(cellSize * width / 2 + borderSize / 2, 0, 0);
+            rightBorder.eulerAngles = verticalEulerAngles;
+            rightBorder.localScale = verticalLocalScale;
+#if UNITY_EDITOR
+            rightBorder.name = "right_border";
+#endif
+            
+            Transform leftBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
+            leftBorder.position = new Vector3(-cellSize * width / 2 - borderSize / 2, 0, 0);
+            leftBorder.eulerAngles = verticalEulerAngles;
+            leftBorder.localScale = verticalLocalScale;
+            
+#if UNITY_EDITOR
+            leftBorder.name = "left_border";
+#endif
         }
 
-        private void SetupLeftBorder()
+        private void SetupHorizontalBorder()
         {
-            Transform border = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-            border.position = new Vector3(-cellSize * width / 2 - borderSize, -cellSize * width / 2, 0);
-            border.eulerAngles = new float3(0, 0, 90);
-            border.localScale = new Vector3(cellSize * (height - 1), 1f, 1f);
-        }
-
-        private void SetupBottomBorder()
-        {
-            Transform border = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-            border.position = new Vector3((1-width) * cellSize / 2, -cellSize * height / 2 , 0);
-            border.eulerAngles = Vector3.zero;
-            border.localScale = new Vector3(cellSize * (width - 1), 1f, 1f);
-        }
-
-        private void SetupTopBorder()
-        {
-            Transform border = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-            border.position = new Vector3((1-width) * cellSize / 2, cellSize * height / 2 + borderSize, 0);
-            border.eulerAngles = float3.zero;
-            border.localScale = new Vector3(cellSize * (width - 1), 1f, 1f);
+            Vector3 horizontalLocalScale = new Vector3(cellSize * (width - 1), 1f, 1f);
+            
+            Transform bottomBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
+            bottomBorder.position = new Vector3(0, -cellSize * height / 2 - borderSize / 2, 0);
+            bottomBorder.eulerAngles = Vector3.zero;
+            bottomBorder.localScale = horizontalLocalScale;
+#if UNITY_EDITOR
+            bottomBorder.name = "bottom_border";
+#endif
+            
+            Transform topBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
+            topBorder.position = new Vector3(0, cellSize * height / 2 + borderSize / 2, 0);
+            topBorder.eulerAngles = Vector3.zero;
+            topBorder.localScale = horizontalLocalScale;
+#if UNITY_EDITOR
+            topBorder.name = "top_border";
+#endif
         }
     } 
 }

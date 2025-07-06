@@ -10,6 +10,10 @@ namespace Framework.ObjectPooling
         [SerializeField] private Transform outerCornerPrefab;
         [SerializeField] private Transform straightBorderPrefab;
 
+        [Header("Block Prefabs")] 
+        [SerializeField] private Transform blockPrefab;
+        
+        
         private void Awake()
         {
             // Initialize the board items
@@ -17,6 +21,7 @@ namespace Framework.ObjectPooling
             ObjectPooler.SetUpPool(PoolingType.OuterCorner, 5, outerCornerPrefab);
             ObjectPooler.SetUpPool(PoolingType.StraightBorder, 20, straightBorderPrefab);
             
+            // Initialize the block items
         }
     }
 }
