@@ -140,33 +140,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Straight_Cups
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4611795957978307563, guid: cb17a3e4e1099e64b86549a5b300640b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6198149046709652668, guid: cb17a3e4e1099e64b86549a5b300640b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7065964019458831135}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb17a3e4e1099e64b86549a5b300640b, type: 3}
 --- !u!4 &3167210023949449339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5087285441693195543, guid: cb17a3e4e1099e64b86549a5b300640b, type: 3}
   m_PrefabInstance: {fileID: 7885129615330747756}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4281133393770293712 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6198149046709652668, guid: cb17a3e4e1099e64b86549a5b300640b, type: 3}
-  m_PrefabInstance: {fileID: 7885129615330747756}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7065964019458831135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4281133393770293712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ad0b78bab12eb4ea47326a0ec200d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

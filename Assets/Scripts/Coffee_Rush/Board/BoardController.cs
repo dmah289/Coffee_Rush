@@ -1,8 +1,17 @@
+using System;
+using Coffee_Rush.Level;
 using Framework.ObjectPooling;
 using UnityEngine;
 
 namespace Coffee_Rush
 {
+    public enum eBlockType : byte
+    {
+        None = 0,
+        Block1 = 1,
+        Block2 = 2,
+    }
+    
     public enum CellPosType : byte
     {
         Inner = 0,
@@ -11,40 +20,58 @@ namespace Coffee_Rush
         BottomLeftCorner = 3,
         BottomRightCorner = 4,
     }
+
+    [Serializable]
+    public struct BoardConfig
+    {
+        public int maxWidth;
+        public int maxHeight;
+        public float cellSize;
+        public float borderSize;
+    }
     
     public class BoardController : MonoBehaviour
     {
         [Header("Self Components")]
         [SerializeField] private Transform selfTransform;
         
+        [Header("Other Components")]
+        [SerializeField] private LevelLoader levelLoader;
+        
         [Header("Board Manager")]
         private Transform[][] cells;
         
         [Header("Board Configuration")]
-        [SerializeField] private int width;
-        [SerializeField] private int height;
-        [SerializeField] private float cellSize;
-        [SerializeField] private float borderSize;
+        [SerializeField] private BoardConfig boardConfig;
+
+        // Out of bounds or inactive cells are not valid
+        private bool IsCellValid(int row, int col)
+        {
+            return (row >= 0 && row < boardConfig.maxHeight && col >= 0 && col < boardConfig.maxWidth)
+                && levelLoader.currLevelData.cellsData[(row * boardConfig.maxWidth) + col].isActive;
+        }
 
         private CellPosType GetCellPosType(int row, int col)
         {
-            if (row == 0 && col == 0)
+            if (!IsCellValid(row, col) && IsCellValid(row, col-1) && IsCellValid(row-1, col) 
+                || IsCellValid(row, col) && !IsCellValid(row, col-1) && !IsCellValid(row-1, col))
                 return CellPosType.BottomLeftCorner;
-            if (row == 0 && col == width - 1)
+            if (!IsCellValid(row, col) && IsCellValid(row, col+1) && IsCellValid(row-1, col)
+                || IsCellValid(row, col) && !IsCellValid(row, col+1) && !IsCellValid(row-1, col))
                 return CellPosType.BottomRightCorner;
-            if (row == height - 1 && col == width - 1)
+            if (!IsCellValid(row, col) && IsCellValid(row, col+1) && IsCellValid(row+1, col)
+                || IsCellValid(row, col) && !IsCellValid(row, col+1) && !IsCellValid(row+1, col))
                 return CellPosType.TopRightCorner;
-            if (row == height - 1 && col == 0)
+            if (!IsCellValid(row, col) && IsCellValid(row, col-1) && IsCellValid(row+1, col)
+                || IsCellValid(row, col) && !IsCellValid(row, col+1) && !IsCellValid(row+1, col))
                 return CellPosType.TopLeftCorner;
 
             return CellPosType.Inner;
         }
-        
-        
 
         private void Awake()
         {
-            cells = new Transform[height][];
+            cells = new Transform[boardConfig.maxHeight][];
             selfTransform = transform;
         }
 
@@ -55,26 +82,26 @@ namespace Coffee_Rush
 
         private void SetupBoard()
         {
-            int halfWidth = width / 2;
-            int halfHeight = height / 2;
+            int halfWidth = boardConfig.maxWidth / 2;
+            int halfHeight = boardConfig.maxHeight / 2;
             
-            bool isEvenWidth = (width & 1) == 0;
-            bool isEvenHeight = (height & 1) == 0;
+            bool isEvenWidth = (boardConfig.maxWidth & 1) == 0;
+            bool isEvenHeight = (boardConfig.maxHeight & 1) == 0;
             
             float posX, posY;
             
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < boardConfig.maxHeight; i++)
             {
-                cells[i] = new Transform[width];
-                for (int j = 0; j < width; j++)
+                cells[i] = new Transform[boardConfig.maxWidth];
+                for (int j = 0; j < boardConfig.maxWidth; j++)
                 {
                     Transform cell = ObjectPooler.GetFromPool<Transform>(PoolingType.Cell, selfTransform);
                     
-                    if (isEvenWidth) posX = (j - halfWidth + 0.5f) * cellSize;
-                    else posX = (j - halfWidth) * cellSize;
+                    if (isEvenWidth) posX = (j - halfWidth + 0.5f) * boardConfig.cellSize;
+                    else posX = (j - halfWidth) * boardConfig.cellSize;
 
-                    if (isEvenHeight) posY = (i - halfHeight + 0.5f) * cellSize;
-                    else posY = (i - halfHeight) * cellSize;
+                    if (isEvenHeight) posY = (i - halfHeight + 0.5f) * boardConfig.cellSize;
+                    else posY = (i - halfHeight) * boardConfig.cellSize;
                     
                     cell.position = new Vector3(posX, posY, 0f);
 #if UNITY_EDITOR
@@ -110,7 +137,7 @@ namespace Coffee_Rush
         private void SetupTopLeftCorner(float posX, float posY)
         {
             Transform corner = ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
-            corner.position = new Vector3(posX - cellSize / 2, posY  + cellSize / 2, 0f);
+            corner.position = new Vector3(posX - boardConfig.cellSize / 2, posY  + boardConfig.cellSize / 2, 0f);
             corner.eulerAngles = new Vector3(0, 0, 270f);
 #if UNITY_EDITOR
             corner.name = "top_left_corner";
@@ -120,7 +147,7 @@ namespace Coffee_Rush
         private void SetupTopRightCorner(float posX, float posY)
         {
             Transform corner = ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
-            corner.position = new Vector3(posX + cellSize / 2, posY  + cellSize / 2, 0f);
+            corner.position = new Vector3(posX + boardConfig.cellSize / 2, posY  + boardConfig.cellSize / 2, 0f);
             corner.eulerAngles = new Vector3(0, 0, 180f);
 #if UNITY_EDITOR
             corner.name = $"top_right_corner";
@@ -130,7 +157,7 @@ namespace Coffee_Rush
         private void SetupBottomRightCorner(float posX, float posY)
         {
             Transform corner= ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
-            corner.position = new Vector3(posX + cellSize / 2, posY - cellSize / 2, 0f);
+            corner.position = new Vector3(posX + boardConfig.cellSize / 2, posY - boardConfig.cellSize / 2, 0f);
             corner.eulerAngles = new Vector3(0, 0, 90f);
 #if UNITY_EDITOR
             corner.name = "bottom_right_corner";
@@ -140,7 +167,7 @@ namespace Coffee_Rush
         private void SetupBottomLeftCorner(float posX, float posY)
         {
             Transform corner = ObjectPooler.GetFromPool<Transform>(PoolingType.OuterCorner, selfTransform);
-            corner.position = new Vector3(posX - cellSize / 2, posY - cellSize / 2, 0f);
+            corner.position = new Vector3(posX - boardConfig.cellSize / 2, posY - boardConfig.cellSize / 2, 0f);
             corner.eulerAngles = Vector3.zero;
 #if UNITY_EDITOR
             corner.name = "bottom_left_corner";
@@ -150,10 +177,10 @@ namespace Coffee_Rush
         private void SetupVerticalBorder()
         {
             Vector3 verticalEulerAngles = new Vector3(0, 0, 90);
-            Vector3 verticalLocalScale = new Vector3(cellSize * (height - 1), 1f, 1f);
+            Vector3 verticalLocalScale = new Vector3(boardConfig.cellSize * (boardConfig.maxHeight - 1), 1f, 1f);
             
             Transform rightBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-            rightBorder.position = new Vector3(cellSize * width / 2 + borderSize / 2, 0, 0);
+            rightBorder.position = new Vector3(boardConfig.cellSize * boardConfig.maxWidth / 2 + boardConfig.borderSize / 2, 0, 0);
             rightBorder.eulerAngles = verticalEulerAngles;
             rightBorder.localScale = verticalLocalScale;
 #if UNITY_EDITOR
@@ -161,7 +188,7 @@ namespace Coffee_Rush
 #endif
             
             Transform leftBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-            leftBorder.position = new Vector3(-cellSize * width / 2 - borderSize / 2, 0, 0);
+            leftBorder.position = new Vector3(-boardConfig.cellSize * boardConfig.maxWidth / 2 - boardConfig.borderSize / 2, 0, 0);
             leftBorder.eulerAngles = verticalEulerAngles;
             leftBorder.localScale = verticalLocalScale;
             
@@ -172,10 +199,10 @@ namespace Coffee_Rush
 
         private void SetupHorizontalBorder()
         {
-            Vector3 horizontalLocalScale = new Vector3(cellSize * (width - 1), 1f, 1f);
+            Vector3 horizontalLocalScale = new Vector3(boardConfig.cellSize * (boardConfig.maxWidth - 1), 1f, 1f);
             
             Transform bottomBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-            bottomBorder.position = new Vector3(0, -cellSize * height / 2 - borderSize / 2, 0);
+            bottomBorder.position = new Vector3(0, -boardConfig.cellSize * boardConfig.maxHeight / 2 - boardConfig.borderSize / 2, 0);
             bottomBorder.eulerAngles = Vector3.zero;
             bottomBorder.localScale = horizontalLocalScale;
 #if UNITY_EDITOR
@@ -183,7 +210,7 @@ namespace Coffee_Rush
 #endif
             
             Transform topBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-            topBorder.position = new Vector3(0, cellSize * height / 2 + borderSize / 2, 0);
+            topBorder.position = new Vector3(0, boardConfig.cellSize * boardConfig.maxHeight / 2 + boardConfig.borderSize / 2, 0);
             topBorder.eulerAngles = Vector3.zero;
             topBorder.localScale = horizontalLocalScale;
 #if UNITY_EDITOR
