@@ -33,36 +33,41 @@ namespace Coffee_Rush
         [Header("Board Manager")]
         [SerializeField] private BoardConfig boardConfig;
         private Tile[,] tiles;
+        
+        private void Awake()
+        {
+            selfTransform = transform;
+        }
 
         // In bound and active cells are valid
-        private bool IsCellValid(int row, int col)
+        private bool IsCellInvalid(int row, int col)
         {
-            return (row >= 0 && row < levelLoader.currLevelData.height && col >= 0 && col < levelLoader.currLevelData.width)
-                && levelLoader.currLevelData.GetCellData(row, col).isActive;
+            return row < 0 || row >= levelLoader.currLevelData.height || col < 0 || col >= levelLoader.currLevelData.width
+                || !levelLoader.currLevelData.GetCellData(row, col).isActive;
         }
+
+        private bool IsCellActive(int row, int col) => levelLoader.currLevelData.GetCellData(row, col).isActive;
         
+        // TODO : Split into 2 cases, one for active cells and one for inactive cells.
+        // Consider 2 adjacent tiles which make are both in opposite state with current tile.
+        // Outer corner for active cells and inner corner for inactive cells.
         private CellPosType GetCellPosType(int row, int col)
         {
-            if (!IsCellValid(row, col) && IsCellValid(row, col-1) && IsCellValid(row-1, col) 
-                || IsCellValid(row, col) && !IsCellValid(row, col-1) && !IsCellValid(row-1, col))
+            if ((!IsCellActive(row, col) && !IsCellInvalid(row, col-1) && !IsCellInvalid(row-1, col))
+                || (IsCellActive(row, col) && IsCellInvalid(row, col-1) && IsCellInvalid(row-1, col)))
                 return CellPosType.BottomLeftCorner;
-            if (!IsCellValid(row, col) && IsCellValid(row, col+1) && IsCellValid(row-1, col)
-                || IsCellValid(row, col) && !IsCellValid(row, col+1) && !IsCellValid(row-1, col))
+            if ((!IsCellActive(row, col) && !IsCellInvalid(row, col+1) && !IsCellInvalid(row-1, col))
+                || (IsCellActive(row, col) && IsCellInvalid(row, col+1) && IsCellInvalid(row-1, col)))
                 return CellPosType.BottomRightCorner;
-            if (!IsCellValid(row, col) && IsCellValid(row, col+1) && IsCellValid(row+1, col)
-                || IsCellValid(row, col) && !IsCellValid(row, col+1) && !IsCellValid(row+1, col))
+            if ((!IsCellActive(row, col) && !IsCellInvalid(row, col+1) && !IsCellInvalid(row+1, col))
+                || (IsCellActive(row, col) && IsCellInvalid(row, col+1) && IsCellInvalid(row+1, col)))
                 return CellPosType.TopRightCorner;
-            if (!IsCellValid(row, col) && IsCellValid(row, col-1) && IsCellValid(row+1, col)
-                || IsCellValid(row, col) && !IsCellValid(row, col+1) && !IsCellValid(row+1, col))
+            if ((!IsCellActive(row, col) && !IsCellInvalid(row, col-1) && !IsCellInvalid(row+1, col))
+                || (IsCellActive(row, col) && IsCellInvalid(row, col+1) && IsCellInvalid(row+1, col)))
                 return CellPosType.TopLeftCorner;
         
             return CellPosType.Inner;
         }
-
-         private void Awake()
-         {
-             selfTransform = transform;
-         }
          
         public void SetupBoard()
         {
@@ -80,46 +85,43 @@ namespace Coffee_Rush
             {
                 for (int j = 0; j < levelLoader.currLevelData.width; j++)
                 {
+                    if (isEvenWidth) posX = (j - halfWidth + 0.5f) * boardConfig.cellSize;
+                    else posX = (j - halfWidth) * boardConfig.cellSize;
+
+                    if (isEvenHeight) posY = (i - halfHeight + 0.5f) * boardConfig.cellSize;
+                    else posY = (i - halfHeight) * boardConfig.cellSize;
+                    
                     if (levelLoader.currLevelData.GetCellData(i, j).isActive)
                     {
                         Tile tile = ObjectPooler.GetFromPool<Tile>(PoolingType.Cell, selfTransform);
-                    
-                        if (isEvenWidth) posX = (j - halfWidth + 0.5f) * boardConfig.cellSize;
-                        else posX = (j - halfWidth) * boardConfig.cellSize;
-
-                        if (isEvenHeight) posY = (i - halfHeight + 0.5f) * boardConfig.cellSize;
-                        else posY = (i - halfHeight) * boardConfig.cellSize;
                     
                         tile.SelfTransform.position = new Vector3(posX, posY, 0f);
 #if UNITY_EDITOR
                         tile.name = $"Cell_{i}_{j}";
 #endif
                         tiles[i,j] = tile;
-
-                        CellPosType type = GetCellPosType(i, j);
-                        switch (type)
-                        {
-                            case CellPosType.Inner:
-                                break;
-                            case CellPosType.BottomLeftCorner:
-                                SetupBottomLeftCorner(posX, posY);
-                                break;
-                            case CellPosType.BottomRightCorner:
-                                SetupBottomRightCorner(posX, posY);
-                                break;
-                            case CellPosType.TopRightCorner:
-                                SetupTopRightCorner(posX, posY);
-                                break;
-                            case CellPosType.TopLeftCorner:
-                                SetupTopLeftCorner(posX, posY);
-                                break;
-                        }
+                    }
+                    
+                    CellPosType type = GetCellPosType(i, j);
+                    switch (type)
+                    {
+                        case CellPosType.Inner:
+                            break;
+                        case CellPosType.BottomLeftCorner:
+                            SetupBottomLeftCorner(posX, posY);
+                            break;
+                        case CellPosType.BottomRightCorner:
+                            SetupBottomRightCorner(posX, posY);
+                            break;
+                        case CellPosType.TopRightCorner:
+                            SetupTopRightCorner(posX, posY);
+                            break;
+                        case CellPosType.TopLeftCorner:
+                            SetupTopLeftCorner(posX, posY);
+                            break;
                     }
                 }
             }
-            
-            SetupVerticalBorder();
-            SetupHorizontalBorder();
         }
 
         private void SetupTopLeftCorner(float posX, float posY)

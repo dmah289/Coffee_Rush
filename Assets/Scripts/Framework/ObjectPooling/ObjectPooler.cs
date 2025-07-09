@@ -36,7 +36,7 @@ namespace Framework.ObjectPooling
                 return instance;
             }
             
-            T newInstance = GameObject.Instantiate((T)poolList[(byte)type][0]);
+            T newInstance = GameObject.Instantiate((T)poolList[(byte)type][0], parent);
             newInstance.gameObject.SetActive(true);
             return newInstance;
         }

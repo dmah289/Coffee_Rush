@@ -17,8 +17,28 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 4028a574321659c4684ee192067d842c
   m_SerializeEntries:
+  - m_GUID: 19d6a49edcdb6694fad3c765a308e885
+    m_Address: Assets/Prefabs/Blocks_Variant/BlockType09 Variant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59c3225909c44f741ba44cbbf5a98477
+    m_Address: Assets/Prefabs/Blocks_Variant/BlockType03 Variant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a0ac6723c848b2499221a8f0c17ff92
+    m_Address: Assets/Prefabs/Blocks_Variant/BlockType04 Variant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 82666a50d76d2954c8401d1bb5d32b71
     m_Address: Assets/Audio/BLockDrop.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8cf1d10923928924aa88b14ec67e8ec3
+    m_Address: Assets/Prefabs/Blocks_Variant/BlockType06 Variant.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -27,17 +47,35 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a74a13c5d28ee9644ab6fe0a873fa7f4
+    m_Address: Assets/Prefabs/Blocks_Variant/BlockType05 Variant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b26205e9b7332fa47b939126cbeb4e3b
+    m_Address: Assets/Prefabs/Blocks_Variant/BlockType02 Variant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8cc2bcb32584aa4da8ddfddb3a8f5d1
+    m_Address: Assets/Prefabs/Blocks_Variant/BlockType07 Variant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c82043a273035fc49a32f80e9030c5ff
     m_Address: Assets/Prefabs/Blocks_Variant/BlockType01 Variant.prefab
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Block
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc420679a75db8645a66ca57b769f76b
+    m_Address: Assets/Prefabs/Blocks_Variant/BlockType08 Variant.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f79fccbdee32fd147acc3d808a0687c5
     m_Address: Assets/Prefabs/Blocks_Variant/BlockType00 Variant.prefab
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Block
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 95b916db052d85c4e8674c34a25a0cb8, type: 2}

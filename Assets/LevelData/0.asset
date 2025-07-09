@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714346eaba354802aa40ea21ede83876, type: 3}
   m_Name: 0
   m_EditorClassIdentifier: 
-  width: 7
-  height: 7
+  width: 5
+  height: 5
   levelIndex: 0
   cellsData:
   - isActive: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
     blockType: 0
   - isActive: 1
     blockType: 0
-  - isActive: 1
+  - isActive: 0
     blockType: 0
   - isActive: 1
     blockType: 0
@@ -34,7 +34,9 @@ MonoBehaviour:
     blockType: 0
   - isActive: 1
     blockType: 0
-  - isActive: 1
+  - isActive: 0
+    blockType: 0
+  - isActive: 0
     blockType: 0
   - isActive: 1
     blockType: 0
@@ -42,7 +44,9 @@ MonoBehaviour:
     blockType: 0
   - isActive: 1
     blockType: 0
-  - isActive: 1
+  - isActive: 0
+    blockType: 0
+  - isActive: 0
     blockType: 0
   - isActive: 1
     blockType: 0
@@ -50,59 +54,7 @@ MonoBehaviour:
     blockType: 0
   - isActive: 1
     blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
-    blockType: 0
-  - isActive: 1
+  - isActive: 0
     blockType: 0
   - isActive: 1
     blockType: 0
