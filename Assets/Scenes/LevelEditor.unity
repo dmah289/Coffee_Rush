@@ -982,6 +982,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 816353073}
+  - component: {fileID: 816353074}
   m_Layer: 5
   m_Name: header
   m_TagString: Untagged
@@ -1012,6 +1013,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 414.1597}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &816353074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816353072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144f18c22a2743818dfa9977f11de43d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardConfig:
+    cellSize: 2
+    borderSize: 0.3
+  in_levelIndex: {fileID: 1043785851}
+  in_height: {fileID: 1028531942}
+  in_width: {fileID: 754100149}
+  tileEditPrefab: {fileID: 1428179687235089657, guid: 94af9ab62f7cfed4ab4969a850cba89d, type: 3}
+  currLevelData: {fileID: 0}
+  width: 0
+  height: 0
 --- !u!1 &839509930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,9 +1118,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1413878103}
-        m_TargetAssemblyTypeName: Coffee_Rush.LevelEditor.LevelEditorController,
-          Assembly-CSharp
+      - m_Target: {fileID: 816353074}
+        m_TargetAssemblyTypeName: Coffee_Rush.LevelEditor.HeaderLeftEditor, Assembly-CSharp
         m_MethodName: OnCreateBoardButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -1624,7 +1646,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1434282587}
+  - {fileID: 1535071005}
   m_Father: {fileID: 340241081}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
@@ -1828,79 +1850,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371222320}
   m_CullTransparentMesh: 1
---- !u!1 &1413878102
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1413878104}
-  - component: {fileID: 1413878103}
-  - component: {fileID: 1413878105}
-  m_Layer: 0
-  m_Name: level_editor_ctl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1413878103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413878102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 144f18c22a2743818dfa9977f11de43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boardConfig:
-    maxWidth: 20
-    maxHeight: 20
-    cellSize: 2
-    borderSize: 0.3
-  levelIndexInput: {fileID: 1043785851}
-  in_height: {fileID: 1028531942}
-  in_width: {fileID: 754100149}
-  cellEditPrefab: {fileID: 1428179687235089657, guid: 94af9ab62f7cfed4ab4969a850cba89d, type: 3}
-  width: 0
-  height: 0
---- !u!4 &1413878104
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413878102}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1413878105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413878102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdc1919c982c4e7faf3d81c0a0ffc2ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  go:
-    m_AssetGUID: f79fccbdee32fd147acc3d808a0687c5
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
 --- !u!1 &1434282586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,13 +1876,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434282586}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1750971324}
-  m_Father: {fileID: 1140083044}
+  m_Father: {fileID: 1535071005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1984,8 +1933,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1413878103}
-        m_TargetAssemblyTypeName: Coffee_Rush.LevelEditor.LevelEditorController,
+      - m_Target: {fileID: 1535071006}
+        m_TargetAssemblyTypeName: LevelEditor.Scripts.RightSide.FooterRightEditor,
           Assembly-CSharp
         m_MethodName: OnExportLevelClicked
         m_Mode: 1
@@ -2113,6 +2062,96 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473186195}
+  m_CullTransparentMesh: 1
+--- !u!1 &1535071004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1535071005}
+  - component: {fileID: 1535071008}
+  - component: {fileID: 1535071007}
+  - component: {fileID: 1535071006}
+  m_Layer: 5
+  m_Name: footer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1535071005
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535071004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1434282587}
+  m_Father: {fileID: 1140083044}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 500}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1535071006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535071004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd6af6204694d29b6b2899c7a9e5f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headerLeftEditor: {fileID: 816353074}
+--- !u!114 &1535071007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535071004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1535071008
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535071004}
   m_CullTransparentMesh: 1
 --- !u!1 &1625911623
 GameObject:
@@ -2555,4 +2594,3 @@ SceneRoots:
   - {fileID: 265470318}
   - {fileID: 340241081}
   - {fileID: 211474725}
-  - {fileID: 1413878104}

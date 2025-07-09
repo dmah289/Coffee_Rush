@@ -1,4 +1,5 @@
 ﻿using System;
+using Coffee_Rush.Block;
 using UnityEngine;
 
 namespace Coffee_Rush.Level
@@ -17,5 +18,20 @@ namespace Coffee_Rush.Level
         public int height;
         public int levelIndex;
         public CellData[] cellsData;
+
+        public CellData GetCellData(int row, int col)
+        {
+            return cellsData[row * width + col];
+        }
+
+        public void SetCellData(int row, int col, CellData cellData)
+        {
+            cellsData[row * width + col] = cellData;
+        }
+
+        public void InitializeCellsDataArray()
+        {
+            cellsData = new CellData[height * width];
+        }
     }
 }

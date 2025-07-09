@@ -17,6 +17,16 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 4028a574321659c4684ee192067d842c
   m_SerializeEntries:
+  - m_GUID: 82666a50d76d2954c8401d1bb5d32b71
+    m_Address: Assets/Audio/BLockDrop.ogg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99a02aefe68fe5c4dbbbb5e03c4c2968
+    m_Address: Assets/Materials/Cup.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c82043a273035fc49a32f80e9030c5ff
     m_Address: Assets/Prefabs/Blocks_Variant/BlockType01 Variant.prefab
     m_ReadOnly: 0

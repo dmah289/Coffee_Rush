@@ -1,27 +1,46 @@
 using System;
+using System.Collections;
+using Coffee_Rush.Board;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Framework.ObjectPooling
 {
+    
+    
     public class PoolingManager : MonoBehaviour
     {
-        [Header("Board Prefabs")]
-        [SerializeField] private Transform cellPrefab;
-        [SerializeField] private Transform outerCornerPrefab;
-        [SerializeField] private Transform straightBorderPrefab;
+        [Header("InGame Asset Reference Prefabs")]
+        [SerializeField] private AssetReference cellPrefab;
+        [SerializeField] private AssetReference outerCornerPrefab;
+        [SerializeField] private AssetReference straightBorderPrefab;
 
-        [Header("Block Prefabs")] 
-        [SerializeField] private Transform blockPrefab;
+
+        public bool IsInGamePoolingInitialized { get; private set; } = false;
         
-        
-        private void Awake()
+        public IEnumerator InitializeObjectInGamePooling()
         {
-            // Initialize the board items
-            ObjectPooler.SetUpPool(PoolingType.Cell, 50, cellPrefab);
-            ObjectPooler.SetUpPool(PoolingType.OuterCorner, 5, outerCornerPrefab);
-            ObjectPooler.SetUpPool(PoolingType.StraightBorder, 20, straightBorderPrefab);
+            // Load assets from Addressables and create pools
+            AsyncOperationHandle<GameObject> cellPrefabHandle = Addressables.LoadAssetAsync<GameObject>(cellPrefab);
+            yield return cellPrefabHandle;
+            ObjectPooler.SetUpPool(PoolingType.Cell, 50, cellPrefabHandle.Result.GetComponent<Tile>());
             
-            // Initialize the block items
+            AsyncOperationHandle<GameObject> outerCornerPrefabHandle = Addressables.LoadAssetAsync<GameObject>(outerCornerPrefab);
+            yield return outerCornerPrefabHandle;
+            ObjectPooler.SetUpPool(PoolingType.OuterCorner, 5, outerCornerPrefabHandle.Result.GetComponent<Transform>());
+            
+            AsyncOperationHandle<GameObject> straightBorderPrefabHandle = Addressables.LoadAssetAsync<GameObject>(straightBorderPrefab);
+            yield return straightBorderPrefabHandle;
+            ObjectPooler.SetUpPool(PoolingType.StraightBorder, 20, straightBorderPrefabHandle.Result.GetComponent<Transform>());
+            
+            
+            // Unload the asset handles to free memory
+            Addressables.Release(cellPrefabHandle);
+            Addressables.Release(outerCornerPrefabHandle);
+            Addressables.Release(straightBorderPrefabHandle);
+
+            IsInGamePoolingInitialized = true;
         }
     }
 }

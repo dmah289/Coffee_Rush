@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Coffee_Rush.LevelEditor
 {
-    public class CellEdit : MonoBehaviour
+    public class TileEdit : MonoBehaviour
     {
         private bool isMouseClicked;
         private void OnMouseEnter()

@@ -241,7 +241,6 @@ GameObject:
   - component: {fileID: 7002717103446617840}
   - component: {fileID: 7368638457265973657}
   - component: {fileID: 5734378128784877290}
-  - component: {fileID: 6809800316939119910}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -315,19 +314,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6809800316939119910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319047230829616606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.6640624, w: -0.21}
 --- !u!1 &1722572898334676036
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +325,6 @@ GameObject:
   - component: {fileID: 5993089156733084941}
   - component: {fileID: 9217462737241996296}
   - component: {fileID: 8774856200987325761}
-  - component: {fileID: 1854212229100078641}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -413,19 +398,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1854212229100078641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722572898334676036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.6640624, w: 0}
 --- !u!1 &1825181905568151091
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,7 +492,6 @@ GameObject:
   - component: {fileID: 4751465341629938181}
   - component: {fileID: 5550233506281400253}
   - component: {fileID: 8623959579688916969}
-  - component: {fileID: 3947559902563907579}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -594,19 +565,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3947559902563907579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915067300323156865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.1660156, w: -0.21}
 --- !u!1 &2018482853333393447
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +755,6 @@ GameObject:
   - component: {fileID: 2666520869185323243}
   - component: {fileID: 4433869412689490541}
   - component: {fileID: 1578531735295736369}
-  - component: {fileID: 804356248988233325}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -871,19 +828,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &804356248988233325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3830351258107757773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.830078, w: 0}
 --- !u!1 &4396940557436237852
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,7 +986,6 @@ GameObject:
   - component: {fileID: 2888677328820543554}
   - component: {fileID: 159066524167464534}
   - component: {fileID: 2956119573352712900}
-  - component: {fileID: 5884524468722159974}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1116,19 +1059,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5884524468722159974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4611875465990280058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.3320312, w: -0.21}
 --- !u!1 &4948936568836427054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,7 +1153,6 @@ GameObject:
   - component: {fileID: 3942984511997220415}
   - component: {fileID: 3660857028079599218}
   - component: {fileID: 6394473827942964951}
-  - component: {fileID: 7877622225217098459}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1297,19 +1226,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7877622225217098459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054602862674187269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0, w: -0.21}
 --- !u!1 &5250632045903703841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,7 +1237,6 @@ GameObject:
   - component: {fileID: 1548209774740852254}
   - component: {fileID: 8808379447636322417}
   - component: {fileID: 2340098196398235462}
-  - component: {fileID: 5782762569657053426}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1395,19 +1310,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5782762569657053426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5250632045903703841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.4980468, w: -0.21}
 --- !u!1 &5420054689887348162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,7 +1385,6 @@ GameObject:
   - component: {fileID: 3536187446094796884}
   - component: {fileID: 6318138756379510169}
   - component: {fileID: 9144161179915406869}
-  - component: {fileID: 1298983744397682881}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1557,19 +1458,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1298983744397682881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5819801899372996956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.3320312, w: 0}
 --- !u!1 &5828009954482276499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,7 +1501,6 @@ GameObject:
   - component: {fileID: 7771765663271118638}
   - component: {fileID: 1745003829336501254}
   - component: {fileID: 9148535483439176554}
-  - component: {fileID: 4223124551696382574}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1687,19 +1574,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4223124551696382574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5998794456648958108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.3320312, w: 0.59}
 --- !u!1 &6043900424664505672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,7 +1668,6 @@ GameObject:
   - component: {fileID: 4095718598943626012}
   - component: {fileID: 1359476736518166908}
   - component: {fileID: 1664374946112228349}
-  - component: {fileID: 41344180039434823}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1868,19 +1741,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &41344180039434823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6083088729131973198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.830078, w: -0.21}
 --- !u!1 &6136809706096458669
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,7 +1881,6 @@ GameObject:
   - component: {fileID: 3550295749384768281}
   - component: {fileID: 4252489288905495304}
   - component: {fileID: 6699641973305786405}
-  - component: {fileID: 4725521523488158240}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -2095,19 +1954,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4725521523488158240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6477286631388708311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.4980468, w: 0}
 --- !u!1 &6535868768722351698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,7 +1997,6 @@ GameObject:
   - component: {fileID: 4480847083777778703}
   - component: {fileID: 6491905607243644972}
   - component: {fileID: 6098686138972876604}
-  - component: {fileID: 5435663153224281399}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -2225,19 +2070,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5435663153224281399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6553932030283570004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0.1660156, w: 0}
 --- !u!1 &6725671927206651256
 GameObject:
   m_ObjectHideFlags: 0
@@ -2364,7 +2196,6 @@ GameObject:
   - component: {fileID: 3509663399768768133}
   - component: {fileID: 2573929408963574848}
   - component: {fileID: 1491991884124980915}
-  - component: {fileID: 6172453891391571605}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -2438,19 +2269,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6172453891391571605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7107866513188358708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 3.16, w: 0.59}
 --- !u!1 &7343247173161672107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2775,7 +2593,6 @@ GameObject:
   - component: {fileID: 3010595190377980242}
   - component: {fileID: 2347638574492441081}
   - component: {fileID: 5382618641825218327}
-  - component: {fileID: 7499315950485901173}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -2849,19 +2666,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7499315950485901173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8716041894897885387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00c8a7abc838cfe42a7201b956cd3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetColorBox: {x: 1, y: 1, z: 0, w: 0.59}
 --- !u!1 &8756777495777055677
 GameObject:
   m_ObjectHideFlags: 0
@@ -3171,7 +2975,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.1660156
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3241,7 +3046,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.6640624
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3311,7 +3117,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.3320312
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3381,7 +3188,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3443,7 +3251,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3513,7 +3322,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3579,7 +3389,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.3320312
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3649,7 +3460,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.830078
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3715,7 +3527,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.1660156
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3785,7 +3598,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.4980468
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3851,7 +3665,8 @@ PrefabInstance:
       propertyPath: openBox
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3917,7 +3732,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.4980468
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3987,7 +3803,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.3320312
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4057,7 +3874,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.830078
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4123,7 +3941,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.6640624
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4193,7 +4012,8 @@ PrefabInstance:
       propertyPath: offsetColorBox.z
       value: 0.1660156
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
