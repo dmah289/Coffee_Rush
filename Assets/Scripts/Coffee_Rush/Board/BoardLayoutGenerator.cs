@@ -14,7 +14,7 @@ namespace Coffee_Rush
         TopLeft = 1 << 0,
         TopRight = 1 << 1,
         BottomRight = 1 << 2,
-        BottomLeft = 1 << 3,
+        BottomLeft = 1 << 3
     }
 
     [Serializable]
@@ -128,6 +128,86 @@ namespace Coffee_Rush
                     if(type.HasFlag(CornerType.BottomLeft)) SetupBottomLeftCorner(posX, posY, state);
                 }
             }
+            
+            SetupContinuousStraightBorders(levelData);
+        }
+
+        private void SetupContinuousStraightBorders(LevelData levelData)
+        {
+            for (int row = 0; row <= levelData.height; row++)
+            {
+                int startCol = -1;
+                bool needBorder = false;
+
+                for (int col = 0; col <= levelData.width; col++)
+                {
+                    bool currNeedBorder = NeedHorizontalBorder(row, col, levelData);
+
+                    if (currNeedBorder && startCol == -1)
+                    {
+                        startCol = col;
+                        needBorder = currNeedBorder;
+                    }
+                    else if (startCol != -1 && (!currNeedBorder || col == levelData.width))
+                    {
+                        CreateHorizontalBorder(row, startCol, col - 1, levelData);
+                        startCol = -1;
+                    }
+                }
+            }
+        }
+
+        private void CreateHorizontalBorder(int row, int startCol, int endCol, LevelData levelData)
+        {
+            Debug.Log($"{startCol} {endCol} {row}");
+            
+            int halfWidth = levelData.width / 2;
+            int halfHeight = levelData.height / 2;
+            
+            bool isEvenWidth = (levelData.width & 1) == 0;
+            bool isEvenHeight = (levelData.height & 1) == 0;
+
+            float startX, y;
+            
+            if(isEvenWidth) startX = (startCol - halfWidth + 0.5f) * boardConfig.cellSize;
+            else startX = (startCol - halfWidth) * boardConfig.cellSize;
+            
+            if(isEvenHeight) y = (row - halfHeight + 0.5f) * boardConfig.cellSize - boardConfig.cellSize / 2;
+            else y = (row - halfHeight) * boardConfig.cellSize - boardConfig.cellSize / 2;
+            
+            if((row & 1) == 0) y -= boardConfig.borderSize / 2;
+            else y += boardConfig.borderSize / 2;
+            
+            float lengthX = (endCol - startCol) * boardConfig.cellSize;
+
+            if (lengthX == 0) return;
+            
+            float centerX = startX + lengthX / 2;
+
+            Transform border = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
+            border.position = new Vector3(centerX, y, 0f);
+            border.eulerAngles = Vector3.zero;
+            border.localScale = new Vector3(lengthX, 1f, 1f);
+            
+#if UNITY_EDITOR
+            border.name = $"HorizontalBorder_{row}_[{startCol}]_[{endCol}]";
+#endif
+        }
+
+        private bool NeedHorizontalBorder(int row, int col, LevelData levelData)
+        {
+            bool currState = row < levelData.height && IsInBound(row, col, levelData.width, levelData.height) && levelData.GetCellData(row, col).isActive;
+            bool belowState = row > 0 && IsInBound(row - 1, col, levelData.width, levelData.height) && levelData.GetCellData(row - 1, col).isActive;
+
+            return currState != belowState;
+        }
+
+        private bool NeedVerticalBorder(int row, int col, LevelData levelData)
+        {
+            bool rightState = col < levelData.width && IsInBound(row, col, levelData.width, levelData.height) && levelData.GetCellData(row, col).isActive;
+            bool leftState = col > 0 && IsInBound(row, col-1, levelData.width, levelData.height) && levelData.GetCellData(row, col-1).isActive;
+
+            return rightState != leftState;
         }
 
         // TODO : Refractor to use a single method with parameters for position and rotation
@@ -170,49 +250,5 @@ namespace Coffee_Rush
             corner.name = "bottom_left_corner";
 #endif
         }
-
-//         private void SetupVerticalBorder()
-//         {
-//             Vector3 verticalEulerAngles = new Vector3(0, 0, 90);
-//             Vector3 verticalLocalScale = new Vector3(boardConfig.cellSize * (levelData.height - 1), 1f, 1f);
-//             
-//             Transform rightBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-//             rightBorder.position = new Vector3(boardConfig.cellSize * levelData.width / 2 + boardConfig.borderSize / 2, 0, 0);
-//             rightBorder.eulerAngles = verticalEulerAngles;
-//             rightBorder.localScale = verticalLocalScale;
-// #if UNITY_EDITOR
-//             rightBorder.name = "right_border";
-// #endif
-//             
-//             Transform leftBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-//             leftBorder.position = new Vector3(-boardConfig.cellSize * levelData.width / 2 - boardConfig.borderSize / 2, 0, 0);
-//             leftBorder.eulerAngles = verticalEulerAngles;
-//             leftBorder.localScale = verticalLocalScale;
-//             
-// #if UNITY_EDITOR
-//             leftBorder.name = "left_border";
-// #endif
-//         }
-//
-//         private void SetupHorizontalBorder()
-//         {
-//             Vector3 horizontalLocalScale = new Vector3(boardConfig.cellSize * (levelData.width - 1), 1f, 1f);
-//             
-//             Transform bottomBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-//             bottomBorder.position = new Vector3(0, -boardConfig.cellSize * levelData.height / 2 - boardConfig.borderSize / 2, 0);
-//             bottomBorder.eulerAngles = Vector3.zero;
-//             bottomBorder.localScale = horizontalLocalScale;
-// #if UNITY_EDITOR
-//             bottomBorder.name = "bottom_border";
-// #endif
-//             
-//             Transform topBorder = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-//             topBorder.position = new Vector3(0, boardConfig.cellSize * levelData.height / 2 + boardConfig.borderSize / 2, 0);
-//             topBorder.eulerAngles = Vector3.zero;
-//             topBorder.localScale = horizontalLocalScale;
-// #if UNITY_EDITOR
-//             topBorder.name = "top_border";
-// #endif
-//         }
     } 
 }
