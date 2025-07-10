@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: LevelData
+  m_Name: Scene
   m_EditorClassIdentifier: 
-  m_GroupName: LevelData
+  m_GroupName: Scene
   m_Data:
     m_SerializedData: []
-  m_GUID: 7c7c0e1b962b08443a8d8628775cfc67
+  m_GUID: bdeb63802273c394081c426773f709c4
   m_SerializeEntries:
-  - m_GUID: 40526ad5c1a3f1047ab76b3bdb7be58e
-    m_Address: Level 1
+  - m_GUID: 2cda990e2423bbf4892e6590ba056729
+    m_Address: Gameplay scene
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bf888654c53d18d488feed805745c258
-    m_Address: Level 0
+  - m_GUID: 7a40910ddb7713e4784bb0aa0b1599d5
+    m_Address: Editor scene
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -31,5 +31,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 95b916db052d85c4e8674c34a25a0cb8, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: adf22d89589092047848a7b293841409, type: 2}
-    - {fileID: 11400000, guid: 64680ed0586a7694d88ec5804b12829b, type: 2}
+    - {fileID: 11400000, guid: 2b688685e14dc0348863f03dc79382a3, type: 2}
+    - {fileID: 11400000, guid: 8961d765a05bfa6499c0e55024969479, type: 2}

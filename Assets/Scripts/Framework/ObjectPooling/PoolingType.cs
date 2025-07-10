@@ -4,6 +4,7 @@ namespace Framework.ObjectPooling
     {
         Cell = 0,
         StraightBorder = 1,
-        OuterCorner = 2
+        OuterCorner = 2,
+        InnerCorner = 3
     }
 }

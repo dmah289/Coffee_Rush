@@ -1,4 +1,5 @@
 using System;
+using Coffee_Rush.Level;
 using UnityEngine;
 
 namespace Coffee_Rush.Board
@@ -8,9 +9,9 @@ namespace Coffee_Rush.Board
         [Header("Self References")]
         [SerializeField] private BoardLayoutGenerator layoutGenerator;
 
-        public void EnterLevel()
+        public void EnterLevel(LevelData levelData)
         {
-            layoutGenerator.SetupBoard();
+            layoutGenerator.SetupBoard(levelData);
         }
     }
 }

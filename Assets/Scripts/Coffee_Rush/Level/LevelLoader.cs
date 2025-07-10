@@ -13,7 +13,7 @@ namespace Coffee_Rush.Level
         public IEnumerator LoadCurrentLevel()
         {
             int levelIndex = PlayerPrefs.GetInt(KeySave.LevelIndexKey, 0);
-            AsyncOperationHandle<LevelData> levelLoaderHandle = Addressables.LoadAssetAsync<LevelData>($"Level {levelIndex}");
+            AsyncOperationHandle<LevelData> levelLoaderHandle = Addressables.LoadAssetAsync<LevelData>($"Level 1");
 
             yield return levelLoaderHandle;
             

@@ -2515,6 +2515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardConfig:
+    tileDirections: []
     cellSize: 2
     borderSize: 0.3
   in_levelIndex: {fileID: 1043785851}

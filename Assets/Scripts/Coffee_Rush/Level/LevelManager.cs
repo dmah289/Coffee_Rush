@@ -27,7 +27,7 @@ namespace Coffee_Rush.Level
             
             yield return levelLoader.LoadCurrentLevel();
             
-            boardController.EnterLevel();
+            boardController.EnterLevel(levelLoader.currLevelData);
         }
     }
 }
