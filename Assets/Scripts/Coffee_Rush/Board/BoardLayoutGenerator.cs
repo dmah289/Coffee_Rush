@@ -41,8 +41,6 @@ namespace Coffee_Rush
         private void Awake()
         {
             selfTransform = transform;
-            
-            Debug.Log(1 << 1);
         }
 
         private bool IsInBound(int row, int col, int width, int height)
@@ -50,7 +48,6 @@ namespace Coffee_Rush
             return row >= 0 && row < height && col >= 0 && col < width;
         }
         
-        // TODO : Refractor logic
         private CornerType FindCornerBorder(int row, int col, LevelData levelData)
         {
             CornerType cornerType = CornerType.None;
@@ -107,9 +104,9 @@ namespace Coffee_Rush
                     state = levelData.GetCellData(i, j).isActive;
 
                     CornerType type = FindCornerBorder(i, j, levelData);
-                    byte typeByte = (byte)type;
-                    string binaryRepresentation = Convert.ToString(typeByte, 2).PadLeft(8, '0');
-                    Debug.Log($"Cell ({i}, {j}) - Type: {type} - Binary: {binaryRepresentation}");
+                    // byte typeByte = (byte)type;
+                    // string binaryRepresentation = Convert.ToString(typeByte, 2).PadLeft(8, '0');
+                    // Debug.Log($"Cell ({i}, {j}) - Type: {type} - Binary: {binaryRepresentation}");
                     
                     if (state)
                     {
@@ -137,30 +134,83 @@ namespace Coffee_Rush
             for (int row = 0; row <= levelData.height; row++)
             {
                 int startCol = -1;
-                bool needBorder = false;
+                bool lastBelowState = false;
 
                 for (int col = 0; col <= levelData.width; col++)
                 {
-                    bool currNeedBorder = NeedHorizontalBorder(row, col, levelData);
+                    (bool needBorder, bool belowState) res = NeedHorizontalBorder(row, col, levelData);
 
-                    if (currNeedBorder && startCol == -1)
+                    if (res.needBorder)
                     {
-                        startCol = col;
-                        needBorder = currNeedBorder;
+                        if(startCol == -1) startCol = col;
+                        else lastBelowState = res.belowState;
                     }
-                    else if (startCol != -1 && (!currNeedBorder || col == levelData.width))
+                    else if (startCol != -1 && (!res.needBorder || col == levelData.width))
                     {
-                        CreateHorizontalBorder(row, startCol, col - 1, levelData);
+                        CreateHorizontalBorder(row, startCol, col - 1, levelData, lastBelowState);
                         startCol = -1;
+                    }
+                }
+            }
+
+            for (int col = 0; col <= levelData.width; col++)
+            {
+                int startRow = -1;
+                bool lastLeftState = false;
+
+                for (int row = 0; row <= levelData.height; row++)
+                {
+                    (bool needBorder, bool leftState) res = NeedVerticalBorder(row, col, levelData);
+                    if (res.needBorder && startRow == -1)
+                    {
+                        startRow = row;
+                        lastLeftState = res.leftState;
+                    }
+                    else if (startRow != -1 && (!res.needBorder || row == levelData.height))
+                    {
+                        CreateVerticalBorder(col, startRow, row - 1, levelData, lastLeftState);
+                        startRow = -1;
                     }
                 }
             }
         }
 
-        private void CreateHorizontalBorder(int row, int startCol, int endCol, LevelData levelData)
+        private void CreateVerticalBorder(int col, int startRow, int endRow, LevelData levelData, bool lastLeftState)
         {
-            Debug.Log($"{startCol} {endCol} {row}");
+            Debug.Log($"{startRow} {endRow} {endRow}");
             
+            int halfWidth = levelData.width / 2;
+            int halfHeight = levelData.height / 2;
+            
+            bool isEvenWidth = (levelData.width & 1) == 0;
+            bool isEvenHeight = (levelData.height & 1) == 0;
+
+            float x, startY;
+
+            if (isEvenWidth) x = (col - halfWidth + 0.5f) * boardConfig.cellSize - boardConfig.cellSize / 2;
+            else x = (col - halfWidth) * boardConfig.cellSize - boardConfig.cellSize / 2;
+            
+            if(isEvenHeight) startY = (startRow - halfHeight + 0.5f) * boardConfig.cellSize;
+            else startY = (startRow - halfHeight) * boardConfig.cellSize;
+            
+            float length = (endRow - startRow) * boardConfig.cellSize;
+            if (length == 0) return;
+            float cenrterY = startY + length / 2;
+            
+            Transform border = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
+            border.position = new Vector3(x, cenrterY, 0f);
+            border.eulerAngles = lastLeftState ? new Vector3(0, 0, -90) : new Vector3(0, 0, 90);
+            border.localScale = new Vector3(length, 1f, 1f);
+            
+#if UNITY_EDITOR
+            border.name = $"VerticalBorder_{col}_[{startRow}]_[{endRow}]";
+#endif
+
+        }
+
+        private void CreateHorizontalBorder(int row, int startCol, int endCol, LevelData levelData, bool belowState)
+        {
+            Debug.Log($"{row} - {belowState}");
             int halfWidth = levelData.width / 2;
             int halfHeight = levelData.height / 2;
             
@@ -175,9 +225,6 @@ namespace Coffee_Rush
             if(isEvenHeight) y = (row - halfHeight + 0.5f) * boardConfig.cellSize - boardConfig.cellSize / 2;
             else y = (row - halfHeight) * boardConfig.cellSize - boardConfig.cellSize / 2;
             
-            if((row & 1) == 0) y -= boardConfig.borderSize / 2;
-            else y += boardConfig.borderSize / 2;
-            
             float lengthX = (endCol - startCol) * boardConfig.cellSize;
 
             if (lengthX == 0) return;
@@ -186,7 +233,7 @@ namespace Coffee_Rush
 
             Transform border = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
             border.position = new Vector3(centerX, y, 0f);
-            border.eulerAngles = Vector3.zero;
+            border.eulerAngles = belowState ? Vector3.zero : new Vector3(0, 0, 180);
             border.localScale = new Vector3(lengthX, 1f, 1f);
             
 #if UNITY_EDITOR
@@ -194,23 +241,22 @@ namespace Coffee_Rush
 #endif
         }
 
-        private bool NeedHorizontalBorder(int row, int col, LevelData levelData)
+        private (bool needBorder, bool belowState) NeedHorizontalBorder(int row, int col, LevelData levelData)
         {
             bool currState = row < levelData.height && IsInBound(row, col, levelData.width, levelData.height) && levelData.GetCellData(row, col).isActive;
             bool belowState = row > 0 && IsInBound(row - 1, col, levelData.width, levelData.height) && levelData.GetCellData(row - 1, col).isActive;
 
-            return currState != belowState;
+            return (currState != belowState, belowState);
         }
 
-        private bool NeedVerticalBorder(int row, int col, LevelData levelData)
+        private (bool needBorder, bool leftState) NeedVerticalBorder(int row, int col, LevelData levelData)
         {
-            bool rightState = col < levelData.width && IsInBound(row, col, levelData.width, levelData.height) && levelData.GetCellData(row, col).isActive;
+            bool currState = col < levelData.width && IsInBound(row, col, levelData.width, levelData.height) && levelData.GetCellData(row, col).isActive;
             bool leftState = col > 0 && IsInBound(row, col-1, levelData.width, levelData.height) && levelData.GetCellData(row, col-1).isActive;
 
-            return rightState != leftState;
+            return (currState != leftState, leftState);
         }
-
-        // TODO : Refractor to use a single method with parameters for position and rotation
+        
         private void SetupTopLeftCorner(float posX, float posY, bool state)
         {
             Transform corner = ObjectPooler.GetFromPool<Transform>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
