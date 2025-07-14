@@ -110,7 +110,7 @@ namespace Coffee_Rush
                     
                     if (state)
                     {
-                        Tile tile = ObjectPooler.GetFromPool<Tile>(PoolingType.Cell, selfTransform);
+                        Tile tile = ObjectPooler.GetFromPool<Tile>(PoolingType.Tile, selfTransform);
                     
                         tile.SelfTransform.position = new Vector3(posX, posY, 0f);
 #if UNITY_EDITOR
@@ -177,8 +177,6 @@ namespace Coffee_Rush
 
         private void CreateVerticalBorder(int col, int startRow, int endRow, LevelData levelData, bool lastLeftState)
         {
-            Debug.Log($"{startRow} {endRow} {endRow}");
-            
             int halfWidth = levelData.width / 2;
             int halfHeight = levelData.height / 2;
             
@@ -210,7 +208,6 @@ namespace Coffee_Rush
 
         private void CreateHorizontalBorder(int row, int startCol, int endCol, LevelData levelData, bool belowState)
         {
-            Debug.Log($"{row} - {belowState}");
             int halfWidth = levelData.width / 2;
             int halfHeight = levelData.height / 2;
             

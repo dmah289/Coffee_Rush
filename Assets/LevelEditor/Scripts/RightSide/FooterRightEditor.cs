@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using System;
 using Coffee_Rush.Level;
-using Coffee_Rush.LevelEditor;
+using LevelEditor.Scripts.LeftSide;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;

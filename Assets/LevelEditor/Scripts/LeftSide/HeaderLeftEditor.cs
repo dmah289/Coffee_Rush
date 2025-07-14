@@ -1,12 +1,12 @@
 ﻿#if UNITY_EDITOR
 using System;
+using Coffee_Rush;
 using Coffee_Rush.Level;
-using Unity.VisualScripting;
-using UnityEditor;
+using Coffee_Rush.LevelEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Coffee_Rush.LevelEditor
+namespace LevelEditor.Scripts.LeftSide
 {
     public class HeaderLeftEditor : MonoBehaviour
     {
@@ -15,12 +15,12 @@ namespace Coffee_Rush.LevelEditor
         [SerializeField] private InputField in_levelIndex;
         [SerializeField] private InputField in_height;
         [SerializeField] private InputField in_width;
-
-        [Header("Prefabs")]
-        [SerializeField] private TileEdit tileEditPrefab;
+        
 
         [Header("Settings")]
+        [SerializeField] private TileEdit tileEditPrefab;
         public TileEdit[,] cellsEdit;
+        public Transform tilesParent;
         public LevelData currLevelData;
         public int width;
         public int height;
@@ -60,7 +60,7 @@ namespace Coffee_Rush.LevelEditor
             {
                 for (int j = 0; j < width; j++)
                 {
-                    TileEdit tile = Instantiate(tileEditPrefab);
+                    TileEdit tile = Instantiate(tileEditPrefab, tilesParent);
                     
                     if (isEvenWidth) posX = (j - halfWidth + 0.5f) * boardConfig.cellSize;
                     else posX = (j - halfWidth) * boardConfig.cellSize;

@@ -117,6 +117,37 @@ Transform:
   - {fileID: 2523021474508967443}
   m_Father: {fileID: 663904601194256247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &574852493764116636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5987341195505827890}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5987341195505827890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574852493764116636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1, y: 1.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 872295223622439110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &775362434801076545
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +462,7 @@ GameObject:
   - component: {fileID: 7201117022195890621}
   m_Layer: 3
   m_Name: target_point
-  m_TagString: Untagged
+  m_TagString: TargetSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -998,7 +1029,7 @@ GameObject:
   - component: {fileID: 7074975652978362145}
   m_Layer: 3
   m_Name: target_point
-  m_TagString: Untagged
+  m_TagString: TargetSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1229,7 +1260,7 @@ GameObject:
   - component: {fileID: 4879540185716179014}
   m_Layer: 3
   m_Name: target_point
-  m_TagString: Untagged
+  m_TagString: TargetSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1260,7 +1291,7 @@ GameObject:
   - component: {fileID: 5585024567123035195}
   m_Layer: 3
   m_Name: target_point
-  m_TagString: Untagged
+  m_TagString: TargetSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1408,7 +1439,7 @@ GameObject:
   - component: {fileID: 5459799187647081980}
   m_Layer: 3
   m_Name: target_point
-  m_TagString: Untagged
+  m_TagString: TargetSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1471,7 +1502,7 @@ GameObject:
   - component: {fileID: 5849632060162753765}
   m_Layer: 3
   m_Name: target_point
-  m_TagString: Untagged
+  m_TagString: TargetSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1500,8 +1531,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 872295223622439110}
-  - component: {fileID: 8124646458065804676}
   - component: {fileID: -5777461353536523369}
+  - component: {fileID: 3945929209917962709}
+  - component: {fileID: 1083255695518857342}
   m_Layer: 0
   m_Name: BlockType01 Editor
   m_TagString: Untagged
@@ -1523,22 +1555,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 663904601194256247}
+  - {fileID: 5987341195505827890}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8124646458065804676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6690398066398325542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f48ba0d83211410685995ed8fc57e086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selfTransform: {fileID: 0}
-  selfRb: {fileID: 0}
 --- !u!50 &-5777461353536523369
 Rigidbody2D:
   serializedVersion: 4
@@ -1566,6 +1585,85 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &3945929209917962709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690398066398325542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129e56606a4041fc983b144768dc5c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTransform: {fileID: 0}
+  selfRb: {fileID: 0}
+  blockType: 1
+  centerToTouchOffset: {x: 0, y: 0, z: 0}
+  speed: 0
+  isDragging: 0
+--- !u!60 &1083255695518857342
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690398066398325542}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.52166563, y: 1.9571829}
+      - {x: -0.7189096, y: 1.9157884}
+      - {x: -0.8730041, y: 1.7945138}
+      - {x: -0.9163628, y: 1.6323323}
+      - {x: -0.9000281, y: -1.6317525}
+      - {x: -0.77517974, y: -1.8349581}
+      - {x: -0.5786759, y: -1.9544524}
+      - {x: 0.6354001, y: -1.9486346}
+      - {x: 0.79449105, y: -1.8728503}
+      - {x: 0.9090974, y: -1.7395875}
+      - {x: 0.98497444, y: -1.5285167}
+      - {x: 0.96433526, y: 1.5176883}
+      - {x: 0.9324492, y: 1.6450324}
+      - {x: 0.83803964, y: 1.8115664}
+      - {x: 0.6733109, y: 1.9208274}
+      - {x: 0.5227441, y: 1.9621985}
+  m_UseDelaunayMesh: 0
 --- !u!1 &7149249221758556550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1829,7 +1927,7 @@ GameObject:
   - component: {fileID: 4606853484722713459}
   m_Layer: 3
   m_Name: target_point
-  m_TagString: Untagged
+  m_TagString: TargetSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2060,7 +2158,7 @@ GameObject:
   - component: {fileID: 9081115604133270632}
   m_Layer: 3
   m_Name: target_point
-  m_TagString: Untagged
+  m_TagString: TargetSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

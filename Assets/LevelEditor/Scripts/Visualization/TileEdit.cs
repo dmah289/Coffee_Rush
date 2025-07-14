@@ -6,9 +6,10 @@ namespace Coffee_Rush.LevelEditor
     public class TileEdit : MonoBehaviour
     {
         private bool isMouseClicked;
+        
         private void OnMouseEnter()
         {
-            if (isMouseClicked)
+            if (isMouseClicked && Input.GetKey(KeyCode.LeftControl))
             {
                 gameObject.SetActive(false);
             }

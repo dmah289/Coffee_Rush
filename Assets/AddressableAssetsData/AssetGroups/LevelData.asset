@@ -17,8 +17,23 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 7c7c0e1b962b08443a8d8628775cfc67
   m_SerializeEntries:
+  - m_GUID: 0090b7e62f845324ea95bd055f41da53
+    m_Address: Assets/Materials/Blocks/Middle.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 187746c964238a847a6b3b0496fe922c
+    m_Address: Assets/Materials/Blocks/Straight.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1b9a753a62e70f94489fb6b8d5a71ea5
     m_Address: Level 3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 281a5feacb3666a47b574d9a5dd28935
+    m_Address: Assets/Materials/Blocks/InnerConner.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -32,13 +47,38 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 883ce47e6c3483b46ac06266fce3dfed
+    m_Address: Assets/Materials/Blocks/OuterConner.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a132d30f9c934f7449c2043744bed9e4
+    m_Address: Assets/Textures/Sprite Sheet.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: adc36f9b09d3fd5408a813ebc0bb8430
     m_Address: Level 2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7870645fc731414b97119cea693a1da
+    m_Address: Assets/Textures/Item Main.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf888654c53d18d488feed805745c258
     m_Address: Level 0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2f0c7adc6c61294481b09658b6beb40
+    m_Address: Assets/Main.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbaf2b9276e0f1e4fa6a92f5d643af58
+    m_Address: Assets/Materials/Item Main.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

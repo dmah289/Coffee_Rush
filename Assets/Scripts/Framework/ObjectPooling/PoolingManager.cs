@@ -12,7 +12,7 @@ namespace Framework.ObjectPooling
     public class PoolingManager : MonoBehaviour
     {
         [Header("InGame Asset Reference Prefabs")]
-        [SerializeField] private AssetReference cellPrefab;
+        [SerializeField] private AssetReference tilePrefab;
         [SerializeField] private AssetReference outerCornerPrefab;
         [SerializeField] private AssetReference straightBorderPrefab;
         [SerializeField] private AssetReference innerCornerPrefab;
@@ -23,9 +23,9 @@ namespace Framework.ObjectPooling
         public IEnumerator InitializeObjectInGamePooling()
         {
             // Load assets from Addressable and create pools
-            AsyncOperationHandle<GameObject> cellPrefabHandle = Addressables.LoadAssetAsync<GameObject>(cellPrefab);
-            yield return cellPrefabHandle;
-            ObjectPooler.SetUpPool(PoolingType.Cell, 50, cellPrefabHandle.Result.GetComponent<Tile>());
+            AsyncOperationHandle<GameObject> tilePrefabHandle = Addressables.LoadAssetAsync<GameObject>(tilePrefab);
+            yield return tilePrefabHandle;
+            ObjectPooler.SetUpPool(PoolingType.Tile, 50, tilePrefabHandle.Result.GetComponent<Tile>());
             
             AsyncOperationHandle<GameObject> outerCornerPrefabHandle = Addressables.LoadAssetAsync<GameObject>(outerCornerPrefab);
             yield return outerCornerPrefabHandle;
@@ -41,7 +41,7 @@ namespace Framework.ObjectPooling
             
             
             // Unload the asset handles to free memory
-            Addressables.Release(cellPrefabHandle);
+            Addressables.Release(tilePrefabHandle);
             Addressables.Release(outerCornerPrefabHandle);
             Addressables.Release(straightBorderPrefabHandle);
             Addressables.Release(innerCornerPrefabHandle);
