@@ -18,7 +18,7 @@ namespace Coffee_Rush.Mechanics
                 ISelectable selectable = colliders[0].GetComponent<ISelectable>();
                 if (selectable != null)
                 {
-                    selectedObject = selectable as BlockControllerEdit;
+                    selectedObject = selectable as ABlockController;
                     selectable.OnSelect(touchPos);
                 }
             }
