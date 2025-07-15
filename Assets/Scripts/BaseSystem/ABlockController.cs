@@ -1,5 +1,6 @@
 using System;
 using Coffee_Rush.Block;
+using Coffee_Rush.Board;
 using Coffee_Rush.JobCalculation;
 using DG.Tweening;
 using Unity.Collections;
