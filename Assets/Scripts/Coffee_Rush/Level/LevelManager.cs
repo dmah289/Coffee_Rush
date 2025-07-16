@@ -12,13 +12,11 @@ namespace Coffee_Rush.Level
         [SerializeField] private LevelLoader levelLoader;
         [SerializeField] private BoardController boardController;
         [SerializeField] private PoolingManager poolingManager;
+        
 
-        private void Update()
+        private void OnEnable()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartCoroutine(EnterLevel());
-            }
+            StartCoroutine(EnterLevel());
         }
 
         private IEnumerator EnterLevel()

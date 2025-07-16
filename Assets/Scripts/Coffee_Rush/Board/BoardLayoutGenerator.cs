@@ -7,16 +7,6 @@ using UnityEngine;
 
 namespace Coffee_Rush
 {
-    [Flags]
-    public enum CornerType : byte
-    {
-        None = 0,
-        TopLeft = 1 << 0,
-        TopRight = 1 << 1,
-        BottomRight = 1 << 2,
-        BottomLeft = 1 << 3
-    }
-
     [Serializable]
     public struct BoardConfig
     {
@@ -48,9 +38,9 @@ namespace Coffee_Rush
             return row >= 0 && row < height && col >= 0 && col < width;
         }
         
-        private CornerType FindCornerBorder(int row, int col, LevelData levelData)
+        private eCornerType FindCornerBorder(int row, int col, LevelData levelData)
         {
-            CornerType cornerType = CornerType.None;
+            eCornerType eCornerType = eCornerType.None;
             bool state = levelData.GetCellData(row, col).isActive;
             for (byte i = 0; i < 4; i++)
             {
@@ -73,9 +63,9 @@ namespace Coffee_Rush
                 if (state1 != state2) continue;
                 
                 if(state != state1)
-                    cornerType = cornerType | (CornerType)(1 << i);
+                    eCornerType = eCornerType | (eCornerType)(1 << i);
             }
-            return cornerType;
+            return eCornerType;
         }
          
         public void SetupBoard(LevelData levelData)
@@ -103,7 +93,7 @@ namespace Coffee_Rush
 
                     state = levelData.GetCellData(i, j).isActive;
 
-                    CornerType type = FindCornerBorder(i, j, levelData);
+                    eCornerType type = FindCornerBorder(i, j, levelData);
                     // byte typeByte = (byte)type;
                     // string binaryRepresentation = Convert.ToString(typeByte, 2).PadLeft(8, '0');
                     // Debug.Log($"Cell ({i}, {j}) - Type: {type} - Binary: {binaryRepresentation}");
@@ -119,10 +109,10 @@ namespace Coffee_Rush
                         tiles[i,j] = tile;
                     }
                     
-                    if(type.HasFlag(CornerType.TopLeft)) SetupTopLeftCorner(posX, posY, state);
-                    if(type.HasFlag(CornerType.TopRight)) SetupTopRightCorner(posX, posY, state);
-                    if(type.HasFlag(CornerType.BottomRight)) SetupBottomRightCorner(posX, posY, state);
-                    if(type.HasFlag(CornerType.BottomLeft)) SetupBottomLeftCorner(posX, posY, state);
+                    if(type.HasFlag(eCornerType.TopLeft)) SetupTopLeftCorner(posX, posY, state);
+                    if(type.HasFlag(eCornerType.TopRight)) SetupTopRightCorner(posX, posY, state);
+                    if(type.HasFlag(eCornerType.BottomRight)) SetupBottomRightCorner(posX, posY, state);
+                    if(type.HasFlag(eCornerType.BottomLeft)) SetupBottomLeftCorner(posX, posY, state);
                 }
             }
             

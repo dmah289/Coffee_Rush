@@ -63,7 +63,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1, y: 0}
@@ -91,7 +91,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0200cb8469334aea8e5143c7709b9959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 2384320893940778289}
+  gateZRotByDir: 00000000a6ffffff4cffffffa6ffffff
+  gateItemDistance: 0.8
+  gateItemRotationsByDir: []
   gateItems: []
+  GateItemColors: 
+  gateDir: 0
 --- !u!1 &4937221804643270988
 GameObject:
   m_ObjectHideFlags: 0

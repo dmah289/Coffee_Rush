@@ -38,9 +38,14 @@ namespace Coffee_Rush.Block
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-            blockMatcher.TryCollectGateItem(other);
+            StartCoroutine(blockMatcher.TryCollectGateItem(other));
         }
-        
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            blockMatcher.MatchingAllowed = false;
+        }
+
         protected override void InitializeAllJobs()
         {
             base.InitializeAllJobs();

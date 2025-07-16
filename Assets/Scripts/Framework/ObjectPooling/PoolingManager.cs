@@ -16,6 +16,7 @@ namespace Framework.ObjectPooling
         [SerializeField] private AssetReference outerCornerPrefab;
         [SerializeField] private AssetReference straightBorderPrefab;
         [SerializeField] private AssetReference innerCornerPrefab;
+        [SerializeField] private AssetReference cupPrefab;
 
 
         public bool IsInGamePoolingInitialized { get; private set; } = false;
@@ -39,12 +40,17 @@ namespace Framework.ObjectPooling
             yield return innerCornerPrefabHandle;
             ObjectPooler.SetUpPool(PoolingType.InnerCorner, 5, innerCornerPrefabHandle.Result.GetComponent<Transform>());
             
+            AsyncOperationHandle<GameObject> cupPrefabHandle = Addressables.LoadAssetAsync<GameObject>(cupPrefab);
+            yield return cupPrefabHandle;
+            ObjectPooler.SetUpPool(PoolingType.Cup, 5, cupPrefabHandle.Result.GetComponent<GateItem>());
+            
             
             // Unload the asset handles to free memory
             Addressables.Release(tilePrefabHandle);
             Addressables.Release(outerCornerPrefabHandle);
             Addressables.Release(straightBorderPrefabHandle);
             Addressables.Release(innerCornerPrefabHandle);
+            Addressables.Release(cupPrefabHandle);
 
             IsInGamePoolingInitialized = true;
         }

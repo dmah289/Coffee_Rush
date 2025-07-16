@@ -42,6 +42,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e1f8201b05f7f44a85834cbecddd16e
+    m_Address: Assets/Prefabs/Gameplay/Cup.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 681b83c170f4878488a2a594e4b88753
     m_Address: Level 4
     m_ReadOnly: 0

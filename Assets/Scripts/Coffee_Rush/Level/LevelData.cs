@@ -1,9 +1,19 @@
 ﻿using System;
 using Coffee_Rush.Block;
+using Coffee_Rush.Board;
 using UnityEngine;
 
 namespace Coffee_Rush.Level
 {
+    [Serializable]
+    public struct GateData
+    {
+        public int cellRow;
+        public int cellCol;
+        public eDirection gateDir;
+        public eColorType[] itemColors;
+    }
+    
     [Serializable]
     public struct CellData
     {

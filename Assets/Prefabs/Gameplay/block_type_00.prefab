@@ -173,9 +173,9 @@ PolygonCollider2D:
       - {x: -0.95944786, y: -0.5356116}
       - {x: -0.82916266, y: -0.82941675}
       - {x: -0.62393975, y: -0.9482967}
-      - {x: 0.5921931, y: -0.951086}
-      - {x: 0.883838, y: -0.78516513}
-      - {x: 0.97005147, y: -0.59910697}
+      - {x: 0.49929595, y: -0.9603757}
+      - {x: 0.835067, y: -0.78516513}
+      - {x: 0.9537945, y: -0.59213966}
   m_UseDelaunayMesh: 0
 --- !u!50 &469735947211498712
 Rigidbody2D:
@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18dc0af0656c4bcfb3f2a14f96dfd0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDuration: 0.2
   colorType: 1
   cupHolders:
   - {fileID: 1603796338764901009}
@@ -443,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &3343730900761502475
 GameObject:
@@ -542,6 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &3967752508412171227
 GameObject:
@@ -641,6 +644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &5283336613115176823
 GameObject:
@@ -919,6 +923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &8423385289275633537
 GameObject:
