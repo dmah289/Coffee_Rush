@@ -7,7 +7,7 @@ namespace Coffee_Rush.Board
     public class BoardController : MonoBehaviour
     {
         [Header("Self References")]
-        [SerializeField] private BoardLayoutGenerator layoutGenerator;
+        [SerializeField] public BoardLayoutGenerator layoutGenerator;
 
         public void EnterLevel(LevelData levelData)
         {

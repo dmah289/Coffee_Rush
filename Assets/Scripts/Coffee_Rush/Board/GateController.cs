@@ -57,7 +57,7 @@ namespace Coffee_Rush.Board
             SpawnGateItems(gateDir, GateItemColors);
         }
         
-        public void SpawnGateItems(eDirection gateDir, eColorType[] itemColors)
+        private void SpawnGateItems(eDirection gateDir, eColorType[] itemColors)
         {
             float spawnPosZ = gateDir == eDirection.Down ? -1 : 0;
             gateItems.Clear();

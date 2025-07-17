@@ -7,7 +7,7 @@ namespace Coffee_Rush.Block
 {
     public class BLockMatcher : MonoBehaviour
     {
-        [Header("Anim Config")] 
+        [Header("Anim Config")]
         [SerializeField] private float moveDuration;
         
         [Header("Matching Settings")]
@@ -16,6 +16,11 @@ namespace Coffee_Rush.Block
         [SerializeField] private int currEmptyIdx;
         
         public bool MatchingAllowed {get; set;}
+
+        private void Awake()
+        {
+            cupHolders = GetComponentsInChildren<CupHolder>();
+        }
 
         private void Start()
         {

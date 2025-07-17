@@ -283,5 +283,42 @@ namespace Coffee_Rush
             corner.name = "bottom_left_corner";
 #endif
         }
+
+        public Vector3 GetCoordPos(Vector3 worldPos)
+        {
+            int halfWidth = levelLoader.currLevelData.width / 2;
+            int halfHeight = levelLoader.currLevelData.height / 2;
+    
+            bool isEvenWidth = (levelLoader.currLevelData.width & 1) == 0;
+            bool isEvenHeight = (levelLoader.currLevelData.height & 1) == 0;
+    
+            // Calculate board coordinates
+            float column, row;
+    
+            // For X (column) coordinate
+            if (isEvenWidth)
+                column = (worldPos.x / boardConfig.cellSize) + halfWidth - 0.5f;
+            else
+                column = (worldPos.x / boardConfig.cellSize) + halfWidth;
+    
+            // For Y (row) coordinate
+            if (isEvenHeight)
+                row = (worldPos.y / boardConfig.cellSize) + halfHeight - 0.5f;
+            else
+                row = (worldPos.y / boardConfig.cellSize) + halfHeight;
+            
+            int roundedColumn = Mathf.RoundToInt(column);
+            int roundedRow = Mathf.RoundToInt(row);
+            
+            float posX, posY;
+            
+            if (isEvenWidth) posX = (roundedColumn - halfWidth + 0.5f) * boardConfig.cellSize;
+            else posX = (roundedColumn - halfWidth) * boardConfig.cellSize;
+
+            if (isEvenHeight) posY = (roundedRow - halfHeight + 0.5f) * boardConfig.cellSize;
+            else posY = (roundedRow - halfHeight) * boardConfig.cellSize;
+
+            return new Vector3(posX, posY, 0);
+        }
     } 
 }

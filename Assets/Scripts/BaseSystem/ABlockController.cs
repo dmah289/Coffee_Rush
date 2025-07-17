@@ -16,6 +16,9 @@ namespace BaseSystem
         [SerializeField] protected Transform selfTransform;
         [SerializeField] protected Rigidbody2D selfRb;
         
+        [Header("Child Components")]
+        [SerializeField] private BlockFitting blockFitting;
+        
         [Header("Attributes")]
         [SerializeField] protected eBlockType blockType;
         
@@ -38,9 +41,12 @@ namespace BaseSystem
         {
             selfTransform = transform;
             selfRb = selfTransform.GetComponent<Rigidbody2D>();
+            blockFitting = GetComponent<BlockFitting>();
 
             selfRb.isKinematic = true;
             speed = 30;
+            
+            blockFitting.CalculateCheckPointOffset();
         }
 
         private void OnEnable()
@@ -111,12 +117,13 @@ namespace BaseSystem
 
         public void OnDeselect()
         {
-            transform.DOMoveZ(0f, 0.2f);
             isDragging = false;
             velocityCalculationJobHandle.Complete();
             
             selfRb.velocity = Vector2.zero;
             selfRb.isKinematic = true;
+
+            blockFitting.FitBoard();
         }
 
         private void OnDisable()

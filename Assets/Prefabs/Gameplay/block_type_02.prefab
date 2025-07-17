@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &536867629622352716
 GameObject:
@@ -259,6 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &2292689912106076900
 GameObject:
@@ -422,6 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &2394328625912411180
 GameObject:
@@ -781,6 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &5932868819907200274
 GameObject:
@@ -880,6 +884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &6124443454241914300
 GameObject:
@@ -1043,6 +1048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &6819347566728610515
 GameObject:
@@ -1142,6 +1148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &7159929795912153936
 GameObject:
@@ -1241,6 +1248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &7317820663401697154
 GameObject:
@@ -1340,6 +1348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &7344278554326026979
 GameObject:
@@ -1552,6 +1561,7 @@ GameObject:
   - component: {fileID: 8596330925722960756}
   - component: {fileID: 5902306687332628820}
   - component: {fileID: -110993856033178631}
+  - component: {fileID: 6866109144981919494}
   m_Layer: 0
   m_Name: block_type_02
   m_TagString: Untagged
@@ -1676,6 +1686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfRb: {fileID: 0}
+  blockFitting: {fileID: 0}
   blockType: 0
   centerToTouchOffset: {x: 0, y: 0, z: 0}
   speed: 0
@@ -1685,6 +1696,34 @@ MonoBehaviour:
   dampingFactor: 5
   tiltSensitivity: 10
   maxOffset: 10
+--- !u!114 &6866109144981919494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8150600548201570315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18dc0af0656c4bcfb3f2a14f96dfd0fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDuration: 0.2
+  colorType: 0
+  cupHolders:
+  - {fileID: 639644197188501370}
+  - {fileID: 6022713362999396518}
+  - {fileID: 5922395134134829932}
+  - {fileID: 8769705714846622090}
+  - {fileID: 7517822636064740638}
+  - {fileID: 6948897875159119226}
+  - {fileID: 4040875075480375041}
+  - {fileID: 2649849597149606252}
+  - {fileID: 5967038110797800467}
+  - {fileID: 2216002063757876103}
+  - {fileID: 8960738001062870680}
+  - {fileID: 9150084837597676501}
+  currEmptyIdx: 0
 --- !u!1 &8607749077725897295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,6 +1822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &8749459231903983104
 GameObject:
@@ -1882,6 +1922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
 --- !u!1 &9109609811672543457
 GameObject:
@@ -1981,4 +2022,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
