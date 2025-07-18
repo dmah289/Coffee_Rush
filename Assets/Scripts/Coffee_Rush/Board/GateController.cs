@@ -17,6 +17,7 @@ namespace Coffee_Rush.Board
 
         [Header("GateItem Config")]
         [SerializeField] private float gateItemDistance = 0.8f;
+        [SerializeField] private float cellSize = 2f;
         [SerializeField] private Vector3[] gateItemRotationsByDir = new  Vector3[4]
         {
             new Vector3(-75, 0, 0),      // Up
@@ -24,13 +25,17 @@ namespace Coffee_Rush.Board
             new Vector3(-110, 0, 0),   // Down
             new Vector3(-90, 0, -30)     // Left
         };
+        [SerializeField] private Vector2Int[] gateOffsetByDir = new Vector2Int[4]
+        {
+            new (0, 1),      // Up
+            new (1, 0),      // Right
+            new (0, -1),     // Down
+            new (0, -1)       // Left
+        };
         
         [Header("GateItem Manager")]
         [SerializeField] private List<GateItem> gateItems;
         
-        
-        public eColorType[] GateItemColors;
-        public eDirection gateDir;
 
         private eColorType colorType;
         public eColorType ColorType
@@ -51,10 +56,12 @@ namespace Coffee_Rush.Board
             selfTransform = transform;
         }
 
-        public void Setup()
+        public void Setup(Vector3 tilePos,eDirection gateDir, eColorType[] itemColors)
         {
+            selfTransform.position = new Vector3(
+                tilePos.x + gateOffsetByDir[(byte)gateDir].x * cellSize / 2, tilePos.y + gateOffsetByDir[(byte)gateDir].y * cellSize / 2, tilePos.z);
             selfTransform.eulerAngles = new Vector3(0, 0, gateZRotByDir[(byte)gateDir-1]);
-            SpawnGateItems(gateDir, GateItemColors);
+            SpawnGateItems(gateDir, itemColors);
         }
         
         private void SpawnGateItems(eDirection gateDir, eColorType[] itemColors)

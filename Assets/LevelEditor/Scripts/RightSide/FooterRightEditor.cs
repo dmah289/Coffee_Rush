@@ -2,6 +2,7 @@
 using System;
 using Coffee_Rush.Level;
 using LevelEditor.Scripts.LeftSide;
+using LevelEditor.Scripts.Visualization.Block;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
@@ -11,8 +12,9 @@ namespace LevelEditor.Scripts.RightSide
 {
     public class FooterRightEditor : MonoBehaviour
     {
-        [Header("References")] 
+        [Header("References")]
         [SerializeField] private HeaderLeftEditor headerLeftEditor;
+        [SerializeField] private Transform blockParent;
         
         public void OnExportLevelClicked()
         {
@@ -25,19 +27,42 @@ namespace LevelEditor.Scripts.RightSide
         
         private void SaveAllData()
         {
+            SaveTilesData();
+            SaveBlocksData();
+        }
+
+        private void SaveBlocksData()
+        {
+            BlockControllerEdit[] blocks = blockParent.GetComponentsInChildren<BlockControllerEdit>();
+            BlockData[] blocksData = new BlockData[blocks.Length];
+            for(int i = 0; i < blocks.Length; i++)
+            {
+                blocksData[i] = new BlockData()
+                {
+                    blockType = blocks[i].BlockType,
+                    blockColor = blocks[i].ColorType,
+                    row = blocks[i].blockFitting.row,
+                    col = blocks[i].blockFitting.col
+                };
+            }
+            headerLeftEditor.currLevelData.blocksData = blocksData;
+        }
+
+        private void SaveTilesData()
+        {
             for (int i = 0; i < headerLeftEditor.currLevelData.height; i++)
             {
                 for (int j = 0; j < headerLeftEditor.currLevelData.width; j++)
                 {
-                    CellData cellData = new CellData
+                    TileData tileData = new TileData
                     {
-                        isActive = headerLeftEditor.cellsEdit[i,j].gameObject.activeSelf
+                        isActive = headerLeftEditor.tilesEdit[i,j].gameObject.activeSelf
                     };
-                    headerLeftEditor.currLevelData.SetCellData(i, j, cellData);
+                    headerLeftEditor.currLevelData.SetCellData(i, j, tileData);
                 }
             }
         }
-        
+
         private void SaveAsset()
         {
             string path = $"Assets/LevelData/{headerLeftEditor.currLevelData.levelIndex}.asset";

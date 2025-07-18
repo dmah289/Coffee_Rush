@@ -13,6 +13,7 @@ namespace Coffee_Rush.Block
     {
         [Header("Child Components")]
         [SerializeField] private BLockMatcher blockMatcher;
+        [SerializeField] protected BlockFitting blockFitting;
         
         [Header("Balance Settings")]
         private Vector3 curEulerNotDragging;
@@ -34,11 +35,19 @@ namespace Coffee_Rush.Block
         
             initEuler = selfTransform.eulerAngles;
             blockMatcher = GetComponent<BLockMatcher>();
+            blockFitting = GetComponent<BlockFitting>();
+            
+            blockFitting.CalculateCheckPointOffset();
+        }
+
+        public void SetCheckPointToTargetTile(Vector3 targetTilePos)
+        {
+            blockFitting.SetCheckPointToTargetTile(targetTilePos);
         }
         
         private void OnCollisionEnter2D(Collision2D other)
         {
-            StartCoroutine(blockMatcher.TryCollectGateItem(other));
+            StartCoroutine(blockMatcher.TryCollectGateItem(other, colorType, cupHolders));
         }
 
         private void OnCollisionExit2D(Collision2D other)
@@ -94,6 +103,13 @@ namespace Coffee_Rush.Block
             base.ReleaseNativeMemory();
             
             if (currentEuler.IsCreated) currentEuler.Dispose();
+        }
+
+        public override void OnDeselect()
+        {
+            base.OnDeselect();
+            
+            blockFitting.FitBoard();
         }
     }
 }

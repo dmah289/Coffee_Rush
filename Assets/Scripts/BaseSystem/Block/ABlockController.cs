@@ -17,15 +17,16 @@ namespace BaseSystem
         [SerializeField] protected Rigidbody2D selfRb;
         
         [Header("Child Components")]
-        [SerializeField] private BlockFitting blockFitting;
-        
-        [Header("Attributes")]
-        [SerializeField] protected eBlockType blockType;
+        [SerializeField] protected CupHolder[] cupHolders;
         
         [Header("Movement Settings")]
         [SerializeField] protected Vector3 centerToTouchOffset;
         [SerializeField] protected float speed;
         [SerializeField] protected bool isDragging;
+        
+        [Header("Data")]
+        [SerializeField] protected eColorType colorType;
+        [SerializeField] protected eBlockType blockType;
         
         //Velocity Calculation Job
         protected VelocityCalculationJob velocityCalculationJob;
@@ -36,22 +37,59 @@ namespace BaseSystem
 
         protected virtual void OnBalance(bool isDragging, Vector3 currTouchPos, Vector3 curLocalTouchPos){}
         
+        public eBlockType BlockType
+        {
+            get => blockType;
+            set
+            {
+                if (blockType != value)
+                {
+                    blockType = value;
+                    // Additional logic can be added here if needed when block type changes
+                }
+            }
+        }
+        
+        public eColorType ColorType
+        {
+            get => colorType;
+            set
+            {
+                if (colorType != value)
+                {
+                    colorType = value;
+                    ChangeColors(cupHolders);
+                }
+            }
+        }
 
         protected virtual void Awake()
         {
             selfTransform = transform;
             selfRb = selfTransform.GetComponent<Rigidbody2D>();
-            blockFitting = GetComponent<BlockFitting>();
+            
+            cupHolders = GetComponentsInChildren<CupHolder>();
 
             selfRb.isKinematic = true;
             speed = 30;
-            
-            blockFitting.CalculateCheckPointOffset();
         }
 
         private void OnEnable()
         {
             InitializeAllJobs();
+        }
+
+        private void Start()
+        {
+            ColorType = colorType;
+        }
+
+        public void ChangeColors(CupHolder[] cupHolders)
+        {
+            for (int i = 0; i < cupHolders.Length; i++)
+            {
+                cupHolders[i].Setup(colorType);
+            }
         }
 
         protected virtual void InitializeAllJobs()
@@ -66,8 +104,9 @@ namespace BaseSystem
             };
         }
 
-        public void OnSelect(Vector3 mousePos)
+        public virtual void OnSelect(Vector3 mousePos)
         {
+            DOTween.Kill(gameObject);
             transform.DOMoveZ(-1f, 0.2f);
             selfRb.isKinematic = false;
             
@@ -83,11 +122,14 @@ namespace BaseSystem
 
         public void OnDrag(Vector3 currTouchPos)
         {
-            isDragging = true;
+            if (gameObject.activeSelf)
+            {
+                isDragging = true;
             
-            ScheduleAllJobs(currTouchPos);
+                ScheduleAllJobs(currTouchPos);
             
-            JobHandle.ScheduleBatchedJobs();
+                JobHandle.ScheduleBatchedJobs();
+            }
         }
 
         protected virtual void ScheduleAllJobs(Vector3 currTouchPos)
@@ -115,15 +157,13 @@ namespace BaseSystem
             }
         }
 
-        public void OnDeselect()
+        public virtual void OnDeselect()
         {
             isDragging = false;
             velocityCalculationJobHandle.Complete();
             
             selfRb.velocity = Vector2.zero;
             selfRb.isKinematic = true;
-
-            blockFitting.FitBoard();
         }
 
         private void OnDisable()

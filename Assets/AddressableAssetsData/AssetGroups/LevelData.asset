@@ -22,13 +22,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 187746c964238a847a6b3b0496fe922c
-    m_Address: Assets/Materials/Blocks/Straight.mat
+  - m_GUID: 05284c300cdf062449087b3ea7663444
+    m_Address: Assets/Prefabs/Gameplay/block_type_09.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1b9a753a62e70f94489fb6b8d5a71ea5
-    m_Address: Level 3
+  - m_GUID: 05d9a30456e0f914fa596c10e54b3207
+    m_Address: Assets/Prefabs/Gameplay/block_type_01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 187746c964238a847a6b3b0496fe922c
+    m_Address: Assets/Materials/Blocks/Straight.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -37,8 +42,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 40526ad5c1a3f1047ab76b3bdb7be58e
-    m_Address: Level 1
+  - m_GUID: 43c76355ee0eb384280dec728f3a4201
+    m_Address: Assets/Prefabs/Gameplay/block_type_08.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -47,8 +52,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 681b83c170f4878488a2a594e4b88753
-    m_Address: Level 4
+  - m_GUID: 5f48c3c4703bffe40b288d96322ce583
+    m_Address: Assets/Prefabs/Gameplay/block_type_04.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65fea1311386074458d9b5ed5c17feaf
+    m_Address: Assets/Prefabs/Gameplay/block_type_03.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c65cd143dfc9b449ab54b2411402e04
+    m_Address: Assets/Prefabs/Gameplay/block_type_06.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -57,13 +72,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a132d30f9c934f7449c2043744bed9e4
-    m_Address: Assets/Textures/Sprite Sheet.psd
+  - m_GUID: 8d12400d9e21b24428497ab099016566
+    m_Address: Assets/Prefabs/Gameplay/block_type_02.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: adc36f9b09d3fd5408a813ebc0bb8430
-    m_Address: Level 2
+  - m_GUID: a132d30f9c934f7449c2043744bed9e4
+    m_Address: Assets/Textures/Sprite Sheet.psd
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -72,13 +87,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9037240c8f3dbf4c84c7f96089067e4
+    m_Address: Assets/Prefabs/Gameplay/block_type_07.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bae1599010d2a6543a3d0211a0ce0fd7
+    m_Address: Assets/Prefabs/Gameplay/block_type_05.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf888654c53d18d488feed805745c258
     m_Address: Level 0
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c719794b4694c554c9c766db5c7f0ba4
+    m_Address: Assets/Prefabs/Gameplay/block_type_00.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d2f0c7adc6c61294481b09658b6beb40
     m_Address: Assets/Main.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0c5ff9087d427d47bd8578cde4d5d27
+    m_Address: Assets/Materials/CupBase.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

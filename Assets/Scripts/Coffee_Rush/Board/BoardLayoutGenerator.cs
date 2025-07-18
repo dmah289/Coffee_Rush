@@ -1,21 +1,16 @@
 using System;
+using System.Collections;
 using Coffee_Rush.Board;
 using Coffee_Rush.Level;
+using Framework.DesignPattern;
 using Framework.ObjectPooling;
 using Unity.Mathematics;
 using UnityEngine;
 
 namespace Coffee_Rush
 {
-    [Serializable]
-    public struct BoardConfig
-    {
-        public Vector2Int[] tileDirections;     // left, top, right, bottom
-        public float cellSize;                  // 2
-        public float borderSize;                // 0.3
-    }
     
-    public class BoardLayoutGenerator : MonoBehaviour
+    public class BoardLayoutGenerator : MonoSingleton<BoardLayoutGenerator>
     {
         [Header("Self Components")]
         [SerializeField] private Transform selfTransform;
@@ -24,12 +19,18 @@ namespace Coffee_Rush
         [SerializeField] private LevelLoader levelLoader;
         
         [Header("Board Manager")]
-        [SerializeField] private BoardConfig boardConfig;
-        private Tile[,] tiles;
+        public Tile[,] tiles;
         
-        
-        private void Awake()
+        [Header("Board Config")]
+        [SerializeField] private Vector2Int[] tileDirections;     // left, top, right, bottom
+        [SerializeField] private float cellSize;                  // 2
+        [SerializeField] private float borderSize;                // 0.3
+
+
+        protected override void Awake()
         {
+            base.Awake();
+            
             selfTransform = transform;
         }
 
@@ -44,11 +45,11 @@ namespace Coffee_Rush
             bool state = levelData.GetCellData(row, col).isActive;
             for (byte i = 0; i < 4; i++)
             {
-                int newRow1 = row + boardConfig.tileDirections[i].x;
-                int newCol1 = col + boardConfig.tileDirections[i].y;
+                int newRow1 = row + tileDirections[i].x;
+                int newCol1 = col + tileDirections[i].y;
                 
-                int newRow2 = row + boardConfig.tileDirections[(i + 1) % 4].x;
-                int newCol2 = col + boardConfig.tileDirections[(i + 1) % 4].y;
+                int newRow2 = row + tileDirections[(i + 1) % 4].x;
+                int newCol2 = col + tileDirections[(i + 1) % 4].y;
 
                 bool state1, state2;
                 
@@ -68,7 +69,7 @@ namespace Coffee_Rush
             return eCornerType;
         }
          
-        public void SetupBoard(LevelData levelData)
+        public IEnumerator SetupBoard(LevelData levelData)
         {
             tiles = new Tile[levelData.height,levelData.width];
             
@@ -85,18 +86,15 @@ namespace Coffee_Rush
             {
                 for (int j = 0; j < levelData.width; j++)
                 {
-                    if (isEvenWidth) posX = (j - halfWidth + 0.5f) * boardConfig.cellSize;
-                    else posX = (j - halfWidth) * boardConfig.cellSize;
+                    if (isEvenWidth) posX = (j - halfWidth + 0.5f) * cellSize;
+                    else posX = (j - halfWidth) * cellSize;
 
-                    if (isEvenHeight) posY = (i - halfHeight + 0.5f) * boardConfig.cellSize;
-                    else posY = (i - halfHeight) * boardConfig.cellSize;
+                    if (isEvenHeight) posY = (i - halfHeight + 0.5f) * cellSize;
+                    else posY = (i - halfHeight) * cellSize;
 
                     state = levelData.GetCellData(i, j).isActive;
 
                     eCornerType type = FindCornerBorder(i, j, levelData);
-                    // byte typeByte = (byte)type;
-                    // string binaryRepresentation = Convert.ToString(typeByte, 2).PadLeft(8, '0');
-                    // Debug.Log($"Cell ({i}, {j}) - Type: {type} - Binary: {binaryRepresentation}");
                     
                     if (state)
                     {
@@ -117,6 +115,8 @@ namespace Coffee_Rush
             }
             
             SetupContinuousStraightBorders(levelData);
+
+            yield return null;
         }
 
         private void SetupContinuousStraightBorders(LevelData levelData)
@@ -175,13 +175,13 @@ namespace Coffee_Rush
 
             float x, startY;
 
-            if (isEvenWidth) x = (col - halfWidth + 0.5f) * boardConfig.cellSize - boardConfig.cellSize / 2;
-            else x = (col - halfWidth) * boardConfig.cellSize - boardConfig.cellSize / 2;
+            if (isEvenWidth) x = (col - halfWidth + 0.5f) * cellSize - cellSize / 2;
+            else x = (col - halfWidth) * cellSize - cellSize / 2;
             
-            if(isEvenHeight) startY = (startRow - halfHeight + 0.5f) * boardConfig.cellSize;
-            else startY = (startRow - halfHeight) * boardConfig.cellSize;
+            if(isEvenHeight) startY = (startRow - halfHeight + 0.5f) * cellSize;
+            else startY = (startRow - halfHeight) * cellSize;
             
-            float length = (endRow - startRow) * boardConfig.cellSize;
+            float length = (endRow - startRow) * cellSize;
             if (length == 0) return;
             float cenrterY = startY + length / 2;
             
@@ -206,13 +206,13 @@ namespace Coffee_Rush
 
             float startX, y;
             
-            if(isEvenWidth) startX = (startCol - halfWidth + 0.5f) * boardConfig.cellSize;
-            else startX = (startCol - halfWidth) * boardConfig.cellSize;
+            if(isEvenWidth) startX = (startCol - halfWidth + 0.5f) * cellSize;
+            else startX = (startCol - halfWidth) * cellSize;
             
-            if(isEvenHeight) y = (row - halfHeight + 0.5f) * boardConfig.cellSize - boardConfig.cellSize / 2;
-            else y = (row - halfHeight) * boardConfig.cellSize - boardConfig.cellSize / 2;
+            if(isEvenHeight) y = (row - halfHeight + 0.5f) * cellSize - cellSize / 2;
+            else y = (row - halfHeight) * cellSize - cellSize / 2;
             
-            float lengthX = (endCol - startCol) * boardConfig.cellSize;
+            float lengthX = (endCol - startCol) * cellSize;
 
             if (lengthX == 0) return;
             
@@ -247,7 +247,7 @@ namespace Coffee_Rush
         private void SetupTopLeftCorner(float posX, float posY, bool state)
         {
             Transform corner = ObjectPooler.GetFromPool<Transform>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
-            corner.position = new Vector3(posX - boardConfig.cellSize / 2, posY  + boardConfig.cellSize / 2, 0f);
+            corner.position = new Vector3(posX - cellSize / 2, posY  + cellSize / 2, 0f);
             corner.eulerAngles = new Vector3(0, 0, 270f);
 #if UNITY_EDITOR
             corner.name = "top_left_corner";
@@ -257,7 +257,7 @@ namespace Coffee_Rush
         private void SetupTopRightCorner(float posX, float posY, bool state)
         {
             Transform corner = ObjectPooler.GetFromPool<Transform>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
-            corner.position = new Vector3(posX + boardConfig.cellSize / 2, posY  + boardConfig.cellSize / 2, 0f);
+            corner.position = new Vector3(posX + cellSize / 2, posY  + cellSize / 2, 0f);
             corner.eulerAngles = new Vector3(0, 0, 180f);
 #if UNITY_EDITOR
             corner.name = $"top_right_corner";
@@ -267,7 +267,7 @@ namespace Coffee_Rush
         private void SetupBottomRightCorner(float posX, float posY, bool state)
         {
             Transform corner = ObjectPooler.GetFromPool<Transform>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
-            corner.position = new Vector3(posX + boardConfig.cellSize / 2, posY - boardConfig.cellSize / 2, 0f);
+            corner.position = new Vector3(posX + cellSize / 2, posY - cellSize / 2, 0f);
             corner.eulerAngles = new Vector3(0, 0, 90f);
 #if UNITY_EDITOR
             corner.name = "bottom_right_corner";
@@ -277,7 +277,7 @@ namespace Coffee_Rush
         private void SetupBottomLeftCorner(float posX, float posY, bool state)
         {
             Transform corner = ObjectPooler.GetFromPool<Transform>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
-            corner.position = new Vector3(posX - boardConfig.cellSize / 2, posY - boardConfig.cellSize / 2, 0f);
+            corner.position = new Vector3(posX - cellSize / 2, posY - cellSize / 2, 0f);
             corner.eulerAngles = Vector3.zero;
 #if UNITY_EDITOR
             corner.name = "bottom_left_corner";
@@ -292,33 +292,18 @@ namespace Coffee_Rush
             bool isEvenWidth = (levelLoader.currLevelData.width & 1) == 0;
             bool isEvenHeight = (levelLoader.currLevelData.height & 1) == 0;
     
-            // Calculate board coordinates
             float column, row;
     
-            // For X (column) coordinate
-            if (isEvenWidth)
-                column = (worldPos.x / boardConfig.cellSize) + halfWidth - 0.5f;
-            else
-                column = (worldPos.x / boardConfig.cellSize) + halfWidth;
+            if (isEvenWidth) column = (worldPos.x / cellSize) + halfWidth - 0.5f;
+            else column = (worldPos.x / cellSize) + halfWidth;
     
-            // For Y (row) coordinate
-            if (isEvenHeight)
-                row = (worldPos.y / boardConfig.cellSize) + halfHeight - 0.5f;
-            else
-                row = (worldPos.y / boardConfig.cellSize) + halfHeight;
+            if (isEvenHeight) row = (worldPos.y / cellSize) + halfHeight - 0.5f;
+            else row = (worldPos.y / cellSize) + halfHeight;
             
             int roundedColumn = Mathf.RoundToInt(column);
             int roundedRow = Mathf.RoundToInt(row);
             
-            float posX, posY;
-            
-            if (isEvenWidth) posX = (roundedColumn - halfWidth + 0.5f) * boardConfig.cellSize;
-            else posX = (roundedColumn - halfWidth) * boardConfig.cellSize;
-
-            if (isEvenHeight) posY = (roundedRow - halfHeight + 0.5f) * boardConfig.cellSize;
-            else posY = (roundedRow - halfHeight) * boardConfig.cellSize;
-
-            return new Vector3(posX, posY, 0);
+            return tiles[roundedRow, roundedColumn].SelfTransform.position;
         }
     } 
 }

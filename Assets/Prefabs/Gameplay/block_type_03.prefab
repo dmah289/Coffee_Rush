@@ -520,7 +520,6 @@ Transform:
   - {fileID: 1930692323153189605}
   - {fileID: 1279227599994912093}
   - {fileID: 3847834315684860535}
-  - {fileID: 3588691650493797330}
   m_Father: {fileID: 8703141971503886056}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2676079837108866917
@@ -900,6 +899,7 @@ GameObject:
   - component: {fileID: 2771763760334846639}
   - component: {fileID: 7979550147511920075}
   - component: {fileID: 5625769282154346932}
+  - component: {fileID: -4229411858250544472}
   m_Layer: 0
   m_Name: block_type_03
   m_TagString: Untagged
@@ -921,6 +921,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8703141971503886056}
+  - {fileID: 3588691650493797330}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &266592144217136865
@@ -1028,12 +1029,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfRb: {fileID: 0}
-  blockFitting: {fileID: 0}
-  blockType: 0
+  cupHolders: []
   centerToTouchOffset: {x: 0, y: 0, z: 0}
   speed: 0
   isDragging: 0
+  colorType: 0
+  blockType: 0
   blockMatcher: {fileID: 0}
+  blockFitting: {fileID: 0}
   initEuler: {x: 0, y: 0, z: 0}
   dampingFactor: 5
   tiltSensitivity: 10
@@ -1051,9 +1054,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.2
-  colorType: 0
-  cupHolders: []
   currEmptyIdx: 0
+--- !u!114 &-4229411858250544472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797259775352447362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1316b96a094944bf9b66e12cc179464b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPoint: {fileID: 3588691650493797330}
+  centerToCheckPointOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &4243132517526953347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,12 +2058,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7134002043650298598}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -1, y: 2, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5351133351505052576}
+  m_Father: {fileID: 7271264744491491421}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7299655854628345425
 GameObject:

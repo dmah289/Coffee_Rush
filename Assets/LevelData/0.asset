@@ -12,57 +12,225 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714346eaba354802aa40ea21ede83876, type: 3}
   m_Name: 0
   m_EditorClassIdentifier: 
-  width: 5
-  height: 5
+  width: 8
+  height: 8
   levelIndex: 0
   cellsData:
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
-  - isActive: 0
-    blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
-  - isActive: 0
-    blockType: 0
-  - isActive: 0
-    blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
-  - isActive: 0
-    blockType: 0
-  - isActive: 0
-    blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
-  - isActive: 0
-    blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
   - isActive: 1
     blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  blocksData:
+  - row: 4
+    col: 4
+    blockType: 2
+    blockColor: 3
+  - row: 2
+    col: 0
+    blockType: 4
+    blockColor: 1
+  gatesData:
+  - row: 0
+    col: 3
+    gateDir: 3
+    itemColors: 01
+  - row: 3
+    col: 0
+    gateDir: 4
+    itemColors: 02
+  - row: 7
+    col: 3
+    gateDir: 1
+    itemColors: 03
+  - row: 3
+    col: 7
+    gateDir: 0
+    itemColors: 04

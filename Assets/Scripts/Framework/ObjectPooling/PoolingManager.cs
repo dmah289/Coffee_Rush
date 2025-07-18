@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Coffee_Rush.Block;
 using Coffee_Rush.Board;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -17,6 +18,8 @@ namespace Framework.ObjectPooling
         [SerializeField] private AssetReference straightBorderPrefab;
         [SerializeField] private AssetReference innerCornerPrefab;
         [SerializeField] private AssetReference cupPrefab;
+        [SerializeField] private AssetReference[] blockPrefabs;
+        [SerializeField] private AssetReference gatePrefab;
 
 
         public bool IsInGamePoolingInitialized { get; private set; } = false;
@@ -43,6 +46,17 @@ namespace Framework.ObjectPooling
             AsyncOperationHandle<GameObject> cupPrefabHandle = Addressables.LoadAssetAsync<GameObject>(cupPrefab);
             yield return cupPrefabHandle;
             ObjectPooler.SetUpPool(PoolingType.Cup, 5, cupPrefabHandle.Result.GetComponent<GateItem>());
+
+            for (int i = 0; i < blockPrefabs.Length; i++)
+            {
+                AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(blockPrefabs[i]);
+                yield return handle;
+                ObjectPooler.SetUpPool((PoolingType)((byte)PoolingType.BlockType00 + i), 2, handle.Result.GetComponent<BlockController>());
+            }
+            
+            AsyncOperationHandle<GameObject> gatePrefabHandle = Addressables.LoadAssetAsync<GameObject>(gatePrefab);
+            yield return gatePrefabHandle;
+            ObjectPooler.SetUpPool(PoolingType.Cup, 3, gatePrefabHandle.Result.GetComponent<GateController>());
             
             
             // Unload the asset handles to free memory
@@ -51,6 +65,12 @@ namespace Framework.ObjectPooling
             Addressables.Release(straightBorderPrefabHandle);
             Addressables.Release(innerCornerPrefabHandle);
             Addressables.Release(cupPrefabHandle);
+            for (int i = 0; i < blockPrefabs.Length; i++)
+            {
+                Addressables.Release(blockPrefabs[i]);
+            }
+            Addressables.Release(gatePrefabHandle);
+            
 
             IsInGamePoolingInitialized = true;
         }

@@ -14,8 +14,6 @@ namespace Coffee_Rush.Level
         [SerializeField] private LevelLoader levelLoader;
         [SerializeField] public BoardController boardController;
         [SerializeField] private PoolingManager poolingManager;
-        
-        public GateController gateController;
 
         private void Awake()
         {
@@ -38,9 +36,7 @@ namespace Coffee_Rush.Level
             
             yield return levelLoader.LoadCurrentLevel();
             
-            boardController.EnterLevel(levelLoader.currLevelData);
-            
-            // gateController.Setup();
+            yield return boardController.EnterLevel(levelLoader.currLevelData);
         }
     }
 }

@@ -1,12 +1,14 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
+using Framework.DesignPattern;
 using LevelEditor.Scripts.Visualization;
+using LevelEditor.Scripts.Visualization.Block;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace LevelEditor.Scripts.LeftSide
 {
-    public class BlockTypeSelection : MonoBehaviour
+    public class BlockTypeSelection : MonoSingleton<BlockTypeSelection>
     {
         [Header("Self Components")]
         [SerializeField] private Button[] blockTypeButtons;
@@ -23,8 +25,10 @@ namespace LevelEditor.Scripts.LeftSide
         [field: SerializeField] public bool CanRemove { get; private set; }
 
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             blockTypeButtons = GetComponentsInChildren<Button>();
             CanRemove = false;
             Blocks = new List<BlockControllerEdit>();

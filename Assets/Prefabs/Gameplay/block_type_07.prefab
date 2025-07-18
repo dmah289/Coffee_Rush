@@ -3093,6 +3093,37 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   target: {fileID: 0}
+--- !u!1 &6793758892318301163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8793205031896930072}
+  m_Layer: 0
+  m_Name: checkpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8793205031896930072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6793758892318301163}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3514822305548688078}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7004015290124934200
 GameObject:
   m_ObjectHideFlags: 0
@@ -3946,6 +3977,7 @@ GameObject:
   - component: {fileID: 3037954393791161380}
   - component: {fileID: 6834613096142113659}
   - component: {fileID: -645756040766829570}
+  - component: {fileID: -4157755067469922217}
   m_Layer: 0
   m_Name: block_type_07
   m_TagString: Untagged
@@ -3967,6 +3999,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 81684275605767214}
+  - {fileID: 8793205031896930072}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4780559634305662754
@@ -4067,12 +4100,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfRb: {fileID: 0}
-  blockFitting: {fileID: 0}
-  blockType: 0
+  cupHolders: []
   centerToTouchOffset: {x: 0, y: 0, z: 0}
   speed: 0
   isDragging: 0
+  colorType: 0
+  blockType: 0
   blockMatcher: {fileID: 0}
+  blockFitting: {fileID: 0}
   initEuler: {x: 0, y: 0, z: 0}
   dampingFactor: 5
   tiltSensitivity: 10
@@ -4090,9 +4125,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.2
-  colorType: 0
-  cupHolders: []
   currEmptyIdx: 0
+--- !u!114 &-4157755067469922217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268985995400580581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1316b96a094944bf9b66e12cc179464b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPoint: {fileID: 8793205031896930072}
+  centerToCheckPointOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &8269037842068861842
 GameObject:
   m_ObjectHideFlags: 0

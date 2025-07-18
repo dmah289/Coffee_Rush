@@ -1,14 +1,44 @@
-﻿using BaseSystem;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Framework.Helper;
-using LevelEditor.Scripts.Visualization;
 using UnityEngine;
 
-namespace Coffee_Rush.Mechanics
+namespace BaseSystem
 {
-    public class SelectionController : ASelectionController
+    public class SelectionController : MonoBehaviour
     {
-        protected override void HandleMouseDown()
+        [Header("Selection Settings")]
+        private Camera cam;
+        private Collider2D[] colliders = new Collider2D[1];
+        private ISelectable selectedObject;
+
+        private void Awake()
+        {
+            cam = Camera.main;
+        }
+        
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                HandleMouseDown();
+            }
+            else if (Input.GetMouseButton(0) && selectedObject != null)
+            {
+                HandleMouseDrag();
+            }
+            else if (Input.GetMouseButtonUp(0) && selectedObject != null)
+            {
+                HandleMouseUp();
+            }
+        }
+
+        private void HandleMouseUp()
+        {
+            selectedObject.OnDeselect();
+            selectedObject = null;
+        }
+
+        private void HandleMouseDown()
         {
             Vector3 touchPos = CameraHelper.GetMouseWorldPosTitledCamera2D();
             
@@ -24,7 +54,7 @@ namespace Coffee_Rush.Mechanics
             }
         }
 
-        protected override void HandleMouseDrag()
+        private void HandleMouseDrag()
         {
             Vector3 mousePos = CameraHelper.GetMouseWorldPosTitledCamera2D();
             selectedObject.OnDrag(mousePos);

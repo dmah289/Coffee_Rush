@@ -430,7 +430,6 @@ Transform:
   - {fileID: 2603265116482809260}
   - {fileID: 8905808604684310115}
   - {fileID: 1102312970512709526}
-  - {fileID: 3711368093065733540}
   m_Father: {fileID: 5073430438078297954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2173712085693078025
@@ -752,12 +751,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5108078060507413741}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4959884967106729542}
+  m_Father: {fileID: 3573204033164672864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5146736106488317188
 GameObject:
@@ -772,7 +771,7 @@ GameObject:
   - component: {fileID: 8139094634117229287}
   - component: {fileID: -7212044222439720631}
   - component: {fileID: -980387719293558633}
-  - component: {fileID: 4503084881873952388}
+  - component: {fileID: 393935922013226168}
   m_Layer: 0
   m_Name: block_type_01
   m_TagString: Untagged
@@ -794,6 +793,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5073430438078297954}
+  - {fileID: 3711368093065733540}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5944933073566866320
@@ -898,12 +898,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfRb: {fileID: 0}
-  blockFitting: {fileID: 0}
-  blockType: 0
+  cupHolders: []
   centerToTouchOffset: {x: 0, y: 0, z: 0}
   speed: 0
   isDragging: 0
+  colorType: 0
+  blockType: 0
   blockMatcher: {fileID: 0}
+  blockFitting: {fileID: 0}
   initEuler: {x: 0, y: 0, z: 0}
   dampingFactor: 5
   tiltSensitivity: 10
@@ -921,18 +923,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.2
-  colorType: 0
-  cupHolders:
-  - {fileID: 3383053466907893278}
-  - {fileID: 7481402011597770091}
-  - {fileID: 9061782994932602903}
-  - {fileID: 2429503230965109721}
-  - {fileID: 8374827922641879471}
-  - {fileID: 2529157257113999489}
-  - {fileID: 3281693488329264176}
-  - {fileID: 4620049442343979887}
   currEmptyIdx: 0
---- !u!114 &4503084881873952388
+--- !u!114 &393935922013226168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -945,6 +937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkPoint: {fileID: 3711368093065733540}
+  centerToCheckPointOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &5671732511859564323
 GameObject:
   m_ObjectHideFlags: 0

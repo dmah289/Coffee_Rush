@@ -2,15 +2,16 @@
 {
     public enum eBlockType : byte
     {
-        Type00 = 0,
-        Type01 = 1,
-        Type02 = 2,
-        Type03 = 3,
-        Type04 = 4,
-        Type05 = 5,
-        Type06 = 6,
-        Type07 = 7,
-        Type08 = 8,
-        Type09 = 9,
+        None = 0,
+        Type00 = 1,
+        Type01 = 2,
+        Type02 = 3,
+        Type03 = 4,
+        Type04 = 5,
+        Type05 = 6,
+        Type06 = 7,
+        Type07 = 8,
+        Type08 = 9,
+        Type09 = 10,
     }
 }
