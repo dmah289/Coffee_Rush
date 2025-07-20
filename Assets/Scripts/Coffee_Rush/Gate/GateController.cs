@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Coffee_Rush.Gate;
 using DG.Tweening;
 using Framework.Extensions;
 using Framework.ObjectPooling;
@@ -13,28 +14,11 @@ namespace Coffee_Rush.Board
         [SerializeField] private Transform selfTransform;
         [SerializeField] private MeshRenderer selfMeshRenderer;
         private MaterialPropertyBlock mpb;
-        [SerializeField] private int[] gateZRotByDir = new int[4]{ 0, -90, -180, -90 };
-
-        [Header("GateItem Config")]
-        [SerializeField] private float gateItemDistance = 0.8f;
-        [SerializeField] private float cellSize = 2f;
-        [SerializeField] private Vector3[] gateItemRotationsByDir = new  Vector3[4]
-        {
-            new Vector3(-75, 0, 0),      // Up
-            new Vector3(-90, 0, 30),    // Right
-            new Vector3(-110, 0, 0),   // Down
-            new Vector3(-90, 0, -30)     // Left
-        };
-        [SerializeField] private Vector2Int[] gateOffsetByDir = new Vector2Int[4]
-        {
-            new (0, 1),      // Up
-            new (1, 0),      // Right
-            new (0, -1),     // Down
-            new (0, -1)       // Left
-        };
+        
         
         [Header("GateItem Manager")]
         [SerializeField] private List<GateItem> gateItems;
+        [SerializeField] private eDirection gateDir;
         
 
         private eColorType colorType;
@@ -58,22 +42,38 @@ namespace Coffee_Rush.Board
 
         public void Setup(Vector3 tilePos,eDirection gateDir, eColorType[] itemColors)
         {
-            selfTransform.position = new Vector3(
-                tilePos.x + gateOffsetByDir[(byte)gateDir].x * cellSize / 2, tilePos.y + gateOffsetByDir[(byte)gateDir].y * cellSize / 2, tilePos.z);
-            selfTransform.eulerAngles = new Vector3(0, 0, gateZRotByDir[(byte)gateDir-1]);
+            this.gateDir = gateDir;
+            
+            Vector3 pos = new Vector3(
+                tilePos.x + GateConfig.GateFitTileDir[(byte)gateDir - 1].x * BoardConfig.cellSize / 2, 
+                tilePos.y + GateConfig.GateFitTileDir[(byte)gateDir - 1].y * BoardConfig.cellSize / 2, 
+                tilePos.z);
+            
+            if(gateDir == eDirection.Up) pos.y += GateConfig.GateWidth / 2;
+            else if(gateDir == eDirection.Down) pos.y -= GateConfig.GateWidth / 2;
+            else if(gateDir == eDirection.Left) pos.x -= GateConfig.GateWidth / 2;
+            else if(gateDir == eDirection.Right) pos.x += GateConfig.GateWidth / 2;
+            
+            selfTransform.position = pos;
+            selfTransform.eulerAngles = new Vector3(0, 0, GateConfig.GateZRotByDir[(byte)gateDir-1]);
+            
             SpawnGateItems(gateDir, itemColors);
         }
         
         private void SpawnGateItems(eDirection gateDir, eColorType[] itemColors)
         {
-            float spawnPosZ = gateDir == eDirection.Down ? -1 : 0;
             gateItems.Clear();
             ColorType = itemColors[0];
+            
             for (int i = 0; i < itemColors.Length; i++)
             {
-                GateItem gateItem = ObjectPooler.GetFromPool<GateItem>(PoolingType.Cup, selfTransform);
-                gateItem.transform.localPosition = new Vector3(1, 1 + i * gateItemDistance, spawnPosZ);
-                gateItem.transform.localEulerAngles = gateItemRotationsByDir[(byte)gateDir - 1];
+                GateItem gateItem = ObjectPooler.GetFromPool<GateItem>(PoolingType.GateItem, selfTransform);
+                
+                gateItem.transform.localPosition = new Vector3(
+                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].x,
+                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].y - i * GateItemConfig.Distance,
+                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].z);
+                gateItem.transform.localEulerAngles = GateItemConfig.RotationsByDir[(byte)gateDir - 1];
                 gateItem.ColorType = itemColors[i];
                 
                 gateItems.Add(gateItem);
@@ -91,7 +91,7 @@ namespace Coffee_Rush.Board
                 else
                 {
                     ColorType = gateItems[0].ColorType;
-                    ShiftBehindElements();
+                    ShiftBehindElementsAfterRemove();
                 }
                 
                 return item;
@@ -100,14 +100,18 @@ namespace Coffee_Rush.Board
             return null;
         }
 
-        private void ShiftBehindElements()
+        private void ShiftBehindElementsAfterRemove()
         {
             for (int i = 0; i < gateItems.Count; i++)
             {
                 gateItems[i].transform.DOKill();
-                gateItems[i].transform.DOLocalMove(
-                        new Vector3(1, 1 + i * gateItemDistance, gateItems[i].transform.localPosition.z), 
-                        0.3f)
+
+                Vector3 targetPos = new Vector3(
+                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].x,
+                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].y - i * GateItemConfig.Distance,
+                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].z);
+                
+                gateItems[i].transform.DOLocalMove(targetPos, GateItemConfig.MoveDuration)
                     .SetEase(Ease.OutFlash);
             }
         }

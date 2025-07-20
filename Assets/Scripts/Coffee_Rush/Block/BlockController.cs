@@ -1,5 +1,6 @@
 using System;
 using BaseSystem;
+using BaseSystem.Block;
 using Coffee_Rush.Board;
 using Coffee_Rush.JobCalculation;
 using Unity.Collections;
@@ -14,13 +15,10 @@ namespace Coffee_Rush.Block
         [Header("Child Components")]
         [SerializeField] private BLockMatcher blockMatcher;
         [SerializeField] protected BlockFitting blockFitting;
+        [SerializeField] private BlockVisual blockVisual;
         
         [Header("Balance Settings")]
         private Vector3 curEulerNotDragging;
-        [SerializeField] private Vector3 initEuler;
-        [SerializeField] private float dampingFactor;
-        [SerializeField] private float tiltSensitivity;
-        [SerializeField] private float maxOffset = 10f;
             
         // Balancing Job
         protected BalancingJob balancingJob;
@@ -32,27 +30,36 @@ namespace Coffee_Rush.Block
         protected override void Awake()
         {
             base.Awake();
-        
-            initEuler = selfTransform.eulerAngles;
             blockMatcher = GetComponent<BLockMatcher>();
             blockFitting = GetComponent<BlockFitting>();
+            blockVisual = GetComponentInChildren<BlockVisual>();
             
             blockFitting.CalculateCheckPointOffset();
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            curEulerNotDragging = BlockConfig.initEulerModel;
+            
         }
 
         public void SetCheckPointToTargetTile(Vector3 targetTilePos)
         {
             blockFitting.SetCheckPointToTargetTile(targetTilePos);
         }
-        
-        private void OnCollisionEnter2D(Collision2D other)
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            StartCoroutine(blockMatcher.TryCollectGateItem(other, colorType, cupHolders));
+            if (other.gameObject.CompareTag("Gate"))
+                StartCoroutine(blockMatcher.TryCollectGateItem(other, colorType, cupHolders));
         }
 
-        private void OnCollisionExit2D(Collision2D other)
+        private void OnTriggerExit2D(Collider2D other)
         {
-            blockMatcher.MatchingAllowed = false;
+            if (other.gameObject.CompareTag("Gate"))
+                blockMatcher.MatchingAllowed = false;
         }
 
         protected override void InitializeAllJobs()
@@ -60,12 +67,13 @@ namespace Coffee_Rush.Block
             base.InitializeAllJobs();
             
             currentEuler = new(Allocator.Persistent);
+            currentEuler.Value = BlockConfig.initEulerModel;
             balancingJob = new BalancingJob()
             {
-                InitialEuler = initEuler,
-                DampingFactor = dampingFactor,
-                TiltSensitivity = tiltSensitivity,
-                MaxOffset = maxOffset,
+                InitialEuler = BlockConfig.initEulerModel,
+                DampingFactor = BlockConfig.DampingFactor,
+                TiltSensitivity = BlockConfig.TiltSensitivity,
+                MaxOffset = BlockConfig.MaxOffset,
                 CurrentEuler = currentEuler
             };
         }
@@ -90,11 +98,11 @@ namespace Coffee_Rush.Block
             
             balancingJobHandle.Complete();
             
-            if(isDragging) selfTransform.eulerAngles = currentEuler.Value;
+            if(isDragging) blockVisual.EulerRotation = currentEuler.Value;
             else
             {
-                curEulerNotDragging = Vector3.Lerp(curEulerNotDragging, initEuler, dampingFactor * Time.deltaTime);
-                selfTransform.eulerAngles = curEulerNotDragging;
+                curEulerNotDragging = Vector3.Lerp(curEulerNotDragging, BlockConfig.initEulerModel, BlockConfig.DampingFactor * Time.deltaTime);
+                blockVisual.EulerRotation = curEulerNotDragging;
             }
         }
 

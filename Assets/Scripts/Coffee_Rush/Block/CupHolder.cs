@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using Coffee_Rush.Board;
+using Coffee_Rush.Gate;
 using DG.Tweening;
 using Framework.Extensions;
 using UnityEngine;
@@ -14,23 +16,26 @@ namespace Coffee_Rush.Block
         private MaterialPropertyBlock mpb;
         
         [Header("References")]
-        [SerializeField] private Transform target;
+        [SerializeField] private Transform targetPoint;
 
         private void Awake()
         {
             selfTransform = transform;
-            target = selfTransform.GetChild(0).GetComponent<Transform>();
+            targetPoint = selfTransform.GetChild(0).GetComponent<Transform>();
             selfMeshRenderer = GetComponent<MeshRenderer>();
             
             mpb = new MaterialPropertyBlock();
         }
 
 
-        public void AttractGateItem(GateItem item)
+        public IEnumerator AttractGateItem(GateItem item)
         {
-            item.transform.SetParent(target);
+            item.transform.SetParent(targetPoint, true);
             item.transform.localRotation = Quaternion.identity;
-            item.transform.DOLocalMove(Vector3.zero, 0.2f).SetEase(Ease.OutFlash);
+            
+            Tween moveTween = item.transform.DOLocalMove(Vector3.zero, GateItemConfig.MoveDuration)
+                .SetEase(Ease.OutFlash);
+            yield return moveTween.WaitForCompletion();
         }
 
         public void Setup(eColorType colorType)

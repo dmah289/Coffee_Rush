@@ -211,26 +211,30 @@ MonoBehaviour:
   blocksData:
   - row: 4
     col: 4
-    blockType: 2
-    blockColor: 3
+    blockType: 10
+    blockColor: 4
   - row: 2
     col: 0
-    blockType: 4
+    blockType: 8
+    blockColor: 3
+  - row: 1
+    col: 5
+    blockType: 7
     blockColor: 1
   gatesData:
   - row: 0
     col: 3
     gateDir: 3
-    itemColors: 01
+    itemColors: 0101010101010101010101010101010101010202
   - row: 3
     col: 0
     gateDir: 4
-    itemColors: 02
+    itemColors: 0202020202020201010101010101010101010103
   - row: 7
     col: 3
     gateDir: 1
-    itemColors: 03
+    itemColors: 030303030303030303020202040404
   - row: 3
     col: 7
-    gateDir: 0
-    itemColors: 04
+    gateDir: 2
+    itemColors: 040404040404040404040404040404040404040404040404040404040404040404040404

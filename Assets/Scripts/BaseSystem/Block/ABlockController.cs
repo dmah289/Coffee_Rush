@@ -1,4 +1,3 @@
-using System;
 using Coffee_Rush.Block;
 using Coffee_Rush.Board;
 using Coffee_Rush.JobCalculation;
@@ -8,7 +7,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace BaseSystem
+namespace BaseSystem.Block
 {
     public abstract class ABlockController : MonoBehaviour, ISelectable
     {
@@ -19,9 +18,8 @@ namespace BaseSystem
         [Header("Child Components")]
         [SerializeField] protected CupHolder[] cupHolders;
         
-        [Header("Movement Settings")]
+        [Header("Movement Data")]
         [SerializeField] protected Vector3 centerToTouchOffset;
-        [SerializeField] protected float speed;
         [SerializeField] protected bool isDragging;
         
         [Header("Data")]
@@ -34,8 +32,6 @@ namespace BaseSystem
         protected NativeReference<float3> finalVelocity;
         protected NativeReference<float3> currInitTouchPos;
         
-
-        protected virtual void OnBalance(bool isDragging, Vector3 currTouchPos, Vector3 curLocalTouchPos){}
         
         public eBlockType BlockType
         {
@@ -71,10 +67,9 @@ namespace BaseSystem
             cupHolders = GetComponentsInChildren<CupHolder>();
 
             selfRb.isKinematic = true;
-            speed = 30;
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             InitializeAllJobs();
         }
@@ -98,7 +93,7 @@ namespace BaseSystem
             currInitTouchPos = new (Allocator.Persistent);
             velocityCalculationJob = new VelocityCalculationJob
             {
-                Speed = speed,
+                Speed = BlockConfig.Speed,
                 CurInitTouchPos = currInitTouchPos,
                 Velocity = finalVelocity
             };

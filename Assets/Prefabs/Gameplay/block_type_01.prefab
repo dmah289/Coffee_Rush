@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
-  target: {fileID: 0}
+  targetPoint: {fileID: 0}
 --- !u!1 &905257090956977189
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
-  target: {fileID: 0}
+  targetPoint: {fileID: 0}
 --- !u!1 &1302905243660930814
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
-  target: {fileID: 0}
+  targetPoint: {fileID: 0}
 --- !u!1 &1555327146854212770
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
-  target: {fileID: 0}
+  targetPoint: {fileID: 0}
 --- !u!1 &4412265628449941738
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
-  target: {fileID: 0}
+  targetPoint: {fileID: 0}
 --- !u!1 &4433214718812615005
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,16 +900,12 @@ MonoBehaviour:
   selfRb: {fileID: 0}
   cupHolders: []
   centerToTouchOffset: {x: 0, y: 0, z: 0}
-  speed: 0
   isDragging: 0
   colorType: 0
   blockType: 0
   blockMatcher: {fileID: 0}
   blockFitting: {fileID: 0}
-  initEuler: {x: 0, y: 0, z: 0}
-  dampingFactor: 5
-  tiltSensitivity: 10
-  maxOffset: 10
+  blockVisual: {fileID: 0}
 --- !u!114 &-980387719293558633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,7 +918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18dc0af0656c4bcfb3f2a14f96dfd0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDuration: 0.2
   currEmptyIdx: 0
 --- !u!114 &393935922013226168
 MonoBehaviour:
@@ -1146,6 +1141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5073430438078297954}
+  - component: {fileID: 1271390744872804444}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -1170,6 +1166,19 @@ Transform:
   - {fileID: 633072356165576009}
   m_Father: {fileID: 3573204033164672864}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1271390744872804444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003922778655957030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed305130335473884e7052d0feb5d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTransform: {fileID: 0}
 --- !u!1 &8178294382573751520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,7 +1309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
-  target: {fileID: 0}
+  targetPoint: {fileID: 0}
 --- !u!1 &8667559491996901674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,7 +1440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
-  target: {fileID: 0}
+  targetPoint: {fileID: 0}
 --- !u!1 &9081319884209939059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,4 +1540,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
-  target: {fileID: 0}
+  targetPoint: {fileID: 0}

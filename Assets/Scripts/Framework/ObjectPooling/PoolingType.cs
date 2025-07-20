@@ -6,7 +6,7 @@ namespace Framework.ObjectPooling
         StraightBorder = 1,
         OuterCorner = 2,
         InnerCorner = 3,
-        Cup = 4,
+        GateItem = 4,
         BlockType00 = 5,
         BlockType01 = 6,
         BlockType02 = 7,

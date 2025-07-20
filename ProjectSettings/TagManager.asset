@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PoolParent
   - TargetSlot
+  - Gate
   layers:
   - Default
   - TransparentFX

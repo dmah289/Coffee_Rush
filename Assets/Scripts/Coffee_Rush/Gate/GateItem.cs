@@ -8,7 +8,6 @@ namespace Coffee_Rush.Board
     {
         [Header("Render Components")]
         [SerializeField] MeshRenderer visualMeshRenderer;
-        [SerializeField] MeshRenderer cupBaseMeshRenderer;
 
         private eColorType colorType;
         public eColorType ColorType
@@ -19,7 +18,6 @@ namespace Coffee_Rush.Board
                 if(colorType != value)
                 {
                     colorType = value;
-                    cupBaseMeshRenderer.SetTextureOffsetByColor(colorType);
                     visualMeshRenderer.SetTextureOffsetByColor(colorType);
                 }
             }

@@ -209,13 +209,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224357780}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14747751, y: -0.25578454, z: -0.039516475, w: 0.95460105}
+  m_LocalRotation: {x: -0.24999997, y: -0.24999997, z: -0.06698728, w: 0.9330127}
   m_LocalPosition: {x: -3.65, y: 9.6, z: -7.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -17.565, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: -30, y: -30, z: 0}
 --- !u!1 &391832821
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -493,13 +493,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 1885225639}
   levelLoader: {fileID: 1696820862}
-  tileDirections:
-  - {x: 0, y: -1}
-  - {x: 1, y: 0}
-  - {x: 0, y: 1}
-  - {x: -1, y: 0}
-  cellSize: 2
-  borderSize: 0.3
 --- !u!114 &1885225641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,7 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocksParent: {fileID: 391832822}
   gatesParent: {fileID: 0}
-  poolingTypeOffset: 5
+  poolingTypeOffset: 4
 --- !u!1 &2142158908
 GameObject:
   m_ObjectHideFlags: 0
