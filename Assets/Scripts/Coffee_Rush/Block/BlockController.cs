@@ -35,6 +35,7 @@ namespace Coffee_Rush.Block
             blockVisual = GetComponentInChildren<BlockVisual>();
             
             blockFitting.CalculateCheckPointOffset();
+            blockMatcher.AllocateGateItemsArray(cupHolders.Length);
         }
 
         protected override void OnEnable()
@@ -42,7 +43,6 @@ namespace Coffee_Rush.Block
             base.OnEnable();
 
             curEulerNotDragging = BlockConfig.initEulerModel;
-            
         }
 
         public void SetCheckPointToTargetTile(Vector3 targetTilePos)
@@ -53,7 +53,7 @@ namespace Coffee_Rush.Block
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Gate"))
-                StartCoroutine(blockMatcher.TryCollectGateItem(other, colorType, cupHolders));
+                StartCoroutine(blockMatcher.TryCollectGateItem(other, blockType, colorType, cupHolders));
         }
 
         private void OnTriggerExit2D(Collider2D other)

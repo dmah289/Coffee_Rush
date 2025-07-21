@@ -31,11 +31,13 @@ namespace Coffee_Rush.Block
         public IEnumerator AttractGateItem(GateItem item)
         {
             item.transform.SetParent(targetPoint, true);
-            item.transform.localRotation = Quaternion.identity;
             
-            Tween moveTween = item.transform.DOLocalMove(Vector3.zero, GateItemConfig.MoveDuration)
+            item.OnJumpedToSlot();
+            
+            Tween jumpTween = item.transform.DOLocalJump(Vector3.zero, 5, 1,GateItemConfig.MoveDuration)
                 .SetEase(Ease.OutFlash);
-            yield return moveTween.WaitForCompletion();
+            yield return jumpTween.WaitForCompletion();
+
         }
 
         public void Setup(eColorType colorType)

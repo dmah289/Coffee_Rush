@@ -58,7 +58,8 @@ namespace Framework.ObjectPooling
             AsyncOperationHandle<GameObject> gatePrefabHandle = Addressables.LoadAssetAsync<GameObject>(gatePrefab);
             yield return gatePrefabHandle;
             ObjectPooler.SetUpPool(PoolingType.Gate, 3, gatePrefabHandle.Result.GetComponent<GateController>());
-            
+
+            // yield return WaitHelper.GetWait(3f);
             
             // Unload the asset handles to free memory
             Addressables.Release(tilePrefabHandle);

@@ -129,6 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualMeshRenderer: {fileID: 5986921234056041961}
+  cupLidMeshRenderer: {fileID: 4743211286246186788}
+  selfTransform: {fileID: 8000377640608745218}
+  cupLidTransform: {fileID: 8765590564826951830}
 --- !u!1 &7795940479703386250
 GameObject:
   m_ObjectHideFlags: 0

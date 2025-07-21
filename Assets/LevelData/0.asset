@@ -209,16 +209,16 @@ MonoBehaviour:
     blockType: 0
     blockColor: 0
   blocksData:
-  - row: 4
-    col: 4
-    blockType: 10
+  - row: 6
+    col: 3
+    blockType: 2
     blockColor: 4
   - row: 2
     col: 0
-    blockType: 8
+    blockType: 1
     blockColor: 3
-  - row: 1
-    col: 5
+  - row: 5
+    col: 4
     blockType: 7
     blockColor: 1
   gatesData:

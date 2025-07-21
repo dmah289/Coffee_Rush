@@ -768,10 +768,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3573204033164672864}
   - component: {fileID: 5944933073566866320}
-  - component: {fileID: 8139094634117229287}
   - component: {fileID: -7212044222439720631}
   - component: {fileID: -980387719293558633}
   - component: {fileID: 393935922013226168}
+  - component: {fileID: 4805850184901052815}
   m_Layer: 0
   m_Name: block_type_01
   m_TagString: Untagged
@@ -823,8 +823,58 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!60 &8139094634117229287
-PolygonCollider2D:
+--- !u!114 &-7212044222439720631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146736106488317188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7390b30565ce41c49b0c84088c9da656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfTransform: {fileID: 0}
+  selfRb: {fileID: 0}
+  cupHolders: []
+  centerToTouchOffset: {x: 0, y: 0, z: 0}
+  isDragging: 0
+  colorType: 0
+  blockType: 0
+  blockMatcher: {fileID: 0}
+  blockFitting: {fileID: 0}
+  blockVisual: {fileID: 0}
+--- !u!114 &-980387719293558633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146736106488317188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18dc0af0656c4bcfb3f2a14f96dfd0fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currEmptySlotIdx: 0
+  currGateItems: []
+--- !u!114 &393935922013226168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146736106488317188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1316b96a094944bf9b66e12cc179464b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPoint: {fileID: 3711368093065733540}
+  centerToCheckPointOffset: {x: 0, y: 0, z: 0}
+--- !u!61 &4805850184901052815
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -865,74 +915,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.52166563, y: 1.9571829}
-      - {x: -0.7189096, y: 1.9157884}
-      - {x: -0.8730041, y: 1.7945138}
-      - {x: -0.9163628, y: 1.6323323}
-      - {x: -0.9000281, y: -1.6317525}
-      - {x: -0.77517974, y: -1.8349581}
-      - {x: -0.5786759, y: -1.9544524}
-      - {x: 0.6354001, y: -1.9486346}
-      - {x: 0.79449105, y: -1.8728503}
-      - {x: 0.9090974, y: -1.7395875}
-      - {x: 0.98497444, y: -1.5285167}
-      - {x: 0.96433526, y: 1.5176883}
-      - {x: 0.9324492, y: 1.6450324}
-      - {x: 0.83803964, y: 1.8115664}
-      - {x: 0.6733109, y: 1.9208274}
-      - {x: 0.5227441, y: 1.9621985}
-  m_UseDelaunayMesh: 0
---- !u!114 &-7212044222439720631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5146736106488317188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7390b30565ce41c49b0c84088c9da656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selfTransform: {fileID: 0}
-  selfRb: {fileID: 0}
-  cupHolders: []
-  centerToTouchOffset: {x: 0, y: 0, z: 0}
-  isDragging: 0
-  colorType: 0
-  blockType: 0
-  blockMatcher: {fileID: 0}
-  blockFitting: {fileID: 0}
-  blockVisual: {fileID: 0}
---- !u!114 &-980387719293558633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5146736106488317188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dc0af0656c4bcfb3f2a14f96dfd0fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currEmptyIdx: 0
---- !u!114 &393935922013226168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5146736106488317188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1316b96a094944bf9b66e12cc179464b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkPoint: {fileID: 3711368093065733540}
-  centerToCheckPointOffset: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3}
+  m_EdgeRadius: 0.47
 --- !u!1 &5671732511859564323
 GameObject:
   m_ObjectHideFlags: 0

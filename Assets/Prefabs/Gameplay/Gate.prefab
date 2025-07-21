@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0200cb8469334aea8e5143c7709b9959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfTransform: {fileID: 0}
+  selfTransform: {fileID: 1055525523227200242}
   selfMeshRenderer: {fileID: 2384320893940778289}
   gateItems: []
   gateDir: 0

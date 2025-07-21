@@ -12,8 +12,6 @@ namespace Coffee_Rush.Board
         [SerializeField] private Transform blocksParent;
         [SerializeField] private Transform gatesParent;
         
-        [SerializeField] private byte poolingTypeOffset = 4; // Offset for block types in PoolingType and eBlockType
-        
         public IEnumerator SpawnObjects(LevelData levelData, Tile[,] tiles)
         {
             SpawnBlocks(levelData.blocksData, tiles);
@@ -36,7 +34,8 @@ namespace Coffee_Rush.Board
         {
             for (int i = 0; i < blocksData.Length; i++)
             {
-                BlockController block = ObjectPooler.GetFromPool<BlockController>((PoolingType)(blocksData[i].blockType + poolingTypeOffset), blocksParent);
+                BlockController block = ObjectPooler.GetFromPool<BlockController>
+                    ((PoolingType)(blocksData[i].blockType + (byte)PoolingType.BlockType00 - 1), blocksParent);
                 block.SetCheckPointToTargetTile(tiles[blocksData[i].row, blocksData[i].col].transform.position);
                 block.ColorType = blocksData[i].blockColor;
                 block.BlockType = blocksData[i].blockType;

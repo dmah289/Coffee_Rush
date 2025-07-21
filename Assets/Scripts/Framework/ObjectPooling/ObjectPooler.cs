@@ -41,7 +41,7 @@ namespace Framework.ObjectPooling
             return newInstance;
         }
 
-        private static void ReturnToPool<T>(PoolingType type, T instance) where T : Component
+        public static void ReturnToPool<T>(PoolingType type, T instance) where T : Component
         {
             PreprocessData(instance);
             poolList[(byte)type].Add(instance);

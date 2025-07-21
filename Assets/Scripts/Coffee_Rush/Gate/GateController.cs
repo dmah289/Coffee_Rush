@@ -70,9 +70,9 @@ namespace Coffee_Rush.Board
                 GateItem gateItem = ObjectPooler.GetFromPool<GateItem>(PoolingType.GateItem, selfTransform);
                 
                 gateItem.transform.localPosition = new Vector3(
-                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].x,
-                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].y - i * GateItemConfig.Distance,
-                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].z);
+                    GateItemConfig.FirstItemSpawnedPosByDir[(byte)gateDir - 1].x,
+                    GateItemConfig.FirstItemSpawnedPosByDir[(byte)gateDir - 1].y - i * GateItemConfig.Distance,
+                    GateItemConfig.FirstItemSpawnedPosByDir[(byte)gateDir - 1].z);
                 gateItem.transform.localEulerAngles = GateItemConfig.RotationsByDir[(byte)gateDir - 1];
                 gateItem.ColorType = itemColors[i];
                 
@@ -107,9 +107,9 @@ namespace Coffee_Rush.Board
                 gateItems[i].transform.DOKill();
 
                 Vector3 targetPos = new Vector3(
-                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].x,
-                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].y - i * GateItemConfig.Distance,
-                    GateItemConfig.firstItemSpawnedPosByDir[(byte)gateDir - 1].z);
+                    GateItemConfig.FirstItemSpawnedPosByDir[(byte)gateDir - 1].x,
+                    GateItemConfig.FirstItemSpawnedPosByDir[(byte)gateDir - 1].y - i * GateItemConfig.Distance,
+                    GateItemConfig.FirstItemSpawnedPosByDir[(byte)gateDir - 1].z);
                 
                 gateItems[i].transform.DOLocalMove(targetPos, GateItemConfig.MoveDuration)
                     .SetEase(Ease.OutFlash);

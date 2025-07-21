@@ -41,7 +41,6 @@ namespace BaseSystem.Block
                 if (blockType != value)
                 {
                     blockType = value;
-                    // Additional logic can be added here if needed when block type changes
                 }
             }
         }
