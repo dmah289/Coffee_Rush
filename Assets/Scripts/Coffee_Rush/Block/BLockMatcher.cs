@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using BaseSystem;
 using Coffee_Rush.Board;
 using Coffee_Rush.Gate;
 using DG.Tweening;
@@ -10,19 +11,38 @@ namespace Coffee_Rush.Block
 {
     public class BLockMatcher : MonoBehaviour
     {
+        [SerializeField] private BoxCollider2D[] boxCollider2D;
+        
         [Header("Matching Settings")]
         [SerializeField] private int currEmptySlotIdx;
-        [SerializeField] private GateItem[] currGateItems;
-        
-        
+        [SerializeField] private GateItem[] collectedGateItems;
+
+
+        public bool CanSelect
+        {
+            get => boxCollider2D[0].enabled;
+            set
+            {
+                for(int i = 0; i < boxCollider2D.Length; i++)
+                    boxCollider2D[i].enabled = value;
+            }
+        }
+
+        private void Awake()
+        {
+            boxCollider2D = GetComponents<BoxCollider2D>();
+
+            CanSelect = true;
+        }
+
+
         public bool MatchingAllowed {get; set;}
         
         public void AllocateGateItemsArray(int length)
         {
-            currGateItems = new GateItem[length];
+            collectedGateItems = new GateItem[length];
             currEmptySlotIdx = 0;
         }
-
 
         public IEnumerator TryCollectGateItem(Collider2D other, eBlockType blockType, eColorType colorType, CupHolder[] cupHolders)
         {
@@ -36,10 +56,17 @@ namespace Coffee_Rush.Block
                 {
                     if (!MatchingAllowed) yield break;
                     
+                    if(currEmptySlotIdx == cupHolders.Length - 1)
+                    {
+                        CanSelect = false;
+                        SelectionController.Instance.HandleMouseUp();
+                    }
+                    
                     GateItem item = gateController.GetMatchedItem();
-                    currGateItems[currEmptySlotIdx] = item;
-
+                    
                     if (!item) yield break;
+                    
+                    collectedGateItems[currEmptySlotIdx] = item;
                     
                     yield return cupHolders[currEmptySlotIdx++].AttractGateItem(item);
 
@@ -51,38 +78,46 @@ namespace Coffee_Rush.Block
 
                     yield return null;
                 }
+                
+                
             }
         }
 
         private IEnumerator PackAllGateItems()
         {
-            for (int i = 0; i < currGateItems.Length; i++)
+            for (int i = 0; i < collectedGateItems.Length; i++)
             {
-                currGateItems[i].PackOnFullSlot();
+                collectedGateItems[i].JumpOnFullSlot();
+                collectedGateItems[i].PackOnFullSlot();
                 yield return WaitHelper.GetWait(GateItemConfig.PackingDuration * 0.3f);
             }
 
             yield return WaitHelper.GetWait(GateItemConfig.PackingDuration * 0.7f);
         }
         
+        // TODO : Refractor feeling
         public void MoveOutOfView(eBlockType blockType)
         {
-            Sequence sequence = DOTween.Sequence();
-            
-            sequence.Append(transform.DOMoveZ(-12, BlockConfig.LiftingDuration)
-                .SetEase(Ease.OutBack));
-            float direction = transform.position.x > 0 ? 1 : -1;
-            sequence.Append(transform.DOMoveX(direction * 20, BlockConfig.LiftingDuration)
-                .SetEase(Ease.InOutBack));
-
-            sequence.OnComplete(() => PostprocessToPool(blockType));
+            transform.DOMoveZ(-5, BlockConfig.LiftingDuration)
+                .SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    transform.DOScale(new Vector3(2f, 2f, 2f), 2)
+                        .SetEase(Ease.OutFlash);
+                    
+                    float direction = transform.position.x > 0 ? 1 : -1;
+                    Vector3 outOfViewPos = new Vector3(15 * direction, 0, transform.position.z);
+                    GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    go.transform.position = outOfViewPos;
+                    transform.DOJump(outOfViewPos, 5, 1, 1f)
+                        .SetEase(Ease.InFlash).OnComplete(() => PostprocessToPool(blockType));
+                });
         }
 
         private void PostprocessToPool(eBlockType blockType)
         {
-            for (int i = 0; i < currGateItems.Length; i++)
+            for (int i = 0; i < collectedGateItems.Length; i++)
             {
-                ObjectPooler.ReturnToPool(PoolingType.GateItem, currGateItems[i]);
+                ObjectPooler.ReturnToPool(PoolingType.GateItem, collectedGateItems[i]);
             }
             ObjectPooler.ReturnToPool(PoolingType.BlockType00 - 1 + (byte)blockType, this);
         }

@@ -1,19 +1,22 @@
 ﻿using BaseSystem.Block;
 using DG.Tweening;
+using Framework.DesignPattern;
 using Framework.Helper;
 using UnityEngine;
 
 namespace BaseSystem
 {
-    public class SelectionController : MonoBehaviour
+    public class SelectionController : MonoSingleton<SelectionController>
     {
         [Header("Selection Settings")]
         private Camera cam;
         private Collider2D[] colliders = new Collider2D[1];
         private ISelectable selectedObject;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+            
             cam = Camera.main;
         }
         
@@ -33,9 +36,9 @@ namespace BaseSystem
             }
         }
 
-        private void HandleMouseUp()
+        public void HandleMouseUp()
         {
-            selectedObject.OnDeselect();
+            selectedObject?.OnDeselect();
             selectedObject = null;
         }
 

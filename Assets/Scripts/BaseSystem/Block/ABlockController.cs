@@ -107,7 +107,7 @@ namespace BaseSystem.Block
             SetupJobConfigs(mousePos);
         }
 
-        protected virtual void SetupJobConfigs(Vector3 mousePos)
+        protected void SetupJobConfigs(Vector3 mousePos)
         {
             centerToTouchOffset = mousePos - selfTransform.position;
             centerToTouchOffset.z = 0;

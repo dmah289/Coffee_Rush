@@ -32,10 +32,8 @@ namespace Coffee_Rush.Block
         {
             item.transform.SetParent(targetPoint, true);
             
-            item.OnJumpedToSlot();
-            
             Tween jumpTween = item.transform.DOLocalJump(Vector3.zero, 5, 1,GateItemConfig.MoveDuration)
-                .SetEase(Ease.OutFlash);
+                .SetEase(Ease.OutFlash).OnComplete(item.OnJumpedToSlot);
             yield return jumpTween.WaitForCompletion();
 
         }

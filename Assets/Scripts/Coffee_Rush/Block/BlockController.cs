@@ -3,6 +3,8 @@ using BaseSystem;
 using BaseSystem.Block;
 using Coffee_Rush.Board;
 using Coffee_Rush.JobCalculation;
+using Coffee_Rush.Level;
+using DG.Tweening;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -19,12 +21,14 @@ namespace Coffee_Rush.Block
         
         [Header("Balance Settings")]
         private Vector3 curEulerNotDragging;
+        
+        [Header("Movement Direction")]
+        [SerializeField] private eMovementDirection movementDirection;
             
         // Balancing Job
         protected BalancingJob balancingJob;
         protected JobHandle balancingJobHandle;
         protected NativeReference<float3> currentEuler;
-
         
 
         protected override void Awake()
@@ -36,6 +40,7 @@ namespace Coffee_Rush.Block
             
             blockFitting.CalculateCheckPointOffset();
             blockMatcher.AllocateGateItemsArray(cupHolders.Length);
+            blockMatcher.CanSelect = true;
         }
 
         protected override void OnEnable()
@@ -43,6 +48,19 @@ namespace Coffee_Rush.Block
             base.OnEnable();
 
             curEulerNotDragging = BlockConfig.initEulerModel;
+        }
+
+        public override void OnSelect(Vector3 mousePos)
+        {
+            if (!blockMatcher.CanSelect)
+             return;
+            
+            print("Block selected");
+            DOTween.Kill(gameObject);
+            transform.DOMoveZ(-1f, 0.2f);
+            selfRb.isKinematic = false;
+            
+            SetupJobConfigs(mousePos);
         }
 
         public void SetCheckPointToTargetTile(Vector3 targetTilePos)
@@ -94,7 +112,15 @@ namespace Coffee_Rush.Block
 
         protected override void ApplyJobResults()
         {
-            base.ApplyJobResults();
+            velocityCalculationJobHandle.Complete();
+
+            if (isDragging)
+            {
+                Vector3 res = finalVelocity.Value;
+                if (movementDirection == eMovementDirection.Horizontal) res.y = 0;
+                else if(movementDirection == eMovementDirection.Vertical) res.x = 0;
+                selfRb.velocity = res;
+            }
             
             balancingJobHandle.Complete();
             
@@ -118,6 +144,12 @@ namespace Coffee_Rush.Block
             base.OnDeselect();
             
             blockFitting.FitBoard();
+        }
+
+        public void SetMovementDirection(eMovementDirection moveableDir)
+        {
+            movementDirection = moveableDir;
+            blockVisual.ShowDirectionSprite(moveableDir);
         }
     }
 }

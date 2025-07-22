@@ -6,12 +6,33 @@ using UnityEngine;
 namespace Coffee_Rush.Level
 {
     [Serializable]
+    public struct BlockerData
+    {
+        public int row;
+        public int col;
+    }
+    
+    [Serializable]
+    public struct ObstacleData
+    {
+        public BlockerData[] BlockerDatas;
+    }
+    
+    [Serializable]
     public struct GateData
     {
         public int row;
         public int col;
         public eDirection gateDir;
         public eColorType[] itemColors;
+        public CompressedItemPath compressedItemPath;
+    }
+
+    [Serializable]
+    public struct CompressedItemPath
+    {
+        public int[] turnIndices;
+        public eDirection[] turnDirections;
     }
     
     [Serializable]
@@ -29,6 +50,7 @@ namespace Coffee_Rush.Level
         public int col;
         public eBlockType blockType;
         public eColorType blockColor;
+        public eMovementDirection moveableDir;
     }
     
     [CreateAssetMenu(fileName = "LevelData", menuName = "Coffee Rush/Level Data", order = 1)]

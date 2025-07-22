@@ -171,6 +171,7 @@ MonoBehaviour:
   blockMatcher: {fileID: 0}
   blockFitting: {fileID: 0}
   blockVisual: {fileID: 0}
+  movementDirection: 0
 --- !u!114 &5326355334722123539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,8 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18dc0af0656c4bcfb3f2a14f96dfd0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider2D: []
   currEmptySlotIdx: 0
-  currGateItems: []
+  collectedGateItems: []
 --- !u!114 &6944617639895624991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &987939779291750177
 Transform:
   m_ObjectHideFlags: 0
@@ -300,7 +302,7 @@ Transform:
   m_GameObject: {fileID: 2517730973364536064}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -867,6 +869,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  verticalSprite: {fileID: 4097244673908251639}
+  horizontalSprite: {fileID: 7672041058635254365}
 --- !u!1 &8160144105588262555
 GameObject:
   m_ObjectHideFlags: 0

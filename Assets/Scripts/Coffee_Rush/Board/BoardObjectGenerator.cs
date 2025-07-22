@@ -26,7 +26,8 @@ namespace Coffee_Rush.Board
                 GateController gate = ObjectPooler.GetFromPool<GateController>(PoolingType.Gate, gatesParent);
                 gate.Setup(tiles[gatesData[i].row, gatesData[i].col].transform.position,
                            gatesData[i].gateDir,
-                           gatesData[i].itemColors);
+                           gatesData[i].itemColors,
+                           gatesData[i].compressedItemPath);
             }
         }
 
@@ -37,6 +38,7 @@ namespace Coffee_Rush.Board
                 BlockController block = ObjectPooler.GetFromPool<BlockController>
                     ((PoolingType)(blocksData[i].blockType + (byte)PoolingType.BlockType00 - 1), blocksParent);
                 block.SetCheckPointToTargetTile(tiles[blocksData[i].row, blocksData[i].col].transform.position);
+                block.SetMovementDirection(blocksData[i].moveableDir);
                 block.ColorType = blocksData[i].blockColor;
                 block.BlockType = blocksData[i].blockType;
             }
