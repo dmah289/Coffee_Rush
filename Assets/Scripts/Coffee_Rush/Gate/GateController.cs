@@ -91,19 +91,16 @@ namespace Coffee_Rush.Board
             }
         }
 
-        public GateItem GetMatchedItem()
+        public GateItem GetCollectableItem()
         {
             if (gateItems.Count == 0)
                 return null;
             
             GateItem item = gateItems[0];
 
-            selfTransform.DOKill();
             selfTransform.DOMove(selfTransform.position + GateConfig.impulseOffset, GateItemConfig.MoveDuration / 2)
                 .SetEase(Ease.OutQuad)
-                .OnComplete(() =>
-                    selfTransform.DOMove(selfTransform.position - GateConfig.impulseOffset, GateItemConfig.MoveDuration / 2)
-                        .SetEase(Ease.InQuad));
+                .OnComplete(() => selfTransform.position -= GateConfig.impulseOffset);
             
             UpdateGateColor();
 

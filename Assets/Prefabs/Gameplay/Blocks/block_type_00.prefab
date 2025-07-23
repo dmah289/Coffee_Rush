@@ -134,10 +134,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -163,7 +163,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfRb: {fileID: 0}
-  cupHolders: []
+  cupHolders:
+  - {fileID: 1603796338764901009}
+  - {fileID: 5314853128472819206}
+  - {fileID: 5405994934368304083}
+  - {fileID: 8122730342329297634}
   centerToTouchOffset: {x: 0, y: 0, z: 0}
   isDragging: 0
   colorType: 0

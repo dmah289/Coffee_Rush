@@ -218,27 +218,49 @@ MonoBehaviour:
     col: 5
     blockType: 2
     blockColor: 2
-    moveableDir: 1
+    moveableDir: 2
   - row: 5
     col: 4
-    blockType: 1
+    blockType: 4
+    blockColor: 3
+    moveableDir: 1
+  - row: 2
+    col: 1
+    blockType: 7
+    blockColor: 4
+    moveableDir: 2
+  - row: 5
+    col: 1
+    blockType: 6
     blockColor: 1
-    moveableDir: 0
-  - row: 4
-    col: 4
-    blockType: 1
-    blockColor: 1
-    moveableDir: 0
-  - row: 3
-    col: 4
-    blockType: 1
-    blockColor: 1
-    moveableDir: 0
+    moveableDir: 2
   gatesData:
   - row: 0
     col: 3
     gateDir: 3
-    itemColors: 010101010101010101010101010101010101010101010101010101010101
+    itemColors: 01010101010101010101
     compressedItemPath:
-      turnIndices: 00000000
-      turnDirections: 03
+      turnIndices: 0000000005000000
+      turnDirections: 0302
+  - row: 7
+    col: 3
+    gateDir: 1
+    itemColors: 0202020202020202010101010101010101010101
+    compressedItemPath:
+      turnIndices: 0000000005000000
+      turnDirections: 0102
+  - row: 3
+    col: 7
+    gateDir: 2
+    itemColors: 0303030303030303030303030303030302020202020202020202
+    compressedItemPath:
+      turnIndices: 000000000a000000
+      turnDirections: 0201
+  - row: 3
+    col: 0
+    gateDir: 4
+    itemColors: 04040404040404040404040404040404040404040404040404
+    compressedItemPath:
+      turnIndices: 0000000003000000
+      turnDirections: 0401
+  blockersData: []

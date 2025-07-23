@@ -128,7 +128,7 @@ Transform:
   m_GameObject: {fileID: 905257090956977189}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -1.0000004}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -428,8 +428,8 @@ Transform:
   - {fileID: 6013789768389332442}
   - {fileID: 4737481898248760288}
   - {fileID: 2603265116482809260}
-  - {fileID: 8905808604684310115}
   - {fileID: 1102312970512709526}
+  - {fileID: 8905808604684310115}
   m_Father: {fileID: 5073430438078297954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2173712085693078025
@@ -808,10 +808,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -837,7 +837,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfRb: {fileID: 0}
-  cupHolders: []
+  cupHolders:
+  - {fileID: 3383053466907893278}
+  - {fileID: 7481402011597770091}
+  - {fileID: 9061782994932602903}
+  - {fileID: 2429503230965109721}
+  - {fileID: 8374827922641879471}
+  - {fileID: 2529157257113999489}
+  - {fileID: 4620049442343979887}
+  - {fileID: 3281693488329264176}
   centerToTouchOffset: {x: 0, y: 0, z: 0}
   isDragging: 0
   colorType: 0
@@ -861,6 +869,7 @@ MonoBehaviour:
   boxCollider2D: []
   currEmptySlotIdx: 0
   collectedGateItems: []
+  IsBusy: 0
 --- !u!114 &393935922013226168
 MonoBehaviour:
   m_ObjectHideFlags: 0

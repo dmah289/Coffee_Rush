@@ -1499,6 +1499,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
+  verticalSprite: {fileID: 5681311080566920784}
+  horizontalSprite: {fileID: 3721323427677405606}
 --- !u!1 &4697943048858534784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,10 +2137,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2164,7 +2166,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfRb: {fileID: 0}
-  cupHolders: []
+  cupHolders:
+  - {fileID: 609317347018680837}
+  - {fileID: 9212095758294687728}
+  - {fileID: 6355813712004523356}
+  - {fileID: 230674208097187278}
+  - {fileID: 1684146129368682775}
+  - {fileID: 6631883504265612528}
+  - {fileID: 3997195652807349165}
+  - {fileID: 2820991885644535028}
+  - {fileID: 2246398463666109427}
+  - {fileID: 2590703775636814875}
+  - {fileID: 6416937602845865998}
+  - {fileID: 6943693719395369777}
+  - {fileID: 4339001895995769209}
+  - {fileID: 8880940266268327666}
+  - {fileID: 2734681279003084580}
+  - {fileID: 7078093273571620829}
+  - {fileID: 5038741048923066958}
+  - {fileID: 5666439415744179252}
+  - {fileID: 6050386413911838001}
+  - {fileID: 2690394654097303220}
   centerToTouchOffset: {x: 0, y: 0, z: 0}
   isDragging: 0
   colorType: 0
@@ -2172,6 +2194,7 @@ MonoBehaviour:
   blockMatcher: {fileID: 0}
   blockFitting: {fileID: 0}
   blockVisual: {fileID: 0}
+  movementDirection: 0
 --- !u!114 &-751410752154271997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2184,8 +2207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18dc0af0656c4bcfb3f2a14f96dfd0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider2D: []
   currEmptySlotIdx: 0
-  currGateItems: []
+  collectedGateItems: []
 --- !u!114 &-8480295016692954877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2718,7 +2742,7 @@ Transform:
   m_GameObject: {fileID: 6432740703036363170}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

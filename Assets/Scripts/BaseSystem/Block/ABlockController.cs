@@ -62,8 +62,6 @@ namespace BaseSystem.Block
         {
             selfTransform = transform;
             selfRb = selfTransform.GetComponent<Rigidbody2D>();
-            
-            cupHolders = GetComponentsInChildren<CupHolder>();
 
             selfRb.isKinematic = true;
         }

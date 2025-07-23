@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaitHelper : MonoBehaviour
 {
     private static Dictionary<float, WaitForSeconds> WaitCache = new();
+    private static WaitForEndOfFrame waitForEndOfFrame = new ();
 
     public static WaitForSeconds GetWait(float seconds)
     {
@@ -15,4 +16,6 @@ public class WaitHelper : MonoBehaviour
 
         return WaitCache[roundedSeconds] = new WaitForSeconds(roundedSeconds);
     }
+
+    public static WaitForEndOfFrame GetWaitForEndOfFrame() => waitForEndOfFrame;
 }

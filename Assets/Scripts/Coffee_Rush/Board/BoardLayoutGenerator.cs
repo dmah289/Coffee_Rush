@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Coffee_Rush.Board;
 using Coffee_Rush.Level;
+using Coffee_Rush.Mechanics;
 using Framework.DesignPattern;
 using Framework.ObjectPooling;
 using Unity.Mathematics;
@@ -17,9 +18,13 @@ namespace Coffee_Rush
         
         [Header("References")]
         [SerializeField] private LevelLoader levelLoader;
+        [SerializeField] private CameraFitter cameraFitter;
         
         [Header("Board Manager")]
         public Tile[,] tiles;
+        
+        public float HalfWidthWorldPos => Mathf.Abs(tiles[0, 0].transform.position.x);
+        public float HalfHeightWorldPos => Mathf.Abs(tiles[0, 0].transform.position.y);
 
 
         protected override void Awake()
@@ -66,6 +71,8 @@ namespace Coffee_Rush
          
         public IEnumerator SetupBoard(LevelData levelData)
         {
+            cameraFitter.CameraFitBoard(levelData.width);
+            
             tiles = new Tile[levelData.height,levelData.width];
             
             int halfWidth = levelData.width / 2;

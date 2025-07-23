@@ -30,6 +30,8 @@ namespace Coffee_Rush.Block
         protected JobHandle balancingJobHandle;
         protected NativeReference<float3> currentEuler;
         
+        private Coroutine matchingCoroutine;
+        
 
         protected override void Awake()
         {
@@ -55,7 +57,6 @@ namespace Coffee_Rush.Block
             if (!blockMatcher.CanSelect)
              return;
             
-            print("Block selected");
             DOTween.Kill(gameObject);
             transform.DOMoveZ(-1f, 0.2f);
             selfRb.isKinematic = false;
@@ -142,8 +143,7 @@ namespace Coffee_Rush.Block
         public override void OnDeselect()
         {
             base.OnDeselect();
-            
-            blockFitting.FitBoard();
+            if(blockMatcher.CanSelect) blockFitting.FitBoard();
         }
 
         public void SetMovementDirection(eMovementDirection moveableDir)

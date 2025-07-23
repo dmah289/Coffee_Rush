@@ -17,6 +17,7 @@ namespace Coffee_Rush.Block
         [SerializeField] private int currEmptySlotIdx;
         [SerializeField] private GateItem[] collectedGateItems;
 
+        public bool IsBusy;
 
         public bool CanSelect
         {
@@ -46,40 +47,45 @@ namespace Coffee_Rush.Block
 
         public IEnumerator TryCollectGateItem(Collider2D other, eBlockType blockType, eColorType colorType, CupHolder[] cupHolders)
         {
+            if (IsBusy) yield break;
+            
+            print("Starting " + gameObject.name);
             MatchingAllowed = true;
             
             if (other.gameObject.TryGetComponent(out GateController gateController) && currEmptySlotIdx < cupHolders.Length)
             {
-                yield return null;
-                
                 while (currEmptySlotIdx < cupHolders.Length && gateController.ColorType == colorType)
                 {
-                    if (!MatchingAllowed) yield break;
-                    
-                    if(currEmptySlotIdx == cupHolders.Length - 1)
+                    if (!MatchingAllowed)
                     {
-                        CanSelect = false;
-                        SelectionController.Instance.HandleMouseUp();
+                        print("Matching not allowed, exiting..." + gameObject.name);
+                        yield break;
+                    }
+
+                    IsBusy = true;
+                    
+                    GateItem item = gateController.GetCollectableItem();
+
+                    if (!item)
+                    {
+                        print("No item to collect, exiting...");
+                        yield break;
                     }
                     
-                    GateItem item = gateController.GetMatchedItem();
-                    
-                    if (!item) yield break;
-                    
                     collectedGateItems[currEmptySlotIdx] = item;
-                    
-                    yield return cupHolders[currEmptySlotIdx++].AttractGateItem(item);
+                    yield return cupHolders[currEmptySlotIdx++].CollectGateItem(item);
 
                     if (currEmptySlotIdx == cupHolders.Length)
                     {
+                        CanSelect = false;
                         yield return PackAllGateItems();
                         MoveOutOfView(blockType);
                     }
 
-                    yield return null;
+                    yield return WaitHelper.GetWaitForEndOfFrame();
+
+                    IsBusy = false;
                 }
-                
-                
             }
         }
 
@@ -95,20 +101,20 @@ namespace Coffee_Rush.Block
             yield return WaitHelper.GetWait(GateItemConfig.PackingDuration * 0.7f);
         }
         
-        // TODO : Refractor feeling
         public void MoveOutOfView(eBlockType blockType)
         {
             transform.DOMoveZ(-5, BlockConfig.LiftingDuration)
                 .SetEase(Ease.OutBack).OnComplete(() =>
                 {
-                    transform.DOScale(new Vector3(2f, 2f, 2f), 2)
+                    transform.DOScale(BlockConfig.targetScaleToMove, BlockConfig.LiftingDuration)
                         .SetEase(Ease.OutFlash);
                     
                     float direction = transform.position.x > 0 ? 1 : -1;
-                    Vector3 outOfViewPos = new Vector3(15 * direction, 0, transform.position.z);
-                    GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    go.transform.position = outOfViewPos;
-                    transform.DOJump(outOfViewPos, 5, 1, 1f)
+                    Vector3 outOfViewPos = new Vector3(
+                        (BoardLayoutGenerator.Instance.HalfWidthWorldPos + 10) * direction,
+                        BoardLayoutGenerator.Instance.HalfHeightWorldPos + 5,
+                        0);
+                    transform.DOJump(outOfViewPos, 5, 1, BlockConfig.LiftingDuration)
                         .SetEase(Ease.InFlash).OnComplete(() => PostprocessToPool(blockType));
                 });
         }

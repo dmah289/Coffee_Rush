@@ -6,7 +6,6 @@ namespace Coffee_Rush.Gate
     {
         public static readonly float Distance = 0.8f;
         public static readonly float MoveDuration = 0.2f;
-        public static readonly Vector3 WorldRotationOnBlock = new (90f, 0f, 180f);
         public static readonly Vector3 CupLidFloatingPos = new (0, 1, 0);
         public static readonly float PackingDuration = 0.3f;
         public static readonly Vector3[] ItemDir =

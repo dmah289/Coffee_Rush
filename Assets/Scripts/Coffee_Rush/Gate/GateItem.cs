@@ -30,9 +30,9 @@ namespace Coffee_Rush.Board
             }
         }
 
-        public void OnJumpedToSlot()
+        public void OnJumpedToSlot(Transform parent)
         {
-            selfTransform.eulerAngles = GateItemConfig.WorldRotationOnBlock;
+            selfTransform.rotation = Quaternion.LookRotation(parent.forward, parent.up);
         }
 
         public void PackOnFullSlot()

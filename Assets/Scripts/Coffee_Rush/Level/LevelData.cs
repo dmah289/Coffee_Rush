@@ -13,12 +13,6 @@ namespace Coffee_Rush.Level
     }
     
     [Serializable]
-    public struct ObstacleData
-    {
-        public BlockerData[] BlockerDatas;
-    }
-    
-    [Serializable]
     public struct GateData
     {
         public int row;
@@ -62,6 +56,7 @@ namespace Coffee_Rush.Level
         public TileData[] cellsData;
         public BlockData[] blocksData;
         public GateData[] gatesData;
+        public BlockerData[] blockersData;
 
         public TileData GetCellData(int row, int col)
         {

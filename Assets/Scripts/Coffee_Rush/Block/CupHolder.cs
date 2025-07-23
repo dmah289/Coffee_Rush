@@ -13,7 +13,6 @@ namespace Coffee_Rush.Block
         [Header("Self Components")]
         [SerializeField] private Transform selfTransform;
         [SerializeField] private MeshRenderer selfMeshRenderer;
-        private MaterialPropertyBlock mpb;
         
         [Header("References")]
         [SerializeField] private Transform targetPoint;
@@ -23,19 +22,16 @@ namespace Coffee_Rush.Block
             selfTransform = transform;
             targetPoint = selfTransform.GetChild(0).GetComponent<Transform>();
             selfMeshRenderer = GetComponent<MeshRenderer>();
-            
-            mpb = new MaterialPropertyBlock();
         }
 
-
-        public IEnumerator AttractGateItem(GateItem item)
+        public IEnumerator CollectGateItem(GateItem item)
         {
-            item.transform.SetParent(targetPoint, true);
+            item.transform.SetParent(targetPoint);
             
             Tween jumpTween = item.transform.DOLocalJump(Vector3.zero, 5, 1,GateItemConfig.MoveDuration)
-                .SetEase(Ease.OutFlash).OnComplete(item.OnJumpedToSlot);
+                .SetEase(Ease.OutFlash);
             yield return jumpTween.WaitForCompletion();
-
+            item.OnJumpedToSlot(targetPoint.parent.parent);
         }
 
         public void Setup(eColorType colorType)
