@@ -214,26 +214,31 @@ MonoBehaviour:
     blockType: 1
     blockColor: 1
     moveableDir: 0
+    countdownIce: 0
   - row: 1
     col: 5
     blockType: 2
     blockColor: 2
     moveableDir: 2
+    countdownIce: 3
   - row: 5
     col: 4
     blockType: 4
     blockColor: 3
     moveableDir: 1
+    countdownIce: 0
   - row: 2
     col: 1
     blockType: 7
     blockColor: 4
     moveableDir: 2
+    countdownIce: 0
   - row: 5
     col: 1
     blockType: 6
     blockColor: 1
     moveableDir: 2
+    countdownIce: 0
   gatesData:
   - row: 0
     col: 3
@@ -264,3 +269,7 @@ MonoBehaviour:
       turnIndices: 0000000003000000
       turnDirections: 0401
   blockersData: []
+  kettlesData:
+  - row: 6
+    col: 0
+    countdown: 2

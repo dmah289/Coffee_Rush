@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Coffee_Rush.Board;
 using Coffee_Rush.Level;
 using Coffee_Rush.Mechanics;
@@ -22,6 +23,7 @@ namespace Coffee_Rush
         
         [Header("Board Manager")]
         public Tile[,] tiles;
+        public List<ABorder> borders;
         
         public float HalfWidthWorldPos => Mathf.Abs(tiles[0, 0].transform.position.x);
         public float HalfHeightWorldPos => Mathf.Abs(tiles[0, 0].transform.position.y);
@@ -187,10 +189,11 @@ namespace Coffee_Rush
             if (length == 0) return;
             float cenrterY = startY + length / 2;
             
-            Transform border = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-            border.position = new Vector3(x, cenrterY, 0f);
-            border.eulerAngles = lastLeftState ? new Vector3(0, 0, -90) : new Vector3(0, 0, 90);
-            border.localScale = new Vector3(length, 1f, 1f);
+            ABorder border = ObjectPooler.GetFromPool<ABorder>(PoolingType.StraightBorder, selfTransform);
+            borders.Add(border);
+            border.transform.position = new Vector3(x, cenrterY, 0f);
+            border.transform.eulerAngles = lastLeftState ? new Vector3(0, 0, -90) : new Vector3(0, 0, 90);
+            border.transform.localScale = new Vector3(length, 1f, 1f);
             
 #if UNITY_EDITOR
             border.name = $"VerticalBorder_{col}_[{startRow}]_[{endRow}]";
@@ -220,10 +223,11 @@ namespace Coffee_Rush
             
             float centerX = startX + lengthX / 2;
 
-            Transform border = ObjectPooler.GetFromPool<Transform>(PoolingType.StraightBorder, selfTransform);
-            border.position = new Vector3(centerX, y, 0f);
-            border.eulerAngles = belowState ? Vector3.zero : new Vector3(0, 0, 180);
-            border.localScale = new Vector3(lengthX, 1f, 1f);
+            ABorder border = ObjectPooler.GetFromPool<ABorder>(PoolingType.StraightBorder, selfTransform);
+            borders.Add(border);
+            border.transform.position = new Vector3(centerX, y, 0f);
+            border.transform.eulerAngles = belowState ? Vector3.zero : new Vector3(0, 0, 180);
+            border.transform.localScale = new Vector3(lengthX, 1f, 1f);
             
 #if UNITY_EDITOR
             border.name = $"HorizontalBorder_{row}_[{startCol}]_[{endCol}]";
@@ -248,9 +252,10 @@ namespace Coffee_Rush
         
         private void SetupTopLeftCorner(float posX, float posY, bool state)
         {
-            Transform corner = ObjectPooler.GetFromPool<Transform>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
-            corner.position = new Vector3(posX - BoardConfig.cellSize / 2, posY  + BoardConfig.cellSize / 2, 0f);
-            corner.eulerAngles = new Vector3(0, 0, 270f);
+            ABorder corner = ObjectPooler.GetFromPool<ABorder>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
+            borders.Add(corner);
+            corner.transform.position = new Vector3(posX - BoardConfig.cellSize / 2, posY  + BoardConfig.cellSize / 2, 0f);
+            corner.transform.eulerAngles = new Vector3(0, 0, 270f);
 #if UNITY_EDITOR
             corner.name = "top_left_corner";
 #endif
@@ -258,9 +263,10 @@ namespace Coffee_Rush
 
         private void SetupTopRightCorner(float posX, float posY, bool state)
         {
-            Transform corner = ObjectPooler.GetFromPool<Transform>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
-            corner.position = new Vector3(posX + BoardConfig.cellSize / 2, posY  + BoardConfig.cellSize / 2, 0f);
-            corner.eulerAngles = new Vector3(0, 0, 180f);
+            ABorder corner = ObjectPooler.GetFromPool<ABorder>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
+            borders.Add(corner);
+            corner.transform.position = new Vector3(posX + BoardConfig.cellSize / 2, posY  + BoardConfig.cellSize / 2, 0f);
+            corner.transform.eulerAngles = new Vector3(0, 0, 180f);
 #if UNITY_EDITOR
             corner.name = $"top_right_corner";
 #endif
@@ -268,9 +274,10 @@ namespace Coffee_Rush
 
         private void SetupBottomRightCorner(float posX, float posY, bool state)
         {
-            Transform corner = ObjectPooler.GetFromPool<Transform>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
-            corner.position = new Vector3(posX + BoardConfig.cellSize / 2, posY - BoardConfig.cellSize / 2, 0f);
-            corner.eulerAngles = new Vector3(0, 0, 90f);
+            ABorder corner = ObjectPooler.GetFromPool<ABorder>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
+            borders.Add(corner);
+            corner.transform.position = new Vector3(posX + BoardConfig.cellSize / 2, posY - BoardConfig.cellSize / 2, 0f);
+            corner.transform.eulerAngles = new Vector3(0, 0, 90f);
 #if UNITY_EDITOR
             corner.name = "bottom_right_corner";
 #endif
@@ -278,9 +285,10 @@ namespace Coffee_Rush
 
         private void SetupBottomLeftCorner(float posX, float posY, bool state)
         {
-            Transform corner = ObjectPooler.GetFromPool<Transform>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
-            corner.position = new Vector3(posX - BoardConfig.cellSize / 2, posY - BoardConfig.cellSize / 2, 0f);
-            corner.eulerAngles = Vector3.zero;
+            ABorder corner = ObjectPooler.GetFromPool<ABorder>(state ? PoolingType.OuterCorner : PoolingType.InnerCorner, selfTransform);
+            borders.Add(corner);
+            corner.transform.position = new Vector3(posX - BoardConfig.cellSize / 2, posY - BoardConfig.cellSize / 2, 0f);
+            corner.transform.eulerAngles = Vector3.zero;
 #if UNITY_EDITOR
             corner.name = "bottom_left_corner";
 #endif
@@ -306,6 +314,24 @@ namespace Coffee_Rush
             int roundedRow = Mathf.RoundToInt(row);
             
             return tiles[roundedRow, roundedColumn].SelfTransform.position;
+        }
+
+        public void RevokeBoard()
+        {
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for(int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    if (tiles[i, j])
+                        ObjectPooler.ReturnToPool(PoolingType.Tile, tiles[i, j]);
+                }
+            }
+            
+            for(int i = 0; i < borders.Count; i++)
+            {
+                ObjectPooler.ReturnToPool(borders[i].type, borders[i]);
+            }
+            borders.Clear();
         }
     } 
 }

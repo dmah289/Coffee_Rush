@@ -17,6 +17,7 @@ namespace Framework.ObjectPooling
         BlockType07 = 12,
         BlockType08 = 13,
         BlockType09 = 14,
-        Gate = 15
+        Gate = 15,
+        Kettle = 16,
     }
 }

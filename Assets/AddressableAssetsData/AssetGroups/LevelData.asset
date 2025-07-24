@@ -87,6 +87,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93499a147602fee4298d1be73f90f5ff
+    m_Address: Assets/Prefabs/Gameplay/Obstacles/kettle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a132d30f9c934f7449c2043744bed9e4
     m_Address: Assets/Textures/Sprite Sheet.psd
     m_ReadOnly: 0

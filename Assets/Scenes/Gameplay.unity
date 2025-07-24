@@ -502,6 +502,7 @@ GameObject:
   - component: {fileID: 1696820864}
   - component: {fileID: 1696820863}
   - component: {fileID: 1696820862}
+  - component: {fileID: 1696820865}
   m_Layer: 0
   m_Name: level_manager
   m_TagString: Untagged
@@ -538,6 +539,7 @@ MonoBehaviour:
   levelLoader: {fileID: 1696820862}
   boardController: {fileID: 1885225641}
   poolingManager: {fileID: 2142158909}
+  loseManager: {fileID: 1696820865}
 --- !u!4 &1696820864
 Transform:
   m_ObjectHideFlags: 0
@@ -553,6 +555,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1696820865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696820861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad369507904d43749c66383717834889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1885225638
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +616,7 @@ MonoBehaviour:
   selfTransform: {fileID: 1885225639}
   levelLoader: {fileID: 1696820862}
   cameraFitter: {fileID: 519420033}
+  borders: []
 --- !u!114 &1885225641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocksParent: {fileID: 391832822}
   gatesParent: {fileID: 0}
+  blocks: []
 --- !u!1 &2142158908
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +743,11 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   gatePrefab:
     m_AssetGUID: 1086114144226b744bcdb49b6cd657ca
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  kettlePrefab:
+    m_AssetGUID: 93499a147602fee4298d1be73f90f5ff
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

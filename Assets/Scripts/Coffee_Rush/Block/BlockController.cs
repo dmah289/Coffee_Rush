@@ -5,6 +5,7 @@ using Coffee_Rush.Board;
 using Coffee_Rush.JobCalculation;
 using Coffee_Rush.Level;
 using DG.Tweening;
+using Framework.ObjectPooling;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -29,8 +30,8 @@ namespace Coffee_Rush.Block
         protected BalancingJob balancingJob;
         protected JobHandle balancingJobHandle;
         protected NativeReference<float3> currentEuler;
-        
-        private Coroutine matchingCoroutine;
+
+        [SerializeField] private int noCollision;
         
 
         protected override void Awake()
@@ -50,6 +51,13 @@ namespace Coffee_Rush.Block
             base.OnEnable();
 
             curEulerNotDragging = BlockConfig.initEulerModel;
+            BLockMatcher.OnBlockFullSlot += blockVisual.OnBlockColected;
+        }
+        
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            BLockMatcher.OnBlockFullSlot -= blockVisual.OnBlockColected;
         }
 
         public override void OnSelect(Vector3 mousePos)
@@ -71,14 +79,21 @@ namespace Coffee_Rush.Block
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Gate"))
+            noCollision++;
+            if (other.gameObject.CompareTag("Gate") && noCollision == 1)
+            {
                 StartCoroutine(blockMatcher.TryCollectGateItem(other, blockType, colorType, cupHolders));
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Gate"))
-                blockMatcher.MatchingAllowed = false;
+            {
+                noCollision--;
+                if(noCollision == 0)
+                    blockMatcher.MatchingAllowed = false;
+            }
         }
 
         protected override void InitializeAllJobs()
@@ -150,6 +165,18 @@ namespace Coffee_Rush.Block
         {
             movementDirection = moveableDir;
             blockVisual.ShowDirectionSprite(moveableDir);
+        }
+
+        public void SetBlockObstacle(int iceCountdown)
+        {
+            blockVisual.IceCountDown = iceCountdown;
+        }
+
+        public void OnRevokenToPool()
+        {
+            blockMatcher.PostprocessToPool(blockType);
+            
+            ObjectPooler.ReturnToPool((PoolingType)(blockType + (byte)PoolingType.BlockType00 - 1), this);
         }
     }
 }

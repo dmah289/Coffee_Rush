@@ -6,6 +6,14 @@ using UnityEngine;
 namespace Coffee_Rush.Level
 {
     [Serializable]
+    public struct KettleData
+    {
+        public int row;
+        public int col;
+        public int countdown;
+    }
+    
+    [Serializable]
     public struct BlockerData
     {
         public int row;
@@ -45,6 +53,7 @@ namespace Coffee_Rush.Level
         public eBlockType blockType;
         public eColorType blockColor;
         public eMovementDirection moveableDir;
+        public int countdownIce;
     }
     
     [CreateAssetMenu(fileName = "LevelData", menuName = "Coffee Rush/Level Data", order = 1)]
@@ -57,6 +66,7 @@ namespace Coffee_Rush.Level
         public BlockData[] blocksData;
         public GateData[] gatesData;
         public BlockerData[] blockersData;
+        public KettleData[] kettlesData;
 
         public TileData GetCellData(int row, int col)
         {

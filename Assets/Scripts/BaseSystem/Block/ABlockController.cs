@@ -158,7 +158,7 @@ namespace BaseSystem.Block
             selfRb.isKinematic = true;
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             ReleaseNativeMemory();
         }

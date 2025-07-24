@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Coffee_Rush.Block;
 using Coffee_Rush.Board;
+using Coffee_Rush.Obstacles;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -20,6 +21,7 @@ namespace Framework.ObjectPooling
         [SerializeField] private AssetReference cupPrefab;
         [SerializeField] private AssetReference[] blockPrefabs;
         [SerializeField] private AssetReference gatePrefab;
+        [SerializeField] private AssetReference kettlePrefab;
 
 
         public bool IsInGamePoolingInitialized { get; private set; } = false;
@@ -33,15 +35,15 @@ namespace Framework.ObjectPooling
             
             AsyncOperationHandle<GameObject> outerCornerPrefabHandle = Addressables.LoadAssetAsync<GameObject>(outerCornerPrefab);
             yield return outerCornerPrefabHandle;
-            ObjectPooler.SetUpPool(PoolingType.OuterCorner, 5, outerCornerPrefabHandle.Result.GetComponent<Transform>());
+            ObjectPooler.SetUpPool(PoolingType.OuterCorner, 5, outerCornerPrefabHandle.Result.GetComponent<ABorder>());
             
             AsyncOperationHandle<GameObject> straightBorderPrefabHandle = Addressables.LoadAssetAsync<GameObject>(straightBorderPrefab);
             yield return straightBorderPrefabHandle;
-            ObjectPooler.SetUpPool(PoolingType.StraightBorder, 20, straightBorderPrefabHandle.Result.GetComponent<Transform>());
+            ObjectPooler.SetUpPool(PoolingType.StraightBorder, 5, straightBorderPrefabHandle.Result.GetComponent<ABorder>());
             
             AsyncOperationHandle<GameObject> innerCornerPrefabHandle = Addressables.LoadAssetAsync<GameObject>(innerCornerPrefab);
             yield return innerCornerPrefabHandle;
-            ObjectPooler.SetUpPool(PoolingType.InnerCorner, 5, innerCornerPrefabHandle.Result.GetComponent<Transform>());
+            ObjectPooler.SetUpPool(PoolingType.InnerCorner, 5, innerCornerPrefabHandle.Result.GetComponent<ABorder>());
             
             AsyncOperationHandle<GameObject> cupPrefabHandle = Addressables.LoadAssetAsync<GameObject>(cupPrefab);
             yield return cupPrefabHandle;
@@ -58,16 +60,20 @@ namespace Framework.ObjectPooling
             AsyncOperationHandle<GameObject> gatePrefabHandle = Addressables.LoadAssetAsync<GameObject>(gatePrefab);
             yield return gatePrefabHandle;
             ObjectPooler.SetUpPool(PoolingType.Gate, 3, gatePrefabHandle.Result.GetComponent<GateController>());
+            
+            AsyncOperationHandle<GameObject> kettlePrefabHandle = Addressables.LoadAssetAsync<GameObject>(kettlePrefab);
+            yield return kettlePrefabHandle;
+            ObjectPooler.SetUpPool(PoolingType.Kettle, 2, kettlePrefabHandle.Result.GetComponent<KettleController>());
 
             // yield return WaitHelper.GetWait(3f);
             
             // Unload the asset handles to free memory
-            Addressables.Release(tilePrefabHandle);
-            Addressables.Release(outerCornerPrefabHandle);
-            Addressables.Release(straightBorderPrefabHandle);
-            Addressables.Release(innerCornerPrefabHandle);
-            Addressables.Release(cupPrefabHandle);
-            Addressables.Release(gatePrefabHandle);
+            // Addressables.Release(tilePrefabHandle);
+            // Addressables.Release(outerCornerPrefabHandle);
+            // Addressables.Release(straightBorderPrefabHandle);
+            // Addressables.Release(innerCornerPrefabHandle);
+            // Addressables.Release(cupPrefabHandle);
+            // Addressables.Release(gatePrefabHandle);
             
 
             IsInGamePoolingInitialized = true;

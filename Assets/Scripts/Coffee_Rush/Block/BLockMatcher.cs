@@ -19,6 +19,8 @@ namespace Coffee_Rush.Block
 
         public bool IsBusy;
 
+        public static event Action OnBlockFullSlot;
+
         public bool CanSelect
         {
             get => boxCollider2D[0].enabled;
@@ -49,35 +51,26 @@ namespace Coffee_Rush.Block
         {
             if (IsBusy) yield break;
             
-            print("Starting " + gameObject.name);
             MatchingAllowed = true;
             
             if (other.gameObject.TryGetComponent(out GateController gateController) && currEmptySlotIdx < cupHolders.Length)
             {
                 while (currEmptySlotIdx < cupHolders.Length && gateController.ColorType == colorType)
                 {
-                    if (!MatchingAllowed)
-                    {
-                        print("Matching not allowed, exiting..." + gameObject.name);
-                        yield break;
-                    }
+                    if (!MatchingAllowed) yield break;
 
                     IsBusy = true;
                     
                     GateItem item = gateController.GetCollectableItem();
-
-                    if (!item)
-                    {
-                        print("No item to collect, exiting...");
-                        yield break;
-                    }
                     
                     collectedGateItems[currEmptySlotIdx] = item;
                     yield return cupHolders[currEmptySlotIdx++].CollectGateItem(item);
 
                     if (currEmptySlotIdx == cupHolders.Length)
                     {
+                        OnBlockFullSlot?.Invoke();
                         CanSelect = false;
+                        SelectionController.Instance.HandleMouseUp();
                         yield return PackAllGateItems();
                         MoveOutOfView(blockType);
                     }
@@ -119,9 +112,9 @@ namespace Coffee_Rush.Block
                 });
         }
 
-        private void PostprocessToPool(eBlockType blockType)
+        public void PostprocessToPool(eBlockType blockType)
         {
-            for (int i = 0; i < collectedGateItems.Length; i++)
+            for (int i = 0; i < currEmptySlotIdx; i++)
             {
                 ObjectPooler.ReturnToPool(PoolingType.GateItem, collectedGateItems[i]);
             }

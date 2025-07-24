@@ -127,5 +127,16 @@ namespace Coffee_Rush.Board
                     .SetEase(Ease.OutFlash);
             }
         }
+
+        public void OnRevokenToPool()
+        {
+            for(int i = 0; i < gateItems.Count; i++)
+            {
+                ObjectPooler.ReturnToPool(PoolingType.GateItem, gateItems[i]);
+            }
+            gateItems.Clear();
+            
+            ObjectPooler.ReturnToPool(PoolingType.Gate, this);
+        }
     }
 }

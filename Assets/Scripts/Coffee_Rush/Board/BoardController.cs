@@ -22,5 +22,11 @@ namespace Coffee_Rush.Board
             yield return layoutGenerator.SetupBoard(levelData);
             yield return objectSpawner.SpawnObjects(levelData, layoutGenerator.tiles);
         }
+
+        public void ResetLevelAssets()
+        {
+            layoutGenerator.RevokeBoard();
+            objectSpawner.RevokeObjects();
+        }
     }
 }

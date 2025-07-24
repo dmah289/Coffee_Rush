@@ -8,7 +8,7 @@ namespace Framework.ObjectPooling
     {
         private static int capacity = Enum.GetValues(typeof(PoolingType)).Length;
 
-        private static List<Component>[] poolList = new List<Component>[capacity];
+        public static List<Component>[] poolList = new List<Component>[capacity];
 
         private static readonly Transform poolParent = GameObject.FindGameObjectWithTag(KeySave.PoolParentName).transform;
 
