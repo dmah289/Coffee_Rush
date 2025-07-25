@@ -160,6 +160,7 @@ namespace BaseSystem.Block
 
         protected virtual void OnDisable()
         {
+            ApplyJobResults();
             ReleaseNativeMemory();
         }
 

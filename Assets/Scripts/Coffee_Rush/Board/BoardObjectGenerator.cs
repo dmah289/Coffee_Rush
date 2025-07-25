@@ -16,6 +16,7 @@ namespace Coffee_Rush.Board
         [Header("Manager")]
         [SerializeField] private BlockController[] blocks;
         [SerializeField] private GateController[] gates;
+        [SerializeField] private KettleController[] kettles;
         
         public IEnumerator SpawnObjects(LevelData levelData, Tile[,] tiles)
         {
@@ -27,10 +28,16 @@ namespace Coffee_Rush.Board
 
         private void SpawnKettles(KettleData[] kettlesData, Tile[,] tiles)
         {
+            if (kettlesData.Length == 0)
+                return;
+            
+            kettles = new KettleController[kettlesData.Length];
             for (int i = 0; i < kettlesData.Length; i++)
             {
                 KettleController kettle = ObjectPooler.GetFromPool<KettleController>(PoolingType.Kettle);
                 kettle.Setup(tiles[kettlesData[i].row, kettlesData[i].col].transform.position, kettlesData[i].countdown);
+                
+                kettles[i] = kettle;
             }
         }
 
@@ -77,6 +84,11 @@ namespace Coffee_Rush.Board
             for(int i = 0; i < gates.Length; i++)
             {
                 gates[i].OnRevokenToPool();
+            }
+            
+            for (int i = 0; i < kettles.Length; i++)
+            {
+                kettles[i].OnRevokenToPool();
             }
         }
     }

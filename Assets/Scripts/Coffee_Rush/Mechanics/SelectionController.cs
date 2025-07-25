@@ -1,4 +1,6 @@
 ﻿using BaseSystem.Block;
+using Coffee_Rush.Block;
+using Coffee_Rush.Level;
 using DG.Tweening;
 using Framework.DesignPattern;
 using Framework.Helper;
@@ -12,6 +14,10 @@ namespace BaseSystem
         private Camera cam;
         private Collider2D[] colliders = new Collider2D[1];
         private ISelectable selectedObject;
+        [SerializeField] private bool isFirstBlockMoved = false;
+        
+        [Header("References")]
+        [SerializeField] private LevelTimer levelTimer;
 
         protected override void Awake()
         {
@@ -52,6 +58,11 @@ namespace BaseSystem
                 ISelectable selectable = colliders[0].GetComponent<ISelectable>();
                 if (selectable != null)
                 {
+                    if(!isFirstBlockMoved && selectable is BlockController)
+                    {
+                        levelTimer.StartTimerOnFirstBlockMove();
+                        isFirstBlockMoved = true;
+                    }
                     selectedObject = selectable as ABlockController;
                     selectable.OnSelect(touchPos);
                 }

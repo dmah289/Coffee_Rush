@@ -10,11 +10,14 @@ namespace Coffee_Rush.Level
 {
     public class LevelManager : MonoSingleton<LevelManager>
     {
-        [Header("References")] 
+        [Header("Self Components")]
         [SerializeField] private LevelLoader levelLoader;
+        
+        [Header("Manager References")] 
         [SerializeField] public BoardController boardController;
         [SerializeField] private PoolingManager poolingManager;
         [SerializeField] private LoseManager loseManager;
+        [SerializeField] private LevelTimer levelTimer;
 
         private void OnEnable()
         {
@@ -28,15 +31,17 @@ namespace Coffee_Rush.Level
             if (!poolingManager.IsInGamePoolingInitialized)
                 yield return poolingManager.InitializeObjectInGamePooling();
             
-            yield return levelLoader.LoadCurrentLevel();
             
+            yield return levelLoader.LoadCurrentLevel();
             yield return boardController.EnterLevel(levelLoader.currLevelData);
+            levelTimer.Setup(levelLoader.currLevelData.totalTime);
         }
 
         public void FailLevel()
         {
             loseManager.FailLevel();
             boardController.ResetLevelAssets();
+            
             SelectionController.Instance.gameObject.SetActive(false);
         }
     }

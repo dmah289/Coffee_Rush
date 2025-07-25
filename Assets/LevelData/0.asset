@@ -15,6 +15,7 @@ MonoBehaviour:
   width: 8
   height: 8
   levelIndex: 0
+  totalTime: 3
   cellsData:
   - isActive: 1
     blockType: 0

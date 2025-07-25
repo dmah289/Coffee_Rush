@@ -1,6 +1,7 @@
 using System;
 using Coffee_Rush.Block;
 using Coffee_Rush.Level;
+using Framework.ObjectPooling;
 using TMPro;
 using UnityEngine;
 
@@ -27,9 +28,8 @@ namespace Coffee_Rush.Obstacles
                 }
                 else
                 {
-                    LevelManager.Instance.FailLevel();
                     countdownTxt.text = string.Empty;
-                    gameObject.SetActive(false);
+                    LevelManager.Instance.FailLevel();
                 }
             }
         }
@@ -53,6 +53,11 @@ namespace Coffee_Rush.Obstacles
         {
             transform.position = pos;
             KettleCountDown = countdown;
+        }
+
+        public void OnRevokenToPool()
+        {
+            ObjectPooler.ReturnToPool(PoolingType.Kettle, this);
         }
     }
 }
