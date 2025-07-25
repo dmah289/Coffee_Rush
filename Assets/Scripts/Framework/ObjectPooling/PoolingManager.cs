@@ -22,6 +22,7 @@ namespace Framework.ObjectPooling
         [SerializeField] private AssetReference[] blockPrefabs;
         [SerializeField] private AssetReference gatePrefab;
         [SerializeField] private AssetReference kettlePrefab;
+        [SerializeField] private AssetReference[] blockerPrefabs;
 
 
         public bool IsInGamePoolingInitialized { get; private set; } = false;
@@ -54,7 +55,7 @@ namespace Framework.ObjectPooling
                 AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(blockPrefabs[i]);
                 yield return handle;
                 ObjectPooler.SetUpPool((PoolingType)((byte)PoolingType.BlockType00 + i), 2, handle.Result.GetComponent<BlockController>());
-                Addressables.Release(handle);
+                // Addressables.Release(handle);
             }
             
             AsyncOperationHandle<GameObject> gatePrefabHandle = Addressables.LoadAssetAsync<GameObject>(gatePrefab);
@@ -64,6 +65,14 @@ namespace Framework.ObjectPooling
             AsyncOperationHandle<GameObject> kettlePrefabHandle = Addressables.LoadAssetAsync<GameObject>(kettlePrefab);
             yield return kettlePrefabHandle;
             ObjectPooler.SetUpPool(PoolingType.Kettle, 2, kettlePrefabHandle.Result.GetComponent<KettleController>());
+
+            for (int i = 0; i < blockerPrefabs.Length; i++)
+            {
+                AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(blockerPrefabs[i]);
+                yield return handle;
+                ObjectPooler.SetUpPool((PoolingType)((byte)PoolingType.BlockerType00 + i), 2, handle.Result.GetComponent<BlockerController>());
+                // Addressables.Release(handle);
+            }
 
             // yield return WaitHelper.GetWait(3f);
             

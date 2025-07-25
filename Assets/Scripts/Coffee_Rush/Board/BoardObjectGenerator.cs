@@ -17,13 +17,32 @@ namespace Coffee_Rush.Board
         [SerializeField] private BlockController[] blocks;
         [SerializeField] private GateController[] gates;
         [SerializeField] private KettleController[] kettles;
+        [SerializeField] private BlockerController[] blockers;
         
         public IEnumerator SpawnObjects(LevelData levelData, Tile[,] tiles)
         {
             SpawnBlocks(levelData.blocksData, tiles);
             SpawnGates(levelData.gatesData, tiles);
             SpawnKettles(levelData.kettlesData, tiles);
+            SpawnBlockers(levelData.blockersData, tiles);
             yield return WaitHelper.GetWaitForEndOfFrame();
+        }
+
+        private void SpawnBlockers(BlockerData[] blockersData, Tile[,] tiles)
+        {
+            if(blockersData.Length > 0) 
+                blockers = new BlockerController[blockersData.Length];
+
+            for (int i = 0; i < blockersData.Length; i++)
+            {
+                BlockerController blocker = ObjectPooler.GetFromPool<BlockerController>(
+                    (PoolingType)(blockersData[i].blockerType + (byte)PoolingType.BlockerType00 - 1));
+                
+                blocker.Setup(tiles[blockersData[i].row, blockersData[i].col].transform.position, 
+                    blockersData[i].movementDirection);
+                
+                blockers[i] = blocker;
+            }
         }
 
         private void SpawnKettles(KettleData[] kettlesData, Tile[,] tiles)
@@ -90,6 +109,9 @@ namespace Coffee_Rush.Board
             {
                 kettles[i].OnRevokenToPool();
             }
+            
+            for(int i = 0; i < blockers.Length; i++)
+                blockers[i].OnRevoke();
         }
     }
 }

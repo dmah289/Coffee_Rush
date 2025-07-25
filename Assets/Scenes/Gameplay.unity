@@ -1053,6 +1053,7 @@ MonoBehaviour:
   blocks: []
   gates: []
   kettles: []
+  blockers: []
 --- !u!1 &2142158908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1156,47 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   kettlePrefab:
     m_AssetGUID: 93499a147602fee4298d1be73f90f5ff
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  blockerPrefabs:
+  - m_AssetGUID: f2a58ea9bf562504986b0a3531ccacd4
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 9adf7ad742013d441b65b28daf7d66bc
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 12ee0808abba3b1419e5da0c9beb804f
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 1f820c6513ebdf74ab5a3f070dfcef8b
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: c60cca484bc73dd4c98819bf69620e00
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 09a427d14c621ad459fed761acb59b0d
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: c24ff73360e352745aa737cb49466a88
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 176c3f6810f003642a96aec5d3f01ed6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 1c48040f16eaebc4db7d2a88aa790dac
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 3563e157bdd05a146ae9b055517bcd9c
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

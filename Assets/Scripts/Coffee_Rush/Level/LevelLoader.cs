@@ -17,7 +17,6 @@ namespace Coffee_Rush.Level
             AsyncOperationHandle<LevelData> levelLoaderHandle = Addressables.LoadAssetAsync<LevelData>($"Level {levelIdx}");
 
             yield return levelLoaderHandle;
-            
             currLevelData = levelLoaderHandle.Result;
         }
     }

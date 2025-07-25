@@ -11,7 +11,7 @@ namespace BaseSystem.Block
 {
     public abstract class ABlockController : MonoBehaviour, ISelectable
     {
-        [Header("Self Components")]
+        [Header("Generic Components")]
         [SerializeField] protected Transform selfTransform;
         [SerializeField] protected Rigidbody2D selfRb;
         

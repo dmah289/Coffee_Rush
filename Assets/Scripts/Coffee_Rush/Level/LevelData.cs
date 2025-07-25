@@ -18,6 +18,8 @@ namespace Coffee_Rush.Level
     {
         public int row;
         public int col;
+        public eBlockType blockerType;
+        public eMovementDirection movementDirection;
     }
     
     [Serializable]

@@ -15,7 +15,7 @@ MonoBehaviour:
   width: 8
   height: 8
   levelIndex: 0
-  totalTime: 3
+  totalTime: 120
   cellsData:
   - isActive: 1
     blockType: 0
@@ -269,7 +269,11 @@ MonoBehaviour:
     compressedItemPath:
       turnIndices: 0000000003000000
       turnDirections: 0401
-  blockersData: []
+  blockersData:
+  - row: 6
+    col: 6
+    blockerType: 1
+    movementDirection: 2
   kettlesData:
   - row: 6
     col: 0

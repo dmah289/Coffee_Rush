@@ -65,11 +65,7 @@ namespace Coffee_Rush.Block
             if (!blockMatcher.CanSelect)
              return;
             
-            DOTween.Kill(gameObject);
-            transform.DOMoveZ(-1f, 0.2f);
-            selfRb.isKinematic = false;
-            
-            SetupJobConfigs(mousePos);
+            base.OnSelect(mousePos);
         }
 
         public void SetCheckPointToTargetTile(Vector3 targetTilePos)

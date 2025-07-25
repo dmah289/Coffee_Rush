@@ -19,5 +19,16 @@ namespace Framework.ObjectPooling
         BlockType09 = 14,
         Gate = 15,
         Kettle = 16,
+        BlockerType00 = 17,
+        BlockerType01 = 18,
+        BlockerType02 = 19,
+        BlockerType03 = 20,
+        BlockerType04 = 21,
+        BlockerType05 = 22,
+        BlockerType06 = 23,
+        BlockerType07 = 24,
+        BlockerType08 = 25,
+        BlockerType09 = 26,
+        
     }
 }
