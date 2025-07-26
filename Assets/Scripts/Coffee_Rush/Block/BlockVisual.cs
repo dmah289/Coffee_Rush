@@ -16,33 +16,24 @@ namespace Coffee_Rush.Block
         [Header("Movement Direction")]
         [SerializeField] private SpriteRenderer verticalSprite;
         [SerializeField] private SpriteRenderer horizontalSprite;
-        
-        [Header("References")]
-        [SerializeField] private BLockMatcher blockMatcher;
 
+        private int curIceCountdown;
         public int IceCountDown
         {
-            get
-            {
-                if(int.TryParse(countdownTxt.text, out int countdown))
-                    return countdown;
-
-                return 0;
-            }
+            get => curIceCountdown;
             set
             {
                 if (value > 0)
                 {
-                    blockMatcher.CanSelect = false;
+                    curIceCountdown = value;
                     ice.SetActive(true);
-                    countdownTxt.text = value.ToString();
                 }
                 else
                 {
-                    blockMatcher.CanSelect = true;
+                    curIceCountdown = 0;
                     ice.SetActive(false);
-                    countdownTxt.text = string.Empty;
                 }
+                countdownTxt.text = $"{curIceCountdown}";
             }
         }
         
@@ -50,16 +41,13 @@ namespace Coffee_Rush.Block
         {
             selfTransform = transform;
             selfTransform.localEulerAngles = BlockConfig.initEulerModel;
-
-            blockMatcher = GetComponentInParent<BLockMatcher>();
         }
 
         public void OnBlockColected()
         {
             IceCountDown--;
         }
-
-
+        
         public Vector3 EulerRotation
         {
             get => selfTransform.localEulerAngles;

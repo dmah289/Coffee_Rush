@@ -32,6 +32,12 @@ namespace Coffee_Rush.Block
         protected NativeReference<float3> currentEuler;
 
         [SerializeField] private int noCollision;
+
+
+        public bool CanSelect
+        {
+            get => blockMatcher.CanSelect && blockVisual.IceCountDown == 0;
+        }
         
 
         protected override void Awake()

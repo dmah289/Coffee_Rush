@@ -277,4 +277,4 @@ MonoBehaviour:
   kettlesData:
   - row: 6
     col: 0
-    countdown: 2
+    countdown: 10

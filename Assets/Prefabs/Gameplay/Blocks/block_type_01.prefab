@@ -1181,7 +1181,6 @@ MonoBehaviour:
   countdownTxt: {fileID: 4154722079689173936}
   verticalSprite: {fileID: 2904368161924643724}
   horizontalSprite: {fileID: 1890391649829376782}
-  blockMatcher: {fileID: 0}
 --- !u!1 &8178294382573751520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,6 +1594,10 @@ PrefabInstance:
     - target: {fileID: 8630094398350872368, guid: ae5243daa74db0c48b6ffa112f052f9d, type: 3}
       propertyPath: m_Name
       value: block_ice01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8630094398350872368, guid: ae5243daa74db0c48b6ffa112f052f9d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

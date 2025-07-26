@@ -110,49 +110,23 @@ Shader "UI/AnimatedOutline"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                // Sample the original texture
                 half4 color = tex2D(_MainTex, i.uv) * i.color;
-
-                // Calculate distance from edge
                 float2 centered = i.uv - 0.5;
                 float2 absUV = abs(centered);
                 float distFromEdge = 0.5 - max(absUV.x, absUV.y);
 
-                // Create outline mask (pixels on the edge only)
                 float pixelWidth = _OutlineWidth * 0.01;
                 float outlineMask = step(distFromEdge, pixelWidth) * step(0, distFromEdge);
 
-                // If pixel is on the outline
                 if (outlineMask > 0) {
-                    // Get position on perimeter (0-1)
                     float perimPos = getPerimeterCoord(i.uv);
-                    
-                    // Calculate animated progress
-                    float progress = frac(_Time.y * _AnimSpeed * 0.2);
-                    
-                    // Calculate start and end positions of the line
-                    float startPos = 0; // Always start at top middle
-                    float endPos = progress; // End position based on animation progress
-                    
-                    // Create segment mask
-                    float segmentMask = 0;
-                    if (endPos > startPos) {
-                        // Normal case: segment doesn't wrap around
-                        segmentMask = step(startPos, perimPos) * step(perimPos, endPos);
-                    } else {
-                        // Wrap-around case
-                        segmentMask = step(startPos, perimPos) + step(perimPos, endPos);
-                    }
-                    
-                    // Apply segment mask to outline
+                    float segmentMask = step(0.0, perimPos) * step(perimPos, _Progress);
                     outlineMask *= segmentMask;
                 }
 
-                // Create final pixel color
                 float3 finalColor = lerp(color.rgb, _OutlineColor.rgb, outlineMask);
                 float finalAlpha = max(color.a, outlineMask * _OutlineColor.a);
 
-                // Apply UI clipping
                 #ifdef UNITY_UI_CLIP_RECT
                 finalAlpha *= UnityGet2DClipping(i.worldPosition.xy, _ClipRect);
                 #endif
@@ -163,6 +137,8 @@ Shader "UI/AnimatedOutline"
 
                 return half4(finalColor, finalAlpha);
             }
+
+
             ENDCG
         }
     }

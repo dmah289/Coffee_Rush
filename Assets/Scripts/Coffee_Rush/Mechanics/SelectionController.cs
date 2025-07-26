@@ -14,7 +14,7 @@ namespace BaseSystem
         private Camera cam;
         private Collider2D[] colliders = new Collider2D[1];
         private ISelectable selectedObject;
-        [SerializeField] private bool isFirstBlockMoved = false;
+        [SerializeField] private bool isFirstBlockMoved;
         
         [Header("References")]
         [SerializeField] private LevelTimer levelTimer;
@@ -24,6 +24,9 @@ namespace BaseSystem
             base.Awake();
             
             cam = Camera.main;
+            
+            // TODO : Reset this value when player restart the level
+            isFirstBlockMoved = true;
         }
         
         private void Update()
@@ -58,10 +61,16 @@ namespace BaseSystem
                 ISelectable selectable = colliders[0].GetComponent<ISelectable>();
                 if (selectable != null)
                 {
-                    if(!isFirstBlockMoved && selectable is BlockController)
+                    if(selectable is ABlockController blockController)
                     {
-                        levelTimer.StartTimerOnFirstBlockMove();
-                        isFirstBlockMoved = true;
+                        if (blockController is BlockController { CanSelect: false })
+                            return;
+                        
+                        if (isFirstBlockMoved)
+                        {
+                            levelTimer.StartTimerOnFirstBlockMove();
+                            isFirstBlockMoved = false;
+                        }
                     }
                     selectedObject = selectable as ABlockController;
                     selectable.OnSelect(touchPos);

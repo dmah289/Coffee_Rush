@@ -8,14 +8,20 @@ namespace Coffee_Rush.Level
 {
     public class LevelTimer : MonoBehaviour
     {
-        private static readonly int FillAmount = Shader.PropertyToID("_FillAmount");
+        private static readonly int OutlineColorProperty = Shader.PropertyToID("_OutlineColor");
+        private static readonly int ProgressProperty = Shader.PropertyToID("_Progress");
 
         [Header("Self Components")]
         [SerializeField] private Text timerTxt;
         [SerializeField] private Image timerBg;
+        
+        [Header("Timer colors")]
+        [SerializeField] private Color[] timerColors;
+        private int currColorIdx;
 
         private CancellationTokenSource cts;
         private bool isTimerRunning;
+        private bool hasStarted;
         private float curTime;
         private float totalTime;
         
@@ -28,7 +34,7 @@ namespace Coffee_Rush.Level
                 {
                     curTime = value;
                     float minutes = Mathf.Floor(value / 60);
-                    float seconds = value % 60;
+                    float seconds = Mathf.Floor(value % 60);
                     timerTxt.text = $"{minutes:00}:{seconds:00}";
                 }
                 else
@@ -44,6 +50,12 @@ namespace Coffee_Rush.Level
         {
             this.totalTime = totalTime;
             CurTime = totalTime;
+            hasStarted = false;
+            isTimerRunning = false;
+            
+            currColorIdx = 0;
+            SetTimerOutline(1f);
+            
             cts = new CancellationTokenSource();
         }
         
@@ -51,6 +63,7 @@ namespace Coffee_Rush.Level
         {
             if (!isTimerRunning && curTime > 0)
             {
+                hasStarted = true;
                 RunTimerAsync().Forget();
             }
         }
@@ -69,13 +82,13 @@ namespace Coffee_Rush.Level
 
         private void ResumeTimer()
         {
-            if(!isTimerRunning && curTime > 0)
+            if(hasStarted && !isTimerRunning && curTime > 0)
                 RunTimerAsync().Forget();
         }
 
         private void PauseTimer()
         {
-            if (isTimerRunning)
+            if (hasStarted && isTimerRunning)
             {
                 isTimerRunning = false;
                 cts.Cancel();
@@ -87,28 +100,35 @@ namespace Coffee_Rush.Level
         private async UniTaskVoid RunTimerAsync()
         {
             isTimerRunning = true;
-
             try
             {
                 while (curTime > 0 && !cts.IsCancellationRequested)
                 {
                     await UniTask.Delay(50, cancellationToken: cts.Token);
                     CurTime -= 0.05f;
-                    // SetElapsedTimer();
+                    SetTimerOutline(curTime / totalTime);
                 }
             }
             catch (OperationCanceledException){}
         }
 
-        private void SetElapsedTimer()
+        private void SetTimerOutline(float progress)
         {
-            timerBg.material.SetFloat(FillAmount, curTime / totalTime);
+            timerBg.material.SetFloat(ProgressProperty, progress);
+
+            progress -= 0.01f;
+            if (currColorIdx != (int)(progress * 4))
+            {
+                currColorIdx = (int)(progress * 4);
+                timerBg.material.SetColor(OutlineColorProperty, timerColors[currColorIdx]);
+            }
         }
 
         public void ResetTimer()
         {
             PauseTimer();
             CurTime = totalTime;
+            SetTimerOutline(1f);
         }
     }
 }
