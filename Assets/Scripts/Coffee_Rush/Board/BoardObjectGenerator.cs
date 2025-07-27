@@ -22,9 +22,9 @@ namespace Coffee_Rush.Board
         public IEnumerator SpawnObjects(LevelData levelData, Tile[,] tiles)
         {
             SpawnBlocks(levelData.blocksData, tiles);
-            SpawnGates(levelData.gatesData, tiles);
-            SpawnKettles(levelData.kettlesData, tiles);
-            SpawnBlockers(levelData.blockersData, tiles);
+            //SpawnGates(levelData.gatesData, tiles);
+            //SpawnKettles(levelData.kettlesData, tiles);
+            //SpawnBlockers(levelData.blockersData, tiles);
             yield return WaitHelper.GetWaitForEndOfFrame();
         }
 

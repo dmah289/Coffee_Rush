@@ -11,7 +11,6 @@ namespace BaseSystem
     public class SelectionController : MonoSingleton<SelectionController>
     {
         [Header("Selection Settings")]
-        private Camera cam;
         private Collider2D[] colliders = new Collider2D[1];
         private ISelectable selectedObject;
         [SerializeField] private bool isFirstBlockMoved;
@@ -22,8 +21,6 @@ namespace BaseSystem
         protected override void Awake()
         {
             base.Awake();
-            
-            cam = Camera.main;
             
             // TODO : Reset this value when player restart the level
             isFirstBlockMoved = true;

@@ -270,10 +270,18 @@ MonoBehaviour:
       turnIndices: 0000000003000000
       turnDirections: 0401
   blockersData:
-  - row: 6
-    col: 6
-    blockerType: 1
+  - row: 3
+    col: 3
+    blockerType: 2
+    movementDirection: 1
+  - row: 5
+    col: 5
+    blockerType: 3
     movementDirection: 2
+  - row: 7
+    col: 4
+    blockerType: 5
+    movementDirection: 0
   kettlesData:
   - row: 6
     col: 0

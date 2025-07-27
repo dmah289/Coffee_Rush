@@ -5,7 +5,7 @@ namespace Coffee_Rush.Board
     public static class BoardConfig
     {
         #region Layout Config
-        public static readonly Vector2Int[] tileDirections = new Vector2Int[4]
+        public static readonly Vector2Int[] tileDirections =
         {
             new (0, -1),        // left
             new (1, 0),         // top

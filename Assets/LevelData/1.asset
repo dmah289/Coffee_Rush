@@ -15,6 +15,7 @@ MonoBehaviour:
   width: 5
   height: 5
   levelIndex: 1
+  totalTime: 120
   cellsData:
   - isActive: 1
     blockType: 0
@@ -94,3 +95,4 @@ MonoBehaviour:
   blocksData: []
   gatesData: []
   blockersData: []
+  kettlesData: []
