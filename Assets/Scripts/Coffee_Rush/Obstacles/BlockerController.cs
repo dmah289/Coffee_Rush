@@ -2,7 +2,6 @@ using BaseSystem;
 using BaseSystem.Block;
 using Coffee_Rush.Block;
 using Coffee_Rush.Level;
-using DG.Tweening;
 using Framework.ObjectPooling;
 using UnityEngine;
 
@@ -25,14 +24,13 @@ namespace Coffee_Rush.Obstacles
             base.Awake();
             
             blockFitting = GetComponent<BlockFitting>();
-            
+            blockFitting.CalculateCheckPointOffset();
         }
 
         public void Setup(Vector3 position, eMovementDirection direction)
         {
             movementDirection = direction;
             SetupMovementDirection(direction);
-            blockFitting.CalculateCheckPointOffset();
             blockFitting.SetCheckPointToTargetTile(position);
         }
         

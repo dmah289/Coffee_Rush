@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Coffee_Rush.Block;
 using Coffee_Rush.Level;
@@ -9,22 +10,46 @@ namespace Coffee_Rush.Board
 {
     public class BoardObjectSpawner : MonoBehaviour
     {
-        [Header("References")]
-        [SerializeField] private Transform blocksParent;
-        [SerializeField] private Transform gatesParent;
-        
         [Header("Manager")]
         [SerializeField] private BlockController[] blocks;
         [SerializeField] private GateController[] gates;
         [SerializeField] private KettleController[] kettles;
         [SerializeField] private BlockerController[] blockers;
+
+        private int blockCount;
+
+        public int BlockCount
+        {
+            get => blockCount;
+            set
+            {
+                blockCount = value;
+                if (blockCount == 0)
+                    LevelManager.Instance.WinLevel();
+            }
+        }
+
+        private void Awake()
+        {
+            BLockMatcher.OnBlockFullSlot += OnBlockCollected;
+        }
+
+        private void OnDestroy()
+        {
+            BLockMatcher.OnBlockFullSlot -= OnBlockCollected;
+        }
+
+        public void OnBlockCollected()
+        {
+            BlockCount--;
+        }
         
         public IEnumerator SpawnObjects(LevelData levelData, Tile[,] tiles)
         {
             SpawnBlocks(levelData.blocksData, tiles);
-            //SpawnGates(levelData.gatesData, tiles);
-            //SpawnKettles(levelData.kettlesData, tiles);
-            //SpawnBlockers(levelData.blockersData, tiles);
+            SpawnGates(levelData.gatesData, tiles);
+            SpawnKettles(levelData.kettlesData, tiles);
+            SpawnBlockers(levelData.blockersData, tiles);
             yield return WaitHelper.GetWaitForEndOfFrame();
         }
 
@@ -65,23 +90,25 @@ namespace Coffee_Rush.Board
             gates = new GateController[gatesData.Length];
             for (int i = 0; i < gatesData.Length; i++)
             {
-                GateController gate = ObjectPooler.GetFromPool<GateController>(PoolingType.Gate, gatesParent);
+                GateController gate = ObjectPooler.GetFromPool<GateController>(PoolingType.Gate);
                 gate.Setup(tiles[gatesData[i].row, gatesData[i].col].transform.position,
                            gatesData[i].gateDir,
                            gatesData[i].itemColors,
                            gatesData[i].compressedItemPath);
                 
+                tiles[gatesData[i].row, gatesData[i].col].SetGate(gate);
                 gates[i] = gate;
             }
         }
 
         private void SpawnBlocks(BlockData[] blocksData, Tile[,] tiles)
         {
-            blocks = new BlockController[blocksData.Length];
+            blockCount = blocksData.Length;
+            blocks = new BlockController[blockCount];
             for (int i = 0; i < blocksData.Length; i++)
             {
                 BlockController block = ObjectPooler.GetFromPool<BlockController>
-                    ((PoolingType)(blocksData[i].blockType + (byte)PoolingType.BlockType00 - 1), blocksParent);
+                    ((PoolingType)(blocksData[i].blockType + (byte)PoolingType.BlockType00 - 1));
                 block.SetCheckPointToTargetTile(tiles[blocksData[i].row, blocksData[i].col].transform.position);
                 block.SetMovementDirection(blocksData[i].moveableDir);
                 block.SetBlockObstacle(blocksData[i].countdownIce);
@@ -91,8 +118,7 @@ namespace Coffee_Rush.Board
                 blocks[i] = block;
             }
         }
-
-
+        
         public void RevokeObjects()
         {
             for (int i = 0; i < blocks.Length; i++)

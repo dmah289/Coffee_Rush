@@ -9,10 +9,10 @@ namespace Coffee_Rush.Gate
         public static readonly Vector3 impulseOffset = new (0, 0, 0.5f);
         public static readonly Vector2Int[] GateFitTileDir =
         {
-            new (-1, 1),       // Up
-            new (1, 1),        // Right
-            new (1, -1),       // Down
-            new (-1, -1)       // Left
+            new (1, 1),       // Up
+            new (1, -1),        // Right
+            new (-1, -1),       // Down
+            new (-1, 1)       // Left
         };
     }
 }

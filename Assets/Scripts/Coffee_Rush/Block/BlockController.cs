@@ -1,9 +1,11 @@
 using System;
+using System.Threading;
 using BaseSystem;
 using BaseSystem.Block;
 using Coffee_Rush.Board;
 using Coffee_Rush.JobCalculation;
 using Coffee_Rush.Level;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Framework.ObjectPooling;
 using Unity.Collections;
@@ -79,23 +81,14 @@ namespace Coffee_Rush.Block
             blockFitting.SetCheckPointToTargetTile(targetTilePos);
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        public async UniTaskVoid TryCollectGateItems(GateController gate, CancellationTokenSource cts)
         {
-            noCollision++;
-            if (other.gameObject.CompareTag("Gate") && noCollision == 1)
-            {
-                StartCoroutine(blockMatcher.TryCollectGateItem(other, blockType, colorType, cupHolders));
-            }
+            await blockMatcher.TryCollectGateItem(gate, blockType, colorType, cupHolders, cts);
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        public void DisableMatching()
         {
-            if (other.gameObject.CompareTag("Gate"))
-            {
-                noCollision--;
-                if(noCollision == 0)
-                    blockMatcher.MatchingAllowed = false;
-            }
+            blockMatcher.IsMatching = false;
         }
 
         protected override void InitializeAllJobs()

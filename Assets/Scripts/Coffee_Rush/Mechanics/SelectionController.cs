@@ -80,5 +80,11 @@ namespace BaseSystem
             Vector3 mousePos = CameraHelper.GetMouseWorldPosTitledCamera2D();
             selectedObject.OnDrag(mousePos);
         }
+
+        public void EndLevel()
+        {
+            isFirstBlockMoved = true;
+            gameObject.SetActive(false);
+        }
     }
 }

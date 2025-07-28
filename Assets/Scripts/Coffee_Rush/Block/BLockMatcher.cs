@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Threading;
 using BaseSystem;
 using Coffee_Rush.Board;
 using Coffee_Rush.Gate;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Framework.ObjectPooling;
 using UnityEngine;
@@ -16,8 +18,7 @@ namespace Coffee_Rush.Block
         [Header("Matching Settings")]
         [SerializeField] private int currEmptySlotIdx;
         [SerializeField] private GateItem[] collectedGateItems;
-
-        public bool IsBusy;
+        [SerializeField] private bool isBusy;
 
         public static event Action OnBlockFullSlot;
 
@@ -39,7 +40,7 @@ namespace Coffee_Rush.Block
         }
 
 
-        public bool MatchingAllowed {get; set;}
+        public bool IsMatching {get; set;}
         
         public void AllocateGateItemsArray(int length)
         {
@@ -47,51 +48,57 @@ namespace Coffee_Rush.Block
             currEmptySlotIdx = 0;
         }
 
-        public IEnumerator TryCollectGateItem(Collider2D other, eBlockType blockType, eColorType colorType, CupHolder[] cupHolders)
+        public async UniTask TryCollectGateItem(GateController gate, eBlockType blockType, eColorType colorType, CupHolder[] cupHolders, CancellationTokenSource cts)
         {
-            if (IsBusy) yield break;
-            
-            MatchingAllowed = true;
-            
-            if (other.gameObject.TryGetComponent(out GateController gateController) && currEmptySlotIdx < cupHolders.Length)
+            try
             {
-                while (currEmptySlotIdx < cupHolders.Length && gateController.ColorType == colorType)
+                await UniTask.WaitUntil(this, t => !t.IsMatching,cancellationToken: cts.Token);
+                IsMatching = true;
+
+                if (currEmptySlotIdx < cupHolders.Length)
                 {
-                    if (!MatchingAllowed) yield break;
-
-                    IsBusy = true;
-                    
-                    GateItem item = gateController.GetCollectableItem();
-                    
-                    collectedGateItems[currEmptySlotIdx] = item;
-                    yield return cupHolders[currEmptySlotIdx++].CollectGateItem(item);
-
-                    if (currEmptySlotIdx == cupHolders.Length)
+                    while (currEmptySlotIdx < cupHolders.Length && gate.ColorType == colorType)
                     {
-                        OnBlockFullSlot?.Invoke();
-                        CanSelect = false;
-                        SelectionController.Instance.HandleMouseUp();
-                        yield return PackAllGateItems();
-                        MoveOutOfView(blockType);
+                        if (!IsMatching) break;
+
+                        GateItem item = gate.GetCollectableItem();
+
+                        collectedGateItems[currEmptySlotIdx] = item;
+                        await cupHolders[currEmptySlotIdx++].CollectGateItem(item);
+
+                        if (currEmptySlotIdx == cupHolders.Length)
+                        {
+                            OnBlockFullSlot?.Invoke();
+                            CanSelect = false;
+                            SelectionController.Instance.HandleMouseUp();
+                            await PackAllGateItems();
+                            MoveOutOfView(blockType);
+                        }
+
+                        await UniTask.Yield();
                     }
-
-                    yield return WaitHelper.GetWaitForEndOfFrame();
-
-                    IsBusy = false;
                 }
+
+                IsMatching = false;
+
+                await UniTask.Yield();
+            }
+            catch (OperationCanceledException)
+            {
+                IsMatching = false;
             }
         }
 
-        private IEnumerator PackAllGateItems()
+        private async UniTask PackAllGateItems()
         {
             for (int i = 0; i < collectedGateItems.Length; i++)
             {
                 collectedGateItems[i].JumpOnFullSlot();
                 collectedGateItems[i].PackOnFullSlot();
-                yield return WaitHelper.GetWait(GateItemConfig.PackingDuration * 0.3f);
+                await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 * 0.3f));
             }
 
-            yield return WaitHelper.GetWait(GateItemConfig.PackingDuration * 0.7f);
+            await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 * 0.7f));
         }
         
         public void MoveOutOfView(eBlockType blockType)

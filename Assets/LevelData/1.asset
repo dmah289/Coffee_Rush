@@ -12,9 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714346eaba354802aa40ea21ede83876, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  width: 5
-  height: 5
+  width: 12
+  height: 12
   levelIndex: 1
+  blocksData:
+  - row: 6
+    col: 6
+    blockType: 4
+    blockColor: 1
+    moveableDir: 2
+    countdownIce: 0
   totalTime: 120
   cellsData:
   - isActive: 1
@@ -92,7 +99,363 @@ MonoBehaviour:
   - isActive: 1
     blockType: 0
     blockColor: 0
-  blocksData: []
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
   gatesData: []
   blockersData: []
   kettlesData: []

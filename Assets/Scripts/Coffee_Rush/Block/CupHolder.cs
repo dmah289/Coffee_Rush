@@ -2,6 +2,7 @@
 using System.Collections;
 using Coffee_Rush.Board;
 using Coffee_Rush.Gate;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Framework.Extensions;
 using UnityEngine;
@@ -24,13 +25,13 @@ namespace Coffee_Rush.Block
             selfMeshRenderer = GetComponent<MeshRenderer>();
         }
 
-        public IEnumerator CollectGateItem(GateItem item)
+        public async UniTask CollectGateItem(GateItem item)
         {
             item.transform.SetParent(targetPoint);
             
             Tween jumpTween = item.transform.DOLocalJump(Vector3.zero, 5, 1,GateItemConfig.MoveDuration)
                 .SetEase(Ease.OutFlash);
-            yield return jumpTween.WaitForCompletion();
+            await jumpTween.AsyncWaitForCompletion();
             item.OnJumpedToSlot(targetPoint.parent.parent);
         }
 

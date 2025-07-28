@@ -216,37 +216,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -30, y: -30, z: 0}
---- !u!1 &391832821
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 391832822}
-  m_Layer: 0
-  m_Name: block_parent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &391832822
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 391832821}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &488397077
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currLevelData: {fileID: 0}
-  levelIdx: 2
+  levelIdx: 1
 --- !u!114 &1696820863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,8 +1022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bc705c8c6b433dbb86c861adade93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blocksParent: {fileID: 391832822}
-  gatesParent: {fileID: 0}
   blocks: []
   gates: []
   kettles: []
@@ -1230,7 +1197,6 @@ SceneRoots:
   - {fileID: 1885225639}
   - {fileID: 1696820864}
   - {fileID: 583100959}
-  - {fileID: 391832822}
   - {fileID: 1074157957}
   - {fileID: 1418476117}
   - {fileID: 1603102429}

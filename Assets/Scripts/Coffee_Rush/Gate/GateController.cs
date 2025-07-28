@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Threading;
+using Coffee_Rush.Block;
 using Coffee_Rush.Gate;
 using Coffee_Rush.Level;
 using DG.Tweening;
@@ -16,15 +18,19 @@ namespace Coffee_Rush.Board
         [Header("Self Components")]
         [SerializeField] private Transform selfTransform;
         [SerializeField] private MeshRenderer selfMeshRenderer;
-        private MaterialPropertyBlock mpb;
+        [SerializeField] private Transform checkPoint;
+        private Collider2D[] colliders = new Collider2D[1];
+        [SerializeField] private BlockController currBlock;
+        private CancellationTokenSource cts;
         
         
         [Header("GateItem Manager")]
         [SerializeField] private List<GateItem> gateItems;
         [SerializeField] private eDirection gateDir;
-        
+        [SerializeField] private eColorType colorType;
 
-        private eColorType colorType;
+
+        public eDirection GateDir => gateDir;
         public eColorType ColorType
         {
             get => colorType;
@@ -48,8 +54,8 @@ namespace Coffee_Rush.Board
             this.gateDir = gateDir;
             
             Vector3 pos = new Vector3(
-                tilePos.x + GateConfig.GateFitTileDir[(byte)gateDir - 1].x * BoardConfig.cellSize / 2, 
-                tilePos.y + GateConfig.GateFitTileDir[(byte)gateDir - 1].y * BoardConfig.cellSize / 2, 
+                tilePos.x + GateConfig.GateFitTileDir[(byte)gateDir - 1].x * BoardConfig.cellSize / 2,
+                tilePos.y + GateConfig.GateFitTileDir[(byte)gateDir - 1].y * BoardConfig.cellSize / 2,
                 tilePos.z);
             
             if(gateDir == eDirection.Up) pos.y += GateConfig.GateWidth / 2;
@@ -88,6 +94,43 @@ namespace Coffee_Rush.Board
                 gateItem.ColorType = itemColors[i];
                 
                 gateItems.Add(gateItem);
+            }
+        }
+
+        private void Update()
+        {
+            FindMatchableBlock();
+        }
+
+        private void FindMatchableBlock()
+        {
+            int numHits = Physics2D.OverlapPointNonAlloc(checkPoint.position, colliders);
+            if (numHits > 0)
+            {
+                if (!currBlock)
+                {
+                    currBlock = colliders[0].GetComponent<BlockController>();
+                    if (currBlock)
+                    {
+                        cts = new CancellationTokenSource();
+                        currBlock.TryCollectGateItems(this, cts);
+                    }
+                }
+            }
+            else
+            {
+                if (currBlock)
+                {
+                    if (cts != null)
+                    {
+                        cts.Cancel();
+                        cts.Dispose();
+                        cts = null;
+                    }
+                    
+                    currBlock.DisableMatching();
+                    currBlock = null;
+                }
             }
         }
 

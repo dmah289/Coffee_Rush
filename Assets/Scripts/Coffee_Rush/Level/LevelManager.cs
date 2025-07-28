@@ -2,8 +2,11 @@ using System;
 using System.Collections;
 using BaseSystem;
 using Coffee_Rush.Board;
+using Cysharp.Threading.Tasks;
+using Framework;
 using Framework.DesignPattern;
 using Framework.ObjectPooling;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Coffee_Rush.Level
@@ -39,10 +42,20 @@ namespace Coffee_Rush.Level
 
         public void FailLevel()
         {
-            loseManager.FailLevel();
+            SelectionController.Instance.EndLevel();
+            boardController.ResetLevelAssets();
+        }
+
+        public async UniTask WinLevel()
+        {
+            SelectionController.Instance.EndLevel();
             boardController.ResetLevelAssets();
             
-            SelectionController.Instance.gameObject.SetActive(false);
+            await UniTask.Delay(3000);
+            PlayerPrefs.SetInt(KeySave.LevelIndexKey, 
+                PlayerPrefs.GetInt(KeySave.LevelIndexKey, 0) + 1);
+
+            await EnterLevel();
         }
     }
 }

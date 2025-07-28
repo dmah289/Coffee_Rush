@@ -15,6 +15,13 @@ MonoBehaviour:
   width: 8
   height: 8
   levelIndex: 0
+  blocksData:
+  - row: 6
+    col: 3
+    blockType: 1
+    blockColor: 1
+    moveableDir: 0
+    countdownIce: 0
   totalTime: 120
   cellsData:
   - isActive: 1
@@ -209,37 +216,6 @@ MonoBehaviour:
   - isActive: 1
     blockType: 0
     blockColor: 0
-  blocksData:
-  - row: 6
-    col: 4
-    blockType: 1
-    blockColor: 1
-    moveableDir: 0
-    countdownIce: 0
-  - row: 1
-    col: 5
-    blockType: 2
-    blockColor: 2
-    moveableDir: 2
-    countdownIce: 3
-  - row: 5
-    col: 4
-    blockType: 4
-    blockColor: 3
-    moveableDir: 1
-    countdownIce: 0
-  - row: 2
-    col: 1
-    blockType: 7
-    blockColor: 4
-    moveableDir: 2
-    countdownIce: 0
-  - row: 5
-    col: 1
-    blockType: 6
-    blockColor: 1
-    moveableDir: 2
-    countdownIce: 0
   gatesData:
   - row: 0
     col: 3
@@ -249,16 +225,16 @@ MonoBehaviour:
       turnIndices: 0000000005000000
       turnDirections: 0302
   - row: 7
-    col: 3
+    col: 7
     gateDir: 1
-    itemColors: 0202020202020202010101010101010101010101
+    itemColors: 0101010101
     compressedItemPath:
       turnIndices: 0000000005000000
       turnDirections: 0102
-  - row: 3
+  - row: 7
     col: 7
     gateDir: 2
-    itemColors: 0303030303030303030303030303030302020202020202020202
+    itemColors: 0101010101
     compressedItemPath:
       turnIndices: 000000000a000000
       turnDirections: 0201

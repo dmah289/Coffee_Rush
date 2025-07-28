@@ -10,6 +10,7 @@ namespace Coffee_Rush.Board
         [Header("Self References")]
         [SerializeField] public BoardLayoutGenerator layoutGenerator;
         [SerializeField] private BoardObjectSpawner objectSpawner;
+        
 
         private void Awake()
         {

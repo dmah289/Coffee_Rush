@@ -9,26 +9,22 @@ namespace Coffee_Rush.Obstacles
 {
     public class KettleController : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI countdownTxt;
+        [SerializeField] private TextMeshPro countdownTxt;
 
+        private int kettleCountdown;
         public int KettleCountDown
         {
-            get
-            {
-                if(int.TryParse(countdownTxt.text, out int countdown))
-                    return countdown;
-
-                return 0;
-            }
+            get => kettleCountdown;
             set
             {
                 if (value > 0)
                 {
-                    countdownTxt.text = value.ToString();
+                    kettleCountdown = value;
+                    countdownTxt.text = $"{kettleCountdown}";
                 }
                 else
                 {
-                    countdownTxt.text = string.Empty;
+                    kettleCountdown = 0;
                     LevelManager.Instance.FailLevel();
                 }
             }
