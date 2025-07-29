@@ -33,8 +33,6 @@ namespace Coffee_Rush.Block
         protected JobHandle balancingJobHandle;
         protected NativeReference<float3> currentEuler;
 
-        [SerializeField] private int noCollision;
-
 
         public bool CanSelect
         {
@@ -48,10 +46,24 @@ namespace Coffee_Rush.Block
             blockMatcher = GetComponent<BLockMatcher>();
             blockFitting = GetComponent<BlockFitting>();
             blockVisual = GetComponentInChildren<BlockVisual>();
+            cupHolders = GetComponentsInChildren<CupHolder>();
             
-            blockFitting.CalculateCheckPointOffset();
             blockMatcher.AllocateGateItemsArray(cupHolders.Length);
             blockMatcher.CanSelect = true;
+        }
+
+        public void SetupOnLevelStarted(Vector3 tilePos, BlockData blockData)
+        {
+            transform.localScale = Vector3.one;
+            
+            ColorType = blockData.blockColor;
+            BlockType = blockData.blockType;
+            
+            blockVisual.BlockModelEulerAngle = blockData.eulerAngle;
+            blockFitting.SetCheckPointToTargetTile(tilePos);
+            blockVisual.IceCountDown = blockData.countdownIce;
+            movementDirection = blockData.moveableDir;
+            blockVisual.ShowDirectionSprite(blockData.moveableDir);
         }
 
         protected override void OnEnable()
@@ -76,19 +88,9 @@ namespace Coffee_Rush.Block
             base.OnSelect(mousePos);
         }
 
-        public void SetCheckPointToTargetTile(Vector3 targetTilePos)
-        {
-            blockFitting.SetCheckPointToTargetTile(targetTilePos);
-        }
-
         public async UniTaskVoid TryCollectGateItems(GateController gate, CancellationTokenSource cts)
         {
             await blockMatcher.TryCollectGateItem(gate, blockType, colorType, cupHolders, cts);
-        }
-
-        public void DisableMatching()
-        {
-            blockMatcher.IsMatching = false;
         }
 
         protected override void InitializeAllJobs()
@@ -135,11 +137,11 @@ namespace Coffee_Rush.Block
             
             balancingJobHandle.Complete();
             
-            if(isDragging) blockVisual.EulerRotation = currentEuler.Value;
+            if(isDragging) blockVisual.VisualEulerAngle = currentEuler.Value;
             else
             {
                 curEulerNotDragging = Vector3.Lerp(curEulerNotDragging, BlockConfig.initEulerModel, BlockConfig.DampingFactor * Time.deltaTime);
-                blockVisual.EulerRotation = curEulerNotDragging;
+                blockVisual.VisualEulerAngle = curEulerNotDragging;
             }
         }
 
@@ -155,18 +157,7 @@ namespace Coffee_Rush.Block
             base.OnDeselect();
             if(blockMatcher.CanSelect) blockFitting.FitBoard();
         }
-
-        public void SetMovementDirection(eMovementDirection moveableDir)
-        {
-            movementDirection = moveableDir;
-            blockVisual.ShowDirectionSprite(moveableDir);
-        }
-
-        public void SetBlockObstacle(int iceCountdown)
-        {
-            blockVisual.IceCountDown = iceCountdown;
-        }
-
+        
         public void OnRevokenToPool()
         {
             blockMatcher.PostprocessToPool(blockType);

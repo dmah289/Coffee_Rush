@@ -12,6 +12,7 @@ namespace Coffee_Rush.Block
         [SerializeField] private Transform selfTransform;
         [SerializeField] private GameObject ice;
         [SerializeField] private TextMeshPro countdownTxt;
+        [SerializeField] private Transform blockModel;
         
         [Header("Movement Direction")]
         [SerializeField] private SpriteRenderer verticalSprite;
@@ -41,6 +42,7 @@ namespace Coffee_Rush.Block
         {
             selfTransform = transform;
             selfTransform.localEulerAngles = BlockConfig.initEulerModel;
+            blockModel = transform.GetChild(0);
         }
 
         public void OnBlockColected()
@@ -48,10 +50,14 @@ namespace Coffee_Rush.Block
             IceCountDown--;
         }
         
-        public Vector3 EulerRotation
+        public Vector3 VisualEulerAngle
         {
-            get => selfTransform.localEulerAngles;
             set => selfTransform.localEulerAngles = value;
+        }
+        
+        public Vector3 BlockModelEulerAngle
+        {
+            set => blockModel.transform.localEulerAngles = value;
         }
 
         public void ShowDirectionSprite(eMovementDirection direction)

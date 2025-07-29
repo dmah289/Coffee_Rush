@@ -22,6 +22,7 @@ namespace Coffee_Rush.Block
         
         public void SetCheckPointToTargetTile(Vector3 targetTilePos)
         {
+            CalculateCheckPointOffset();
             Vector3 target = targetTilePos + centerToCheckPointOffset;
             transform.position = target;
         }

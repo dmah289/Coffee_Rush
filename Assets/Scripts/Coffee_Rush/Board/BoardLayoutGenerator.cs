@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Coffee_Rush.Board;
 using Coffee_Rush.Level;
 using Coffee_Rush.Mechanics;
+using Cysharp.Threading.Tasks;
 using Framework.DesignPattern;
 using Framework.ObjectPooling;
 using Unity.Mathematics;
@@ -71,7 +72,7 @@ namespace Coffee_Rush
             return eCornerType;
         }
          
-        public IEnumerator SetupBoard(LevelData levelData)
+        public async UniTask SetupBoard(LevelData levelData)
         {
             cameraFitter.CameraFitBoard(levelData.width);
             
@@ -120,7 +121,7 @@ namespace Coffee_Rush
             
             SetupContinuousStraightBorders(levelData);
 
-            yield return null;
+            await UniTask.Yield();
         }
 
         private void SetupContinuousStraightBorders(LevelData levelData)

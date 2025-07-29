@@ -30,6 +30,15 @@ namespace Coffee_Rush.Board
             }
         }
 
+        public void SetupOnLevelStarted(Vector3 initPos, eColorType colorType)
+        {
+            cupLidTransform.localScale = Vector3.zero;
+            
+            transform.position = initPos;
+            transform.eulerAngles = GateItemConfig.WorldRotation;
+            ColorType = colorType;
+        }
+
         public void OnJumpedToSlot(Transform parent)
         {
             selfTransform.rotation = Quaternion.LookRotation(parent.forward, parent.up);

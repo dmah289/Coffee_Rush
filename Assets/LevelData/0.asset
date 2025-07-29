@@ -18,10 +18,18 @@ MonoBehaviour:
   blocksData:
   - row: 6
     col: 3
-    blockType: 1
+    blockType: 2
     blockColor: 1
     moveableDir: 0
     countdownIce: 0
+    eulerAngle: {x: 0, y: 0, z: 0}
+  - row: 3
+    col: 3
+    blockType: 6
+    blockColor: 1
+    moveableDir: 2
+    countdownIce: 0
+    eulerAngle: {x: 0, y: 0, z: 0}
   totalTime: 120
   cellsData:
   - isActive: 1
@@ -231,7 +239,7 @@ MonoBehaviour:
     compressedItemPath:
       turnIndices: 0000000005000000
       turnDirections: 0102
-  - row: 7
+  - row: 6
     col: 7
     gateDir: 2
     itemColors: 0101010101
@@ -245,19 +253,7 @@ MonoBehaviour:
     compressedItemPath:
       turnIndices: 0000000003000000
       turnDirections: 0401
-  blockersData:
-  - row: 3
-    col: 3
-    blockerType: 2
-    movementDirection: 1
-  - row: 5
-    col: 5
-    blockerType: 3
-    movementDirection: 2
-  - row: 7
-    col: 4
-    blockerType: 5
-    movementDirection: 0
+  blockersData: []
   kettlesData:
   - row: 6
     col: 0

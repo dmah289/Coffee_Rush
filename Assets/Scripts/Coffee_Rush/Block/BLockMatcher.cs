@@ -34,7 +34,7 @@ namespace Coffee_Rush.Block
 
         private void Awake()
         {
-            boxCollider2D = GetComponents<BoxCollider2D>();
+            boxCollider2D = GetComponentsInChildren<BoxCollider2D>();
 
             CanSelect = true;
         }
@@ -52,14 +52,23 @@ namespace Coffee_Rush.Block
         {
             try
             {
+                // Cancel if move block out of range, stop waiting for matching
                 await UniTask.WaitUntil(this, t => !t.IsMatching,cancellationToken: cts.Token);
+                
                 IsMatching = true;
 
                 if (currEmptySlotIdx < cupHolders.Length)
                 {
                     while (currEmptySlotIdx < cupHolders.Length && gate.ColorType == colorType)
                     {
-                        if (!IsMatching) break;
+                        // If it is matching and player move block out of range, cancel matching.
+                        if (cts.IsCancellationRequested)
+                        {
+                            // Debug.Log("Matching cancelled: " + gate.transform.position);
+                            IsMatching = false;
+                            return;
+                        }
+                        // if (!IsMatching) break;
 
                         GateItem item = gate.GetCollectableItem();
 
@@ -86,6 +95,7 @@ namespace Coffee_Rush.Block
             catch (OperationCanceledException)
             {
                 IsMatching = false;
+                // Debug.Log("Cancel waiting for matching : " + gate.transform.position);
             }
         }
 
@@ -115,7 +125,11 @@ namespace Coffee_Rush.Block
                         BoardLayoutGenerator.Instance.HalfHeightWorldPos + 5,
                         0);
                     transform.DOJump(outOfViewPos, 5, 1, BlockConfig.LiftingDuration)
-                        .SetEase(Ease.InFlash).OnComplete(() => PostprocessToPool(blockType));
+                        .SetEase(Ease.InFlash).OnComplete(() =>
+                        {
+                            PostprocessToPool(blockType);
+                            BoardController.Instance.DecreaseBlockCount();
+                        });
                 });
         }
 

@@ -55,7 +55,7 @@ namespace BaseSystem
             int numHits = Physics2D.OverlapPointNonAlloc(touchPos, colliders);
             if (numHits > 0)
             {
-                ISelectable selectable = colliders[0].GetComponent<ISelectable>();
+                ISelectable selectable = colliders[0].GetComponentInParent<ISelectable>();
                 if (selectable != null)
                 {
                     if(selectable is ABlockController blockController)

@@ -52,11 +52,9 @@ namespace Coffee_Rush.Level
             CurTime = totalTime;
             hasStarted = false;
             isTimerRunning = false;
-            
             currColorIdx = 0;
-            SetTimerOutline(1f);
             
-            cts = new CancellationTokenSource();
+            SetTimerOutline(1f);
         }
         
         public void StartTimerOnFirstBlockMove()
@@ -64,7 +62,8 @@ namespace Coffee_Rush.Level
             if (!isTimerRunning && curTime > 0)
             {
                 hasStarted = true;
-                RunTimerAsync().Forget();
+                cts = new CancellationTokenSource();
+                RunTimerAsync();
             }
         }
 
@@ -83,7 +82,7 @@ namespace Coffee_Rush.Level
         private void ResumeTimer()
         {
             if(hasStarted && !isTimerRunning && curTime > 0)
-                RunTimerAsync().Forget();
+                RunTimerAsync();
         }
 
         private void PauseTimer()
@@ -116,10 +115,10 @@ namespace Coffee_Rush.Level
         {
             timerBg.material.SetFloat(ProgressProperty, progress);
 
-            progress -= 0.01f;
             if (currColorIdx != (int)(progress * 4))
             {
                 currColorIdx = (int)(progress * 4);
+                if (currColorIdx > 3) currColorIdx = 3;
                 timerBg.material.SetColor(OutlineColorProperty, timerColors[currColorIdx]);
             }
         }

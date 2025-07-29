@@ -22,21 +22,21 @@ namespace Coffee_Rush.Level
         [SerializeField] private LoseManager loseManager;
         [SerializeField] private LevelTimer levelTimer;
 
-        private void OnEnable()
+        private async void OnEnable()
         {
-            StartCoroutine(EnterLevel());
+            await EnterLevel();
         }
 
-        private IEnumerator EnterLevel()
+        private async UniTask EnterLevel()
         {
             SelectionController.Instance.gameObject.SetActive(true);
             
             if (!poolingManager.IsInGamePoolingInitialized)
-                yield return poolingManager.InitializeObjectInGamePooling();
+                await poolingManager.InitializeObjectInGamePooling();
             
             
-            yield return levelLoader.LoadCurrentLevel();
-            yield return boardController.EnterLevel(levelLoader.currLevelData);
+            await levelLoader.LoadCurrentLevel();
+            await boardController.EnterLevel(levelLoader.currLevelData);
             levelTimer.Setup(levelLoader.currLevelData.totalTime);
         }
 

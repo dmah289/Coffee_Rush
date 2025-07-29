@@ -89,9 +89,7 @@ namespace Coffee_Rush.Board
                 if (i != 0)
                     curPos += GateItemConfig.ItemDir[(byte)itemsPath.turnDirections[currTurnIdx] - 1] * GateItemConfig.Distance;
                 
-                gateItem.transform.position = curPos;
-                gateItem.transform.eulerAngles = GateItemConfig.WorldRotation;
-                gateItem.ColorType = itemColors[i];
+                gateItem.SetupOnLevelStarted(curPos, itemColors[i]);
                 
                 gateItems.Add(gateItem);
             }
@@ -105,32 +103,21 @@ namespace Coffee_Rush.Board
         private void FindMatchableBlock()
         {
             int numHits = Physics2D.OverlapPointNonAlloc(checkPoint.position, colliders);
-            if (numHits > 0)
+            if (numHits > 0 && !currBlock)
             {
-                if (!currBlock)
-                {
-                    currBlock = colliders[0].GetComponent<BlockController>();
-                    if (currBlock)
-                    {
-                        cts = new CancellationTokenSource();
-                        currBlock.TryCollectGateItems(this, cts);
-                    }
-                }
-            }
-            else
-            {
+                currBlock = colliders[0].GetComponentInParent<BlockController>();
                 if (currBlock)
                 {
-                    if (cts != null)
-                    {
-                        cts.Cancel();
-                        cts.Dispose();
-                        cts = null;
-                    }
-                    
-                    currBlock.DisableMatching();
-                    currBlock = null;
+                    cts = new CancellationTokenSource();
+                    currBlock.TryCollectGateItems(this, cts);
                 }
+            }
+            else if (numHits == 0 && currBlock && cts != null)
+            {
+                cts.Cancel();
+                cts.Dispose();
+                cts = null;
+                currBlock = null;
             }
         }
 

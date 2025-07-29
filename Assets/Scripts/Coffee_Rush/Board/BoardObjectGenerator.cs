@@ -3,6 +3,7 @@ using System.Collections;
 using Coffee_Rush.Block;
 using Coffee_Rush.Level;
 using Coffee_Rush.Obstacles;
+using Cysharp.Threading.Tasks;
 using Framework.ObjectPooling;
 using UnityEngine;
 
@@ -24,33 +25,17 @@ namespace Coffee_Rush.Board
             set
             {
                 blockCount = value;
-                if (blockCount == 0)
-                    LevelManager.Instance.WinLevel();
+                if (blockCount == 0) LevelManager.Instance.WinLevel();
             }
         }
-
-        private void Awake()
-        {
-            BLockMatcher.OnBlockFullSlot += OnBlockCollected;
-        }
-
-        private void OnDestroy()
-        {
-            BLockMatcher.OnBlockFullSlot -= OnBlockCollected;
-        }
-
-        public void OnBlockCollected()
-        {
-            BlockCount--;
-        }
         
-        public IEnumerator SpawnObjects(LevelData levelData, Tile[,] tiles)
+        public async UniTask SpawnObjects(LevelData levelData, Tile[,] tiles)
         {
             SpawnBlocks(levelData.blocksData, tiles);
             SpawnGates(levelData.gatesData, tiles);
             SpawnKettles(levelData.kettlesData, tiles);
             SpawnBlockers(levelData.blockersData, tiles);
-            yield return WaitHelper.GetWaitForEndOfFrame();
+            await UniTask.DelayFrame(3);
         }
 
         private void SpawnBlockers(BlockerData[] blockersData, Tile[,] tiles)
@@ -96,24 +81,21 @@ namespace Coffee_Rush.Board
                            gatesData[i].itemColors,
                            gatesData[i].compressedItemPath);
                 
-                tiles[gatesData[i].row, gatesData[i].col].SetGate(gate);
                 gates[i] = gate;
             }
         }
 
         private void SpawnBlocks(BlockData[] blocksData, Tile[,] tiles)
         {
-            blockCount = blocksData.Length;
+            BlockCount = blocksData.Length;
             blocks = new BlockController[blockCount];
             for (int i = 0; i < blocksData.Length; i++)
             {
                 BlockController block = ObjectPooler.GetFromPool<BlockController>
                     ((PoolingType)(blocksData[i].blockType + (byte)PoolingType.BlockType00 - 1));
-                block.SetCheckPointToTargetTile(tiles[blocksData[i].row, blocksData[i].col].transform.position);
-                block.SetMovementDirection(blocksData[i].moveableDir);
-                block.SetBlockObstacle(blocksData[i].countdownIce);
-                block.ColorType = blocksData[i].blockColor;
-                block.BlockType = blocksData[i].blockType;
+                
+                block.SetupOnLevelStarted(tiles[blocksData[i].row, blocksData[i].col].transform.position,
+                    blocksData[i]);
                 
                 blocks[i] = block;
             }

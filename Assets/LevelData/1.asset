@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714346eaba354802aa40ea21ede83876, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  width: 12
-  height: 12
+  width: 10
+  height: 10
   levelIndex: 1
   blocksData:
-  - row: 6
-    col: 6
-    blockType: 4
+  - row: 3
+    col: 3
+    blockType: 6
     blockColor: 1
     moveableDir: 2
     countdownIce: 0
+    eulerAngle: {x: 0, y: 90, z: 0}
   totalTime: 120
   cellsData:
   - isActive: 1
@@ -324,138 +325,27 @@ MonoBehaviour:
   - isActive: 1
     blockType: 0
     blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  - isActive: 1
-    blockType: 0
-    blockColor: 0
-  gatesData: []
+  gatesData:
+  - row: 9
+    col: 9
+    gateDir: 2
+    itemColors: 0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
+    compressedItemPath:
+      turnIndices: 00000000
+      turnDirections: 02
+  - row: 7
+    col: 9
+    gateDir: 2
+    itemColors: 0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
+    compressedItemPath:
+      turnIndices: 00000000
+      turnDirections: 02
+  - row: 3
+    col: 9
+    gateDir: 2
+    itemColors: 0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
+    compressedItemPath:
+      turnIndices: 00000000
+      turnDirections: 02
   blockersData: []
   kettlesData: []

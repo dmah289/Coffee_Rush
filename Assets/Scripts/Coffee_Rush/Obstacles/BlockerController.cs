@@ -24,12 +24,10 @@ namespace Coffee_Rush.Obstacles
             base.Awake();
             
             blockFitting = GetComponent<BlockFitting>();
-            blockFitting.CalculateCheckPointOffset();
         }
 
         public void Setup(Vector3 position, eMovementDirection direction)
         {
-            movementDirection = direction;
             SetupMovementDirection(direction);
             blockFitting.SetCheckPointToTargetTile(position);
         }
@@ -56,6 +54,8 @@ namespace Coffee_Rush.Obstacles
 
         private void SetupMovementDirection(eMovementDirection direction)
         {
+            movementDirection = direction;
+            
             if (direction == eMovementDirection.Both)
             {
                 horizontalSprite.gameObject.SetActive(false);

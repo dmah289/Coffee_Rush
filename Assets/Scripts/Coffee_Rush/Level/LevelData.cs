@@ -56,6 +56,7 @@ namespace Coffee_Rush.Level
         public eColorType blockColor;
         public eMovementDirection moveableDir;
         public int countdownIce;
+        public Vector3 eulerAngle;
     }
     
     [CreateAssetMenu(fileName = "LevelData", menuName = "Coffee Rush/Level Data", order = 1)]
