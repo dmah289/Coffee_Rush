@@ -22,14 +22,28 @@ MonoBehaviour:
     blockColor: 1
     moveableDir: 0
     countdownIce: 0
-    eulerAngle: {x: 0, y: 0, z: 0}
+    blockVisualEuler: {x: 0, y: 0, z: 90}
   - row: 3
     col: 3
-    blockType: 6
+    blockType: 3
     blockColor: 1
-    moveableDir: 2
+    moveableDir: 0
     countdownIce: 0
-    eulerAngle: {x: 0, y: 0, z: 0}
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 3
+    col: 3
+    blockType: 3
+    blockColor: 1
+    moveableDir: 1
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 3
+    col: 3
+    blockType: 3
+    blockColor: 1
+    moveableDir: 1
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 90}
   totalTime: 120
   cellsData:
   - isActive: 1

@@ -65,11 +65,7 @@ namespace BaseSystem.Block
 
             selfRb.isKinematic = true;
         }
-
-        protected virtual void OnEnable()
-        {
-            InitializeAllJobs();
-        }
+        
 
         private void Start()
         {

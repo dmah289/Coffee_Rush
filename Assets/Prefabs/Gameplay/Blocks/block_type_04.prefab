@@ -420,7 +420,6 @@ MonoBehaviour:
   blockFitting: {fileID: 0}
   blockVisual: {fileID: 0}
   movementDirection: 0
-  noCollision: 0
 --- !u!114 &-2497499781132597241
 MonoBehaviour:
   m_ObjectHideFlags: 0

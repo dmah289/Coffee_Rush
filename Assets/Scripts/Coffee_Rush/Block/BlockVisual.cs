@@ -12,7 +12,8 @@ namespace Coffee_Rush.Block
         [SerializeField] private Transform selfTransform;
         [SerializeField] private GameObject ice;
         [SerializeField] private TextMeshPro countdownTxt;
-        [SerializeField] private Transform blockModel;
+        [SerializeField] private Transform visualParent;
+        [SerializeField] private Transform colliderTransform;
         
         [Header("Movement Direction")]
         [SerializeField] private SpriteRenderer verticalSprite;
@@ -38,30 +39,35 @@ namespace Coffee_Rush.Block
             }
         }
         
+        public Vector3 VisualEuler
+        {
+            get => visualParent.localEulerAngles;
+            set
+            {
+                visualParent.localEulerAngles = value;
+                colliderTransform.localEulerAngles = new Vector3(colliderTransform.localEulerAngles.x, colliderTransform.localEulerAngles.y, value.z);
+            }
+        }
+        
         private void Awake()
         {
             selfTransform = transform;
             selfTransform.localEulerAngles = BlockConfig.initEulerModel;
-            blockModel = transform.GetChild(0);
         }
 
         public void OnBlockColected()
         {
             IceCountDown--;
         }
-        
-        public Vector3 VisualEulerAngle
-        {
-            set => selfTransform.localEulerAngles = value;
-        }
-        
-        public Vector3 BlockModelEulerAngle
-        {
-            set => blockModel.transform.localEulerAngles = value;
-        }
 
         public void ShowDirectionSprite(eMovementDirection direction)
         {
+            if (Mathf.Approximately(VisualEuler.z, 90) || Mathf.Approximately(VisualEuler.z, 270))
+            {
+                if(direction == eMovementDirection.Horizontal) direction = eMovementDirection.Vertical;
+                else if(direction == eMovementDirection.Vertical) direction = eMovementDirection.Horizontal;
+            }
+            
             if (direction == eMovementDirection.Both)
             {
                 horizontalSprite.gameObject.SetActive(false);

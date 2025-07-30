@@ -23,7 +23,8 @@ namespace Coffee_Rush.Block
         [SerializeField] private BlockVisual blockVisual;
         
         [Header("Balance Settings")]
-        private Vector3 curEulerNotDragging;
+        [SerializeField] private Vector3 curEulerNotDragging;
+        [SerializeField] private Vector3 initBlockVisualEuler;
         
         [Header("Movement Direction")]
         [SerializeField] private eMovementDirection movementDirection;
@@ -59,18 +60,23 @@ namespace Coffee_Rush.Block
             ColorType = blockData.blockColor;
             BlockType = blockData.blockType;
             
-            blockVisual.BlockModelEulerAngle = blockData.eulerAngle;
-            blockFitting.SetCheckPointToTargetTile(tilePos);
+            // Euler
+            initBlockVisualEuler = blockData.blockVisualEuler;
+            curEulerNotDragging = initBlockVisualEuler;
+            blockVisual.VisualEuler = initBlockVisualEuler;
+            
+            Debug.Break();
+            
             blockVisual.IceCountDown = blockData.countdownIce;
             movementDirection = blockData.moveableDir;
             blockVisual.ShowDirectionSprite(blockData.moveableDir);
+            blockFitting.SetCheckPointToTargetTile(tilePos);
+            
+            InitializeAllJobs();
         }
 
-        protected override void OnEnable()
+        protected void OnEnable()
         {
-            base.OnEnable();
-
-            curEulerNotDragging = BlockConfig.initEulerModel;
             BLockMatcher.OnBlockFullSlot += blockVisual.OnBlockColected;
         }
         
@@ -98,10 +104,10 @@ namespace Coffee_Rush.Block
             base.InitializeAllJobs();
             
             currentEuler = new(Allocator.Persistent);
-            currentEuler.Value = BlockConfig.initEulerModel;
+            currentEuler.Value = initBlockVisualEuler;
             balancingJob = new BalancingJob()
             {
-                InitialEuler = BlockConfig.initEulerModel,
+                InitialEuler = initBlockVisualEuler,
                 DampingFactor = BlockConfig.DampingFactor,
                 TiltSensitivity = BlockConfig.TiltSensitivity,
                 MaxOffset = BlockConfig.MaxOffset,
@@ -136,12 +142,16 @@ namespace Coffee_Rush.Block
             }
             
             balancingJobHandle.Complete();
-            
-            if(isDragging) blockVisual.VisualEulerAngle = currentEuler.Value;
+
+            if (isDragging)
+            {
+                print(currentEuler.Value);
+                blockVisual.VisualEuler = currentEuler.Value;
+            }
             else
             {
-                curEulerNotDragging = Vector3.Lerp(curEulerNotDragging, BlockConfig.initEulerModel, BlockConfig.DampingFactor * Time.deltaTime);
-                blockVisual.VisualEulerAngle = curEulerNotDragging;
+                curEulerNotDragging = Vector3.Lerp(curEulerNotDragging, initBlockVisualEuler, BlockConfig.DampingFactor * Time.deltaTime);
+                blockVisual.VisualEuler = curEulerNotDragging;
             }
         }
 

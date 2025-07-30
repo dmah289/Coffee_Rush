@@ -41,7 +41,7 @@ Shader "UI/AnimatedOutline"
             #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
             #pragma multi_compile_local _ UNITY_UI_ALPHACLIP
 
-            struct appdata
+            struct meshdata
             {
                 float4 vertex : POSITION;
                 float4 color : COLOR;
@@ -49,7 +49,7 @@ Shader "UI/AnimatedOutline"
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
-            struct v2f
+            struct interpolator
             {
                 float2 uv : TEXCOORD0;
                 float4 worldPosition : TEXCOORD1;
@@ -67,9 +67,9 @@ Shader "UI/AnimatedOutline"
             float _Progress;
             float4 _ClipRect;
 
-            v2f vert(appdata v)
+            interpolator vert(meshdata v)
             {
-                v2f o;
+                interpolator o;
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                 o.worldPosition = v.vertex;
@@ -108,7 +108,7 @@ Shader "UI/AnimatedOutline"
                 }
             }
 
-            fixed4 frag(v2f i) : SV_Target
+            fixed4 frag(interpolator i) : SV_Target
             {
                 half4 color = tex2D(_MainTex, i.uv) * i.color;
                 float2 centered = i.uv - 0.5;

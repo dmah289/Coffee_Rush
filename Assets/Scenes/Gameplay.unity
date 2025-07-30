@@ -901,7 +901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currLevelData: {fileID: 0}
-  levelIdx: 1
+  levelIdx: 0
 --- !u!114 &1696820863
 MonoBehaviour:
   m_ObjectHideFlags: 0
