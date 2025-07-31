@@ -11,6 +11,6 @@ namespace Framework
         public static string maxKey = "MAX";
         public static string curLifeKey = "CurLife";
         public static string lastSaveTimeKey = "LastSaveTime";
-        public static string timeRemaining = "TimeRemaining";
+        public static string lastCountdownRemaining = "TimeRemaining";
     }
 }
