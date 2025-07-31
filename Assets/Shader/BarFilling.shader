@@ -3,7 +3,7 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _FillAmount ("Fill Amount", Range(0, 1)) = 0.5
+        _MaskTex ("Mask Texture", 2D) = "white" {}
         _Opacity ("Opacity", Range(0, 1)) = 0.5
         _Speed ("Speed", float) = 0.5
     }
@@ -37,38 +37,36 @@
 
             struct interpolator
             {
-                float2 uv : TEXCOORD0;
+                float4 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-            float _FillAmount;
-            float _Speed;
+            sampler2D _MainTex,_MaskTex;
+            float4 _MainTex_ST,_MaskTex_ST;
+            float _Speed,_Size;
 
             interpolator vert(meshdata v)
             {
                 interpolator i;
                 i.vertex = UnityObjectToClipPos(v.vertex);
                 
-                i.uv = v.uv;
+                i.uv.xy = v.uv;
+                i.uv.zw = v.vertex.xy;
+                i.uv.zw = i.uv.zw * _MaskTex_ST.xy + _MaskTex_ST.zw;
+                i.uv.z += _Time.y * _Speed;
                 
                 return i;
             }
 
             fixed4 frag(interpolator i) : SV_Target
             {
-                // TODO : Fix uv movement
-                // if (i.uv.x < _FillAmount && frac(i.uv.x) > 0.01 && frac(i.uv.x) < 0.99) {
-                //     i.uv.x += _Time.y * _Speed;
-                //     i.uv.x = clamp(i.uv.x, 0.01, 0.99);
-                // }
                 
-                fixed4 col = tex2D(_MainTex, frac(i.uv));
-                
-                if (i.uv.x > _FillAmount) col.a = 0;
-                
+                fixed4 col = tex2D(_MainTex, i.uv.xy);
+                fixed4 mask = tex2D(_MaskTex, frac(i.uv.zw));
+                col.rgb = lerp(col.rgb, mask.g*col.rgb, mask.a);
+
                 return col;
+                //return fixed4(frac(i.uv.zw),0,1);
             }
             ENDCG
         }

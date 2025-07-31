@@ -65,8 +65,6 @@ namespace Coffee_Rush.Block
             curEulerNotDragging = initBlockVisualEuler;
             blockVisual.VisualEuler = initBlockVisualEuler;
             
-            Debug.Break();
-            
             blockVisual.IceCountDown = blockData.countdownIce;
             movementDirection = blockData.moveableDir;
             blockVisual.ShowDirectionSprite(blockData.moveableDir);
@@ -143,11 +141,7 @@ namespace Coffee_Rush.Block
             
             balancingJobHandle.Complete();
 
-            if (isDragging)
-            {
-                print(currentEuler.Value);
-                blockVisual.VisualEuler = currentEuler.Value;
-            }
+            if (isDragging) blockVisual.VisualEuler = currentEuler.Value;
             else
             {
                 curEulerNotDragging = Vector3.Lerp(curEulerNotDragging, initBlockVisualEuler, BlockConfig.DampingFactor * Time.deltaTime);

@@ -22,12 +22,7 @@ namespace Coffee_Rush.Level
         [SerializeField] private LoseManager loseManager;
         [SerializeField] private LevelTimer levelTimer;
 
-        private async void OnEnable()
-        {
-            await EnterLevel();
-        }
-
-        private async UniTask EnterLevel()
+        public async UniTask EnterLevel()
         {
             SelectionController.Instance.gameObject.SetActive(true);
             
