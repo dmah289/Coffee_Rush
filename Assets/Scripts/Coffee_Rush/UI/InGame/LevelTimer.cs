@@ -63,7 +63,7 @@ namespace Coffee_Rush.Level
             {
                 hasStarted = true;
                 cts = new CancellationTokenSource();
-                RunTimerAsync();
+                RunTimerAsync().Forget();
             }
         }
 

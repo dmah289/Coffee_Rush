@@ -25,7 +25,7 @@ namespace Coffee_Rush.Board
             set
             {
                 blockCount = value;
-                if (blockCount == 0) LevelManager.Instance.WinLevel();
+                if (blockCount == 0) LevelManager.Instance.WinLevel().Forget();
             }
         }
         

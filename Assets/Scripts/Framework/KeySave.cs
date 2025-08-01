@@ -12,5 +12,7 @@ namespace Framework
         public static string curLifeKey = "CurLife";
         public static string lastSaveTimeKey = "LastSaveTime";
         public static string lastCountdownRemaining = "TimeRemaining";
+        
+        public static string CoinCountKey = "CoinCount";
     }
 }
