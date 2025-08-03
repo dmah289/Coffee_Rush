@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Coffee_Rush.UI.MainMenu
 {
-    public class HomeManager : MonoBehaviour
+    public class HomeTabManager : MonoBehaviour
     {
         [Header("Level Path")]
         [SerializeField] private Text[] levelIndexTexts;

@@ -20,6 +20,7 @@ namespace Coffee_Rush.UI.MainMenu.Footer
             OnFooterButtonClicked(footerButtons[1]);
         }
 
+        // TODO : Receive an index of the button instead of the button itself
         public void OnFooterButtonClicked(FooterButton btn)
         {
             for (int i = 0; i < footerButtons.Length; i++)
@@ -30,8 +31,6 @@ namespace Coffee_Rush.UI.MainMenu.Footer
                     cts?.Dispose();
                     cts = new CancellationTokenSource();
                     
-                    print(footerButtons[i].gameObject.name);
-                    print(footerButtons[i].GetComponent<RectTransform>().anchoredPosition);
                     RectTransform target = footerButtons[i].GetComponent<RectTransform>();
                     Vector2 targetPos = new Vector2(target.anchoredPosition.x, target.anchoredPosition.y + 25);
                     Debug.Log(targetPos);

@@ -5,6 +5,10 @@ namespace Coffee_Rush.UI.MainMenu
 {
     public class MainMenuPage : MonoBehaviour, IPage
     {
+        [SerializeField] private RectTransform[] tabs;
+        
+        // TODO : Register callback when the footer button is clicked
+        
         public void Show()
         {
             if (!gameObject.activeSelf)

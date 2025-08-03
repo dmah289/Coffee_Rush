@@ -16,34 +16,13 @@ MonoBehaviour:
   height: 8
   levelIndex: 0
   blocksData:
-  - row: 6
-    col: 3
-    blockType: 2
-    blockColor: 1
-    moveableDir: 0
-    countdownIce: 0
-    blockVisualEuler: {x: 0, y: 0, z: 90}
   - row: 3
     col: 3
-    blockType: 3
+    blockType: 4
     blockColor: 1
-    moveableDir: 0
+    moveableDir: 2
     countdownIce: 0
     blockVisualEuler: {x: 0, y: 0, z: 0}
-  - row: 3
-    col: 3
-    blockType: 3
-    blockColor: 1
-    moveableDir: 1
-    countdownIce: 0
-    blockVisualEuler: {x: 0, y: 0, z: 0}
-  - row: 3
-    col: 3
-    blockType: 3
-    blockColor: 1
-    moveableDir: 1
-    countdownIce: 0
-    blockVisualEuler: {x: 0, y: 0, z: 90}
   totalTime: 120
   cellsData:
   - isActive: 1
@@ -242,14 +221,14 @@ MonoBehaviour:
   - row: 0
     col: 3
     gateDir: 3
-    itemColors: 01010101010101010101
+    itemColors: 01010101010102020202
     compressedItemPath:
       turnIndices: 0000000005000000
       turnDirections: 0302
   - row: 7
-    col: 7
+    col: 3
     gateDir: 1
-    itemColors: 0101010101
+    itemColors: 01010101010101010101
     compressedItemPath:
       turnIndices: 0000000005000000
       turnDirections: 0102
@@ -268,7 +247,4 @@ MonoBehaviour:
       turnIndices: 0000000003000000
       turnDirections: 0401
   blockersData: []
-  kettlesData:
-  - row: 6
-    col: 0
-    countdown: 10
+  kettlesData: []

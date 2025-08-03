@@ -9,7 +9,7 @@ namespace Framework.UI
         [Header("Self Components")]
         [SerializeField] private RectTransform selfRectTransform;
         
-        
+        // TODO : No need Button component, review Meme Gen to use button event
         [SerializeField] private UnityEvent OnAnimDone;
         
         
