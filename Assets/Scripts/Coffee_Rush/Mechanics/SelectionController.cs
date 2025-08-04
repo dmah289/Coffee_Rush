@@ -78,7 +78,15 @@ namespace BaseSystem
         private void HandleMouseDrag()
         {
             Vector3 mousePos = CameraHelper.GetMouseWorldPosTitledCamera2D();
-            selectedObject.OnDrag(mousePos);
+            selectedObject?.OnDrag(mousePos);
+        }
+
+        public void DeselectCurrentObject(ISelectable selectable)
+        {
+            if (selectedObject == selectable)
+            {
+                selectedObject = null;
+            }
         }
 
         public void EndLevel()

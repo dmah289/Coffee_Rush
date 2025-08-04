@@ -367,7 +367,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6420297337394107251}
+  - {fileID: 1992146637676796582}
+  - {fileID: 8288064827389860590}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1418047045550876804
@@ -411,7 +412,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfRb: {fileID: 0}
-  cupHolders: []
+  cupHolders:
+  - {fileID: 5947117385875619091}
+  - {fileID: 266412893181325335}
+  - {fileID: 8823717200718616117}
+  - {fileID: 3903674274170517236}
+  - {fileID: 8727074421529888390}
+  - {fileID: 3443770065225385842}
+  - {fileID: 7789073977048706027}
+  - {fileID: 5756863163519980161}
+  - {fileID: 3354436891120388573}
+  - {fileID: 7952360204552839873}
+  - {fileID: 8169423715675131736}
+  - {fileID: 5988821959097465643}
+  - {fileID: 3179292567536206326}
+  - {fileID: 7650667616835667620}
+  - {fileID: 1820814342572188981}
+  - {fileID: 5203076445842617396}
   centerToTouchOffset: {x: 0, y: 0, z: 0}
   isDragging: 0
   colorType: 0
@@ -419,6 +436,8 @@ MonoBehaviour:
   blockMatcher: {fileID: 0}
   blockFitting: {fileID: 0}
   blockVisual: {fileID: 0}
+  curEulerNotDragging: {x: 0, y: 0, z: 0}
+  initBlockVisualEuler: {x: 0, y: 0, z: 0}
   movementDirection: 0
 --- !u!114 &-2497499781132597241
 MonoBehaviour:
@@ -607,12 +626,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2611058608770592692}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5364496578791952257}
+  m_Father: {fileID: 8335184722078511247}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!61 &1686202557597353157
 BoxCollider2D:
@@ -1291,7 +1310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4344224268929982968}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1299,7 +1318,7 @@ Transform:
   - {fileID: 5364496578791952257}
   - {fileID: 3912769074266336518}
   - {fileID: 2662938975005672804}
-  m_Father: {fileID: 8335184722078511247}
+  m_Father: {fileID: 8288064827389860590}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &1195985365542741800
 MonoBehaviour:
@@ -1316,7 +1335,8 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   ice: {fileID: 5930477923775091303}
   countdownTxt: {fileID: 5558677538086389810}
-  blockModel: {fileID: 0}
+  visualParent: {fileID: 8288064827389860590}
+  colliderTransform: {fileID: 1992146637676796582}
   verticalSprite: {fileID: 317444451834893680}
   horizontalSprite: {fileID: 6185410782156072915}
 --- !u!1 &4558021713228187078
@@ -2274,6 +2294,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 444274117214727226}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7560360055215926355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8288064827389860590}
+  m_Layer: 0
+  m_Name: visual_par
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8288064827389860590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560360055215926355}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6420297337394107251}
+  m_Father: {fileID: 8335184722078511247}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7592784224983363303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,7 +2702,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3616771646509981170}
-  - {fileID: 1992146637676796582}
   - {fileID: 5522553877788380181}
   - {fileID: 5184329324083048096}
   - {fileID: 5410743630893914901}

@@ -555,6 +555,38 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+--- !u!1 &1744996258238341140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8992318704140987406}
+  m_Layer: 0
+  m_Name: visual_par
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8992318704140987406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744996258238341140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 81684275605767214}
+  m_Father: {fileID: 3514822305548688078}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1930528186822135041
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,12 +643,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939980406946234223}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4837304737298408889}
+  m_Father: {fileID: 3514822305548688078}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!61 &3305925475081029730
 BoxCollider2D:
@@ -1438,7 +1470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5101904692531451418}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1446,7 +1478,7 @@ Transform:
   - {fileID: 4837304737298408889}
   - {fileID: 1922269140318219266}
   - {fileID: 8275523650581837766}
-  m_Father: {fileID: 3514822305548688078}
+  m_Father: {fileID: 8992318704140987406}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &4163935628672437680
 MonoBehaviour:
@@ -1463,7 +1495,8 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   ice: {fileID: 2210287707059208510}
   countdownTxt: {fileID: 4810724514431688647}
-  blockModel: {fileID: 0}
+  visualParent: {fileID: 8992318704140987406}
+  colliderTransform: {fileID: 5194390078128927880}
   verticalSprite: {fileID: 3049301533105714870}
   horizontalSprite: {fileID: 5254270659958666636}
 --- !u!1 &5773145067079533248
@@ -1773,23 +1806,22 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6448990831423856069}
+  - {fileID: 4854356700067123121}
+  - {fileID: 7961202202595512043}
   - {fileID: 2853554549313350784}
   - {fileID: 1368449668622763177}
+  - {fileID: 1697772754153379110}
+  - {fileID: 5893307634985729749}
   - {fileID: 6040713747887130146}
   - {fileID: 3728996236421347662}
   - {fileID: 2487193941670165843}
-  - {fileID: 7961202202595512043}
-  - {fileID: 4854356700067123121}
   - {fileID: 7059750102853334398}
   - {fileID: 1113063861918082753}
   - {fileID: 7292729354103693558}
   - {fileID: 8029808258309715232}
-  - {fileID: 1697772754153379110}
-  - {fileID: 5893307634985729749}
   - {fileID: 7087724716567676029}
   - {fileID: 1050334408230220448}
   - {fileID: 8793205031896930072}
-  - {fileID: 5194390078128927880}
   m_Father: {fileID: 81684275605767214}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6773104989713618728
@@ -2331,7 +2363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7765355681605694650}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -2568,7 +2600,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 81684275605767214}
+  - {fileID: 5194390078128927880}
+  - {fileID: 8992318704140987406}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4780559634305662754
@@ -2612,7 +2645,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfRb: {fileID: 0}
-  cupHolders: []
+  cupHolders:
+  - {fileID: 6259250828150141145}
+  - {fileID: 1969658219606044457}
+  - {fileID: 7282460079837422986}
+  - {fileID: 785361922970528199}
+  - {fileID: 4196233913674225829}
+  - {fileID: 4331523115595666810}
+  - {fileID: 4752688677016027370}
+  - {fileID: 3564125499067027002}
+  - {fileID: 6381401646089472952}
+  - {fileID: 1729593061708376838}
+  - {fileID: 3963279440157829949}
+  - {fileID: 3404197071495496816}
+  - {fileID: 6395975512819120813}
+  - {fileID: 8665222622803412118}
+  - {fileID: 7677422152235042411}
+  - {fileID: 2065510285111896905}
   centerToTouchOffset: {x: 0, y: 0, z: 0}
   isDragging: 0
   colorType: 0
@@ -2620,8 +2669,9 @@ MonoBehaviour:
   blockMatcher: {fileID: 0}
   blockFitting: {fileID: 0}
   blockVisual: {fileID: 0}
+  curEulerNotDragging: {x: 0, y: 0, z: 0}
+  initBlockVisualEuler: {x: 0, y: 0, z: 0}
   movementDirection: 0
-  noCollision: 0
 --- !u!114 &-645756040766829570
 MonoBehaviour:
   m_ObjectHideFlags: 0

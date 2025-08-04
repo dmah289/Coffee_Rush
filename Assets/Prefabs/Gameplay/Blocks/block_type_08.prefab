@@ -358,7 +358,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5348812886583618098}
+  - {fileID: 9109485828880432060}
+  - {fileID: 2335449397939122375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8047791661982578524
@@ -402,7 +403,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 0}
   selfRb: {fileID: 0}
-  cupHolders: []
+  cupHolders:
+  - {fileID: 632819988854300339}
+  - {fileID: 8477681043475128517}
+  - {fileID: 576187005027827058}
+  - {fileID: 9019450448589628109}
+  - {fileID: 2762063199567700685}
+  - {fileID: 7222273293119807674}
+  - {fileID: 3665972855398493898}
+  - {fileID: 5313390789696684886}
+  - {fileID: 6621206388953985603}
+  - {fileID: 6929526859492596487}
+  - {fileID: 6760266102814347703}
+  - {fileID: 3481500402226225318}
+  - {fileID: 6922874433553099897}
+  - {fileID: 4292471657258183746}
+  - {fileID: 428173472972794466}
+  - {fileID: 951191367998558285}
   centerToTouchOffset: {x: 0, y: 0, z: 0}
   isDragging: 0
   colorType: 0
@@ -410,8 +427,9 @@ MonoBehaviour:
   blockMatcher: {fileID: 0}
   blockFitting: {fileID: 0}
   blockVisual: {fileID: 0}
+  curEulerNotDragging: {x: 0, y: 0, z: 0}
+  initBlockVisualEuler: {x: 0, y: 0, z: 0}
   movementDirection: 0
-  noCollision: 0
 --- !u!114 &-1122553575960745324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,6 +628,38 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7526378734385522528}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2461933736392407619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2335449397939122375}
+  m_Layer: 0
+  m_Name: visual_par
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2335449397939122375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2461933736392407619}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5348812886583618098}
+  m_Father: {fileID: 5969827123538321342}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2467619321452192263
 GameObject:
@@ -1849,12 +1899,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6382907259436335928}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2585642788700371614}
+  m_Father: {fileID: 5969827123538321342}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!61 &9044309426732299523
 BoxCollider2D:
@@ -2852,7 +2902,6 @@ Transform:
   - {fileID: 7526378734385522528}
   - {fileID: 4921934494132583900}
   - {fileID: 3509837576844319089}
-  - {fileID: 9109485828880432060}
   m_Father: {fileID: 5348812886583618098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9175279917692516850
@@ -2880,7 +2929,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9175279917692516850}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2888,7 +2937,7 @@ Transform:
   - {fileID: 2585642788700371614}
   - {fileID: 8579988894742634417}
   - {fileID: 9177405188469800723}
-  m_Father: {fileID: 5969827123538321342}
+  m_Father: {fileID: 2335449397939122375}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &3503295199012620721
 MonoBehaviour:
@@ -2905,7 +2954,8 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   ice: {fileID: 7638813893480500835}
   countdownTxt: {fileID: 29642640649122039}
-  blockModel: {fileID: 0}
+  visualParent: {fileID: 2335449397939122375}
+  colliderTransform: {fileID: 9109485828880432060}
   verticalSprite: {fileID: 1843035386921399084}
   horizontalSprite: {fileID: 6923019060133109469}
 --- !u!1001 &3945801209211903519

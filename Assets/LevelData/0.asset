@@ -18,7 +18,42 @@ MonoBehaviour:
   blocksData:
   - row: 3
     col: 3
-    blockType: 4
+    blockType: 2
+    blockColor: 1
+    moveableDir: 0
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 90}
+  - row: 3
+    col: 3
+    blockType: 2
+    blockColor: 1
+    moveableDir: 1
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 90}
+  - row: 3
+    col: 3
+    blockType: 2
+    blockColor: 1
+    moveableDir: 0
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 3
+    col: 3
+    blockType: 2
+    blockColor: 1
+    moveableDir: 1
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 3
+    col: 3
+    blockType: 2
+    blockColor: 1
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 90}
+  - row: 3
+    col: 3
+    blockType: 2
     blockColor: 1
     moveableDir: 2
     countdownIce: 0
@@ -221,28 +256,28 @@ MonoBehaviour:
   - row: 0
     col: 3
     gateDir: 3
-    itemColors: 01010101010102020202
+    itemColors: 01010101010102020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202
     compressedItemPath:
       turnIndices: 0000000005000000
       turnDirections: 0302
   - row: 7
     col: 3
     gateDir: 1
-    itemColors: 01010101010101010101
+    itemColors: 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
     compressedItemPath:
       turnIndices: 0000000005000000
       turnDirections: 0102
-  - row: 6
+  - row: 3
     col: 7
     gateDir: 2
-    itemColors: 0101010101
+    itemColors: 0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
     compressedItemPath:
       turnIndices: 000000000a000000
       turnDirections: 0201
   - row: 3
     col: 0
     gateDir: 4
-    itemColors: 04040404040404040404040404040404040404040404040404
+    itemColors: 01010101010101010101010101010101010101010101010101
     compressedItemPath:
       turnIndices: 0000000003000000
       turnDirections: 0401

@@ -94,9 +94,6 @@ namespace BaseSystem.Block
 
         public virtual void OnSelect(Vector3 mousePos)
         {
-            GameObject go = new GameObject();
-            go.transform.position = mousePos;
-            
             DOTween.Kill(gameObject);
             transform.DOMoveZ(-1f, 0.2f);
             selfRb.isKinematic = false;

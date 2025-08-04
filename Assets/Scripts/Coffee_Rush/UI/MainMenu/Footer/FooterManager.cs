@@ -10,7 +10,7 @@ namespace Coffee_Rush.UI.MainMenu.Footer
     {
         [SerializeField] private RectTransform selection;
         [SerializeField] private FooterButton[] footerButtons;
-        [SerializeField] private float animationDuration = 0.3f; // Animation duration in seconds
+        [SerializeField] private float animationDuration = 0.3f;
 
         private CancellationTokenSource cts;
 
@@ -33,9 +33,8 @@ namespace Coffee_Rush.UI.MainMenu.Footer
                     
                     RectTransform target = footerButtons[i].GetComponent<RectTransform>();
                     Vector2 targetPos = new Vector2(target.anchoredPosition.x, target.anchoredPosition.y + 25);
-                    Debug.Log(targetPos);
                     
-                    _ = selection.MoveToTarget(targetPos, animationDuration, cts.Token);
+                    _ = selection.MoveToTargetBySpeed(targetPos, 2800, cts.Token);
                     footerButtons[i].OnSelected();
                 }
                 else footerButtons[i].OnDeselected();

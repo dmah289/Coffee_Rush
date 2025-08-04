@@ -11,8 +11,6 @@ namespace Coffee_Rush.UI.MainMenu.Footer
         [SerializeField] private RectTransform iconRect;
         [SerializeField] private GameObject title;
         
-        [SerializeField] private float yOffset = 30;
-        
         private CancellationTokenSource cts;
 
         private Vector2 initPos, targetPos;
@@ -31,7 +29,7 @@ namespace Coffee_Rush.UI.MainMenu.Footer
                 cts?.Dispose();
                 cts = new CancellationTokenSource();
             
-                iconRect.MoveToTarget(targetPos, 0.1f, cts.Token).Forget();
+                iconRect.LerpToTarget(targetPos, 0.1f, cts.Token).Forget();
             
                 title.SetActive(true);
             }
@@ -45,7 +43,7 @@ namespace Coffee_Rush.UI.MainMenu.Footer
                 cts?.Dispose();
                 cts = new CancellationTokenSource();
             
-                iconRect.MoveToTarget(initPos, 0.1f, cts.Token).Forget();
+                iconRect.LerpToTarget(initPos, 0.1f, cts.Token).Forget();
             
                 title.SetActive(false);
             }

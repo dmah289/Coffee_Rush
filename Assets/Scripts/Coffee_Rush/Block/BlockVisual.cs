@@ -45,10 +45,18 @@ namespace Coffee_Rush.Block
             set
             {
                 visualParent.localEulerAngles = value;
-                colliderTransform.localEulerAngles = new Vector3(colliderTransform.localEulerAngles.x, colliderTransform.localEulerAngles.y, value.z);
+                
             }
         }
-        
+
+        public Vector3 ColliderEuler
+        {
+            set
+            {
+                colliderTransform.localEulerAngles = value;
+            }
+        }
+
         private void Awake()
         {
             selfTransform = transform;

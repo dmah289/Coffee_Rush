@@ -28,6 +28,7 @@ namespace Coffee_Rush.UI.BaseSystem
             }
             
             fillRectTransform.sizeDelta = new Vector2(825, 55);
+            
             OnFullFillAmount();
         }
     }

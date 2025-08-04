@@ -14,6 +14,7 @@ namespace Coffee_Rush.Block
     public class BLockMatcher : MonoBehaviour
     {
         [SerializeField] private BoxCollider2D[] boxCollider2D;
+        [SerializeField] private BlockController blockController;
         
         [Header("Matching Settings")]
         [SerializeField] private int currEmptySlotIdx;
@@ -35,6 +36,7 @@ namespace Coffee_Rush.Block
         private void Awake()
         {
             boxCollider2D = GetComponentsInChildren<BoxCollider2D>();
+            blockController = GetComponent<BlockController>();
 
             CanSelect = true;
         }
@@ -79,7 +81,7 @@ namespace Coffee_Rush.Block
                         {
                             OnBlockFullSlot?.Invoke();
                             CanSelect = false;
-                            SelectionController.Instance.HandleMouseUp();
+                            SelectionController.Instance.DeselectCurrentObject(blockController);
                             await PackAllGateItems();
                             MoveOutOfView(blockType);
                         }

@@ -47,7 +47,6 @@ namespace Coffee_Rush.Block
             blockMatcher = GetComponent<BLockMatcher>();
             blockFitting = GetComponent<BlockFitting>();
             blockVisual = GetComponentInChildren<BlockVisual>();
-            cupHolders = GetComponentsInChildren<CupHolder>();
             
             blockMatcher.AllocateGateItemsArray(cupHolders.Length);
             blockMatcher.CanSelect = true;
@@ -64,6 +63,7 @@ namespace Coffee_Rush.Block
             initBlockVisualEuler = blockData.blockVisualEuler;
             curEulerNotDragging = initBlockVisualEuler;
             blockVisual.VisualEuler = initBlockVisualEuler;
+            blockVisual.ColliderEuler = initBlockVisualEuler;
             
             blockVisual.IceCountDown = blockData.countdownIce;
             movementDirection = blockData.moveableDir;
