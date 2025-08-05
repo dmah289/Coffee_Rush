@@ -84,9 +84,8 @@ namespace BaseSystem
         public void DeselectCurrentObject(ISelectable selectable)
         {
             if (selectedObject == selectable)
-            {
-                selectedObject = null;
-            }
+                HandleMouseUp();
+            
         }
 
         public void EndLevel()

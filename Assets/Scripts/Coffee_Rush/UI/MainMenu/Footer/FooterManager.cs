@@ -10,41 +10,72 @@ namespace Coffee_Rush.UI.MainMenu.Footer
     {
         [SerializeField] private RectTransform selection;
         [SerializeField] private FooterButton[] footerButtons;
-        [SerializeField] private float animationDuration = 0.3f;
+        [SerializeField] private RectTransform tabsParent;
+        
+        
+        private float minSelectionPosX;
+        private float maxSelectionPosX;
+        private float speed = 3f;
+        private float targetRatio;
+        private float normDirection;
 
-        private CancellationTokenSource cts;
+        [SerializeField] private Vector2 upperMinMaxAnchorX;
+        [SerializeField] private Vector2 lowerMinMaxAnchorX;
+        
+
+        [SerializeField] private float curRatio;
+        public float LerpRatio
+        {
+            get => curRatio;
+            set
+            {
+                curRatio = value;
+                UpdateSelectionPosition();
+                UpdateAllTabsAnchor();
+                for (int i = 0; i < footerButtons.Length; i++)
+                {
+                    footerButtons[i].OnLerpRatioChanged(curRatio);
+                }
+            }
+        }
 
         private async void Start()
         {
             await UniTask.DelayFrame(1);
-            OnFooterButtonClicked(footerButtons[1]);
+            
+            minSelectionPosX = footerButtons[0].GetComponent<RectTransform>().anchoredPosition.x;
+            maxSelectionPosX = footerButtons[2].GetComponent<RectTransform>().anchoredPosition.x;
+            LerpRatio = 0.5f;
         }
 
-        // TODO : Receive an index of the button instead of the button itself
-        public void OnFooterButtonClicked(FooterButton btn)
+        public void OnFooterButtonClicked(int index)
         {
-            for (int i = 0; i < footerButtons.Length; i++)
-            {
-                if (footerButtons[i].Equals(btn))
-                {
-                    cts?.Cancel();
-                    cts?.Dispose();
-                    cts = new CancellationTokenSource();
-                    
-                    RectTransform target = footerButtons[i].GetComponent<RectTransform>();
-                    Vector2 targetPos = new Vector2(target.anchoredPosition.x, target.anchoredPosition.y + 25);
-                    
-                    _ = selection.MoveToTargetBySpeed(targetPos, 2800, cts.Token);
-                    footerButtons[i].OnSelected();
-                }
-                else footerButtons[i].OnDeselected();
-            }
+            targetRatio = (float)index / 2;
+            normDirection = Mathf.Sign(targetRatio - curRatio);
         }
 
-        private void OnDisable()
+        private void Update()
         {
-            cts?.Cancel();
-            cts?.Dispose();
+            if (Mathf.Abs(curRatio - targetRatio) < 0.05f && !Mathf.Approximately(targetRatio, curRatio))
+                LerpRatio = targetRatio;
+            else if (Mathf.Abs(curRatio - targetRatio) >= 0.05f)
+                LerpRatio += speed * normDirection * Time.deltaTime;
+                
+        }
+
+        private void UpdateSelectionPosition()
+        {
+            Vector2 curSelectionPos = selection.anchoredPosition;
+            curSelectionPos.x = Mathf.Lerp(minSelectionPosX, maxSelectionPosX, curRatio);
+            selection.anchoredPosition = curSelectionPos;
+        }
+        
+        private void UpdateAllTabsAnchor()
+        {
+            Vector2 res = Vector2.Lerp(lowerMinMaxAnchorX, upperMinMaxAnchorX, 1-curRatio);
+            
+            tabsParent.anchorMin = new Vector2(res.x, 0);
+            tabsParent.anchorMax = new Vector2(res.y, 1);
         }
     }
 }

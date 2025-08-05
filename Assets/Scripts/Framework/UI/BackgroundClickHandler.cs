@@ -15,6 +15,7 @@ namespace Framework.UI
         [SerializeField] private Image image;
         
         public UnityEvent OnBackgroundHiden;
+        public UnityEvent OnBackgroundShown;
 
 
         public void OnPointerClick(PointerEventData eventData)
@@ -33,6 +34,7 @@ namespace Framework.UI
         {
             gameObject.SetActive(true);
             image.SetAlpha(0.4f);
+            OnBackgroundShown?.Invoke();
         }
     }
 }

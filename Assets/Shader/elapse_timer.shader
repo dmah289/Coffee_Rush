@@ -36,7 +36,6 @@ Shader "UI/AnimatedOutline"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
-            #include "UnityUI.cginc"
 
             #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
             #pragma multi_compile_local _ UNITY_UI_ALPHACLIP
@@ -71,7 +70,6 @@ Shader "UI/AnimatedOutline"
             {
                 interpolator o;
                 UNITY_SETUP_INSTANCE_ID(v);
-                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                 o.worldPosition = v.vertex;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
@@ -79,33 +77,20 @@ Shader "UI/AnimatedOutline"
                 return o;
             }
 
-            // Gets perimeter coordinate (0-1) starting from top middle, going clockwise
             float getPerimeterCoord(float2 uv)
             {
-                // Center UV (from -0.5 to 0.5)
                 float2 centered = uv - 0.5;
                 float2 absUV = abs(centered);
                 
-                // Check which edge we're on
-                if (absUV.x >= absUV.y) {
-                    // On left or right edge
-                    if (centered.x >= 0) {
-                        // Right edge (0.25 to 0.5)
-                        return 0.25 + 0.25 * (0.5 - centered.y);
-                    } else {
-                        // Left edge (0.75 to 1)
-                        return 0.75 + 0.25 * (0.5 + centered.y);
-                    }
-                } else {
-                    // On top or bottom edge
-                    if (centered.y >= 0) {
-                        // Top edge (0 to 0.25)
-                        return 0.25 * (0.5 + centered.x);
-                    } else {
-                        // Bottom edge (0.5 to 0.75)
-                        return 0.5 + 0.25 * (0.5 - centered.x);
-                    }
+                if (absUV.x >= absUV.y)
+                {
+                    if (centered.x >= 0) return 0.25 + 0.25 * (0.5 - centered.y); // Right edge (0.25 - 0.5)
+                    return 0.75 + 0.25 * (0.5 + centered.y); // Left edge (0.75 - 1.0)
                 }
+                
+                if (centered.y >= 0) return 0.25 * (0.5 + centered.x); // Top edge (0 - 0.25)
+                return 0.5 + 0.25 * (0.5 - centered.x); // Bottom edge (0.5 - 0.75)
+                
             }
 
             fixed4 frag(interpolator i) : SV_Target
