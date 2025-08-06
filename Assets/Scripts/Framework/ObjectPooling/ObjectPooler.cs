@@ -27,6 +27,7 @@ namespace Framework.ObjectPooling
 
         public static T GetFromPool<T>(PoolingType type, Transform parent = null) where T : Component
         {
+            
             if (poolList[(byte)type].Count > 1)
             {
                 T instance = (T)poolList[(byte)type][poolList[(byte)type].Count - 1];
@@ -43,8 +44,11 @@ namespace Framework.ObjectPooling
 
         public static void ReturnToPool<T>(PoolingType type, T instance) where T : Component
         {
-            PreprocessData(instance);
-            poolList[(byte)type].Add(instance);
+            if (instance.gameObject.activeSelf)
+            {
+                PreprocessData(instance);
+                poolList[(byte)type].Add(instance);
+            }
         }
 
         private static void PreprocessData<T>(T instance) where T : Component

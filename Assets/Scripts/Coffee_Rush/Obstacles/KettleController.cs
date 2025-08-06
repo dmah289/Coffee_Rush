@@ -51,7 +51,7 @@ namespace Coffee_Rush.Obstacles
             KettleCountDown = countdown;
         }
 
-        public void OnRevokenToPool()
+        public void ReturnToPool()
         {
             ObjectPooler.ReturnToPool(PoolingType.Kettle, this);
         }

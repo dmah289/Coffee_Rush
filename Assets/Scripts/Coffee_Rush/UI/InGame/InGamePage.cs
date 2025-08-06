@@ -15,7 +15,7 @@ namespace Coffee_Rush.UI.InGame
             {
                 gameObject.SetActive(true);
 
-                levelIndex.text = $"LEVEL {PlayerPrefs.GetInt(KeySave.LevelIndexKey),0}";
+                levelIndex.text = $"LEVEL {PlayerPrefs.GetInt(KeySave.LevelIndexKey) + 1,0}";
             }
         }
 

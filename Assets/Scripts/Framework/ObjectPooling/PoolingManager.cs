@@ -24,10 +24,16 @@ namespace Framework.ObjectPooling
         [SerializeField] private AssetReference gatePrefab;
         [SerializeField] private AssetReference kettlePrefab;
         [SerializeField] private AssetReference[] blockerPrefabs;
+        [SerializeField] private AssetReference coinPrefab;
 
 
         public bool IsInGamePoolingInitialized { get; private set; } = false;
-        
+
+        private void Awake()
+        {
+            InitializeObjectInGamePooling().Forget();
+        }
+
         public async UniTask InitializeObjectInGamePooling()
         {
             // Load assets from Addressable and create pools
@@ -74,6 +80,10 @@ namespace Framework.ObjectPooling
                 ObjectPooler.SetUpPool((PoolingType)((byte)PoolingType.BlockerType00 + i), 2, handle.Result.GetComponent<BlockerController>());
                 // Addressables.Release(handle);
             }
+            
+            AsyncOperationHandle<GameObject> coinPrefabHandle = Addressables.LoadAssetAsync<GameObject>(coinPrefab);
+            await coinPrefabHandle;
+            ObjectPooler.SetUpPool(PoolingType.Coin, 2, coinPrefabHandle.Result.GetComponent<RectTransform>());
 
             IsInGamePoolingInitialized = true;
         }

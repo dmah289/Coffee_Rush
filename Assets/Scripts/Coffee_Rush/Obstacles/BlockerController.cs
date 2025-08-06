@@ -73,7 +73,7 @@ namespace Coffee_Rush.Obstacles
             }
         }
 
-        public void OnRevoke()
+        public void ReturnToPool()
         {
             ObjectPooler.ReturnToPool((PoolingType)(blockType + (byte)PoolingType.BlockerType00 - 1), this);
         }

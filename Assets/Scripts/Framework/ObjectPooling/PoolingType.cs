@@ -29,6 +29,6 @@ namespace Framework.ObjectPooling
         BlockerType07 = 24,
         BlockerType08 = 25,
         BlockerType09 = 26,
-        
+        Coin = 27
     }
 }

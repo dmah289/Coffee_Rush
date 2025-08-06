@@ -11,11 +11,13 @@ namespace Coffee_Rush.UI.MainMenu
     {
         [Header("Level Path")]
         [SerializeField] private Text[] levelIndexTexts;
+        [SerializeField] private LoadingLevel loadingLevel;
         
         public void OnPlayBtnClicked()
         {
             // if (LifeSystem.Instance.CanPlay)
-                CanvasManager.Instance.CurPage = ePageType.LoadingLevel;
+            loadingLevel.NextPage = ePageType.InGame;
+            CanvasManager.Instance.CurPage = ePageType.LoadingLevel;
         }
 
         private void OnEnable()
@@ -28,7 +30,7 @@ namespace Coffee_Rush.UI.MainMenu
             int curLevelIndex = PlayerPrefs.GetInt(KeySave.LevelIndexKey, 0);
             for (int i = 0; i < levelIndexTexts.Length; i++)
             {
-                levelIndexTexts[i].text = $"{curLevelIndex + i}";
+                levelIndexTexts[i].text = $"{curLevelIndex + i + 1}";
             }
         }
     }

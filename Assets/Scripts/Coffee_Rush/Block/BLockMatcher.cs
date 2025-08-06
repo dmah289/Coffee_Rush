@@ -129,19 +129,22 @@ namespace Coffee_Rush.Block
                     transform.DOJump(outOfViewPos, 5, 1, BlockConfig.LiftingDuration)
                         .SetEase(Ease.InFlash).OnComplete(() =>
                         {
-                            PostprocessToPool(blockType);
+                            ReturnGateItemsToPool();
+                            ObjectPooler.ReturnToPool(PoolingType.BlockType00 - 1 + (byte)blockType, blockController);
                             BoardController.Instance.DecreaseBlockCount();
                         });
                 });
         }
 
-        public void PostprocessToPool(eBlockType blockType)
+        public void ReturnGateItemsToPool()
         {
             for (int i = 0; i < currEmptySlotIdx; i++)
             {
                 ObjectPooler.ReturnToPool(PoolingType.GateItem, collectedGateItems[i]);
+                collectedGateItems[i] = null;
             }
-            ObjectPooler.ReturnToPool(PoolingType.BlockType00 - 1 + (byte)blockType, this);
+
+            currEmptySlotIdx = 0;
         }
     }
 }

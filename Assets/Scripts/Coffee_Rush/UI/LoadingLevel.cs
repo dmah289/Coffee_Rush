@@ -6,10 +6,18 @@ namespace Coffee_Rush.UI
 {
     public class LoadingLevel : ALoadingPage, IPage
     {
+        private ePageType nextPage;
+        public ePageType NextPage
+        {
+            set => nextPage = value;
+        }
+        
         protected override async UniTaskVoid OnFullFillAmount()
         {
-            CanvasManager.Instance.CurPage = ePageType.InGame;
-            await LevelManager.Instance.EnterLevel();
+            CanvasManager.Instance.CurPage = nextPage;
+            
+            if(nextPage == ePageType.InGame)
+                LevelManager.Instance.EnterLevel().Forget();
         }
 
         public void Show()

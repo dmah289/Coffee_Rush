@@ -65,10 +65,11 @@ namespace Coffee_Rush.Level
         public int width;
         public int height;
         public int levelIndex;
-        public BlockData[] blocksData;
         public float totalTime;
-        public TileData[] cellsData;
+        public int coinAmount;
         
+        public TileData[] cellsData;
+        public BlockData[] blocksData;
         public GateData[] gatesData;
         public BlockerData[] blockersData;
         public KettleData[] kettlesData;

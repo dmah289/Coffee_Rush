@@ -317,7 +317,7 @@ namespace Coffee_Rush
             return tiles[roundedRow, roundedColumn].SelfTransform.position;
         }
 
-        public void RevokeBoard()
+        public void ReturnToPool()
         {
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
@@ -327,6 +327,7 @@ namespace Coffee_Rush
                         ObjectPooler.ReturnToPool(PoolingType.Tile, tiles[i, j]);
                 }
             }
+            tiles = null;
             
             for(int i = 0; i < borders.Count; i++)
             {

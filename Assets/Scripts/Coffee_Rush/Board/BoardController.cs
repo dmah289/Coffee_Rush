@@ -27,10 +27,10 @@ namespace Coffee_Rush.Board
             await objectSpawner.SpawnObjects(levelData, layoutGenerator.tiles);
         }
 
-        public void ResetLevelAssets()
+        public void ReturnLevelAssetsToPool()
         {
-            layoutGenerator.RevokeBoard();
-            objectSpawner.RevokeObjects();
+            layoutGenerator.ReturnToPool();
+            objectSpawner.ReturnAllObjects();
         }
         
         public void DecreaseBlockCount()

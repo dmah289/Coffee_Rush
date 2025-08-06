@@ -33,6 +33,7 @@ namespace Coffee_Rush.Board
         public void SetupOnLevelStarted(Vector3 initPos, eColorType colorType)
         {
             cupLidTransform.localScale = Vector3.zero;
+            selfTransform.localScale = Vector3.one;
             
             transform.position = initPos;
             transform.eulerAngles = GateItemConfig.WorldRotation;

@@ -3,6 +3,7 @@ using System.Collections;
 using Coffee_Rush.Block;
 using Coffee_Rush.Level;
 using Coffee_Rush.Obstacles;
+using Coffee_Rush.UI.InGame;
 using Cysharp.Threading.Tasks;
 using Framework.ObjectPooling;
 using UnityEngine;
@@ -18,6 +19,9 @@ namespace Coffee_Rush.Board
         [SerializeField] private BlockerController[] blockers;
 
         private int blockCount;
+        
+        [Header("UI References")]
+        [SerializeField] private WinPanel winPanel;
 
         public int BlockCount
         {
@@ -25,7 +29,7 @@ namespace Coffee_Rush.Board
             set
             {
                 blockCount = value;
-                if (blockCount == 0) LevelManager.Instance.WinLevel().Forget();
+                if (blockCount == 0) winPanel.Show().Forget();
             }
         }
         
@@ -45,8 +49,8 @@ namespace Coffee_Rush.Board
 
             for (int i = 0; i < blockersData.Length; i++)
             {
-                BlockerController blocker = ObjectPooler.GetFromPool<BlockerController>(
-                    (PoolingType)(blockersData[i].blockerType + (byte)PoolingType.BlockerType00 - 1));
+                BlockerController blocker = ObjectPooler.GetFromPool<BlockerController>
+                    ((PoolingType)(blockersData[i].blockerType + (byte)PoolingType.BlockerType00 - 1));
                 
                 blocker.Setup(tiles[blockersData[i].row, blockersData[i].col].transform.position, 
                     blockersData[i].movementDirection);
@@ -101,25 +105,19 @@ namespace Coffee_Rush.Board
             }
         }
         
-        public void RevokeObjects()
+        public void ReturnAllObjects()
         {
             for (int i = 0; i < blocks.Length; i++)
-            {
-                blocks[i].OnRevokenToPool();
-            }
+                blocks[i].ReturnToPool();
             
-            for(int i = 0; i < gates.Length; i++)
-            {
-                gates[i].OnRevokenToPool();
-            }
+            for (int i = 0; i < gates.Length; i++)
+                gates[i].ReturnToPool();
             
             for (int i = 0; i < kettles.Length; i++)
-            {
-                kettles[i].OnRevokenToPool();
-            }
+                kettles[i].ReturnToPool();
             
-            for(int i = 0; i < blockers.Length; i++)
-                blockers[i].OnRevoke();
+            for (int i = 0; i < blockers.Length; i++)
+                blockers[i].ReturnToPool();
         }
     }
 }

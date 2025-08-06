@@ -88,10 +88,10 @@ namespace BaseSystem
             
         }
 
-        public void EndLevel()
+        public void EnterGameplay()
         {
             isFirstBlockMoved = true;
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
         }
     }
 }

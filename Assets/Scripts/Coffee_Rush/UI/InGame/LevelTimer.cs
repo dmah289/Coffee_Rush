@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,44 +13,61 @@ namespace Coffee_Rush.Level
         private static readonly int ProgressProperty = Shader.PropertyToID("_Progress");
 
         [Header("Self Components")]
-        [SerializeField] private Text timerTxt;
+        [SerializeField] private Text counter;
         [SerializeField] private Image timerBg;
         
         [Header("Timer colors")]
         [SerializeField] private Color[] timerColors;
         private int currColorIdx;
+        [SerializeField] private Color waringColor;
 
         private CancellationTokenSource cts;
         private bool isTimerRunning;
         private bool hasStarted;
-        private float curTime;
+        private float countDownTimer;
         private float totalTime;
+        private bool isFlashing;
         
-        public float CurTime
+        public float CountDownTimer
         {
-            get => curTime;
+            get => countDownTimer;
             set
             {
                 if (value > 0f)
                 {
-                    curTime = value;
+                    countDownTimer = value;
                     float minutes = Mathf.Floor(value / 60);
                     float seconds = Mathf.Floor(value % 60);
-                    timerTxt.text = $"{minutes:00}:{seconds:00}";
+                    counter.text = $"{minutes:00}:{seconds:00}";
+
+                    if (countDownTimer < 20 && !isFlashing)
+                    {
+                        counter.color = waringColor;
+                        isFlashing = true;
+                        counter.rectTransform.DOScale(Vector3.one * 1.1f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                        counter.DOFade(1, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                    }
+                    else if (countDownTimer >= 20 && isFlashing)
+                    {
+                        counter.color = Color.white;
+                        isFlashing = false;
+                        counter.rectTransform.DOKill();
+                        counter.DOKill();
+                    }
                 }
                 else
                 {
-                    curTime = 0f;
-                    timerTxt.text = "00:00";
+                    countDownTimer = 0f;
+                    counter.text = "00:00";
                     LevelManager.Instance.FailLevel();
                 }
             }
         }
-        
+
         public void Setup(float totalTime)
         {
             this.totalTime = totalTime;
-            CurTime = totalTime;
+            CountDownTimer = totalTime;
             hasStarted = false;
             isTimerRunning = false;
             currColorIdx = 0;
@@ -59,7 +77,7 @@ namespace Coffee_Rush.Level
         
         public void StartTimerOnFirstBlockMove()
         {
-            if (!isTimerRunning && curTime > 0)
+            if (!isTimerRunning && countDownTimer > 0)
             {
                 hasStarted = true;
                 cts = new CancellationTokenSource();
@@ -81,11 +99,11 @@ namespace Coffee_Rush.Level
 
         private void ResumeTimer()
         {
-            if(hasStarted && !isTimerRunning && curTime > 0)
-                RunTimerAsync();
+            if(hasStarted && !isTimerRunning && countDownTimer > 0)
+                RunTimerAsync().Forget();
         }
 
-        private void PauseTimer()
+        public void PauseTimer()
         {
             if (hasStarted && isTimerRunning)
             {
@@ -101,11 +119,11 @@ namespace Coffee_Rush.Level
             isTimerRunning = true;
             try
             {
-                while (curTime > 0 && !cts.IsCancellationRequested)
+                while (countDownTimer > 0 && !cts.IsCancellationRequested)
                 {
                     await UniTask.Delay(50, cancellationToken: cts.Token);
-                    CurTime -= 0.05f;
-                    SetTimerOutline(curTime / totalTime);
+                    CountDownTimer -= 0.05f;
+                    SetTimerOutline(countDownTimer / totalTime);
                 }
             }
             catch (OperationCanceledException){}
@@ -121,13 +139,6 @@ namespace Coffee_Rush.Level
                 if (currColorIdx > 3) currColorIdx = 3;
                 timerBg.material.SetColor(OutlineColorProperty, timerColors[currColorIdx]);
             }
-        }
-
-        public void ResetTimer()
-        {
-            PauseTimer();
-            CurTime = totalTime;
-            SetTimerOutline(1f);
         }
     }
 }

@@ -90,7 +90,6 @@ namespace Coffee_Rush.Board
                     curPos += GateItemConfig.ItemDir[(byte)itemsPath.turnDirections[currTurnIdx] - 1] * GateItemConfig.Distance;
                 
                 gateItem.SetupOnLevelStarted(curPos, itemColors[i]);
-                
                 gateItems.Add(gateItem);
             }
         }
@@ -135,7 +134,7 @@ namespace Coffee_Rush.Board
             UpdateGateColor();
 
             if (gateItems.Count > 1)
-                ShiftRemainingElementsBeforeRemove();
+                ShiftRemainingElementsBeforeRemoving();
             
             gateItems.RemoveAt(0);
                 
@@ -147,7 +146,7 @@ namespace Coffee_Rush.Board
             ColorType = gateItems.Count == 1 ? eColorType.None : gateItems[1].ColorType;
         }
 
-        private void ShiftRemainingElementsBeforeRemove()
+        private void ShiftRemainingElementsBeforeRemoving()
         {
             for (int i = 1; i < gateItems.Count; i++)
             {
@@ -158,12 +157,11 @@ namespace Coffee_Rush.Board
             }
         }
 
-        public void OnRevokenToPool()
+        public void ReturnToPool()
         {
             for(int i = 0; i < gateItems.Count; i++)
-            {
                 ObjectPooler.ReturnToPool(PoolingType.GateItem, gateItems[i]);
-            }
+            
             gateItems.Clear();
             
             ObjectPooler.ReturnToPool(PoolingType.Gate, this);

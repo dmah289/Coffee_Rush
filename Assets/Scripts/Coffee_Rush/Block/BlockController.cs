@@ -58,6 +58,8 @@ namespace Coffee_Rush.Block
             
             ColorType = blockData.blockColor;
             BlockType = blockData.blockType;
+            blockMatcher.CanSelect = true;
+            
             
             // Euler
             initBlockVisualEuler = blockData.blockVisualEuler;
@@ -162,9 +164,9 @@ namespace Coffee_Rush.Block
             if(blockMatcher.CanSelect) blockFitting.FitBoard();
         }
         
-        public void OnRevokenToPool()
+        public void ReturnToPool()
         {
-            blockMatcher.PostprocessToPool(blockType);
+            blockMatcher.ReturnGateItemsToPool();
             
             ObjectPooler.ReturnToPool((PoolingType)(blockType + (byte)PoolingType.BlockType00 - 1), this);
         }
