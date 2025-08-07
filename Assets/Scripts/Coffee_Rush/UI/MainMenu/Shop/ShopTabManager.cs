@@ -8,23 +8,18 @@ namespace Coffee_Rush.UI.Shop
     public class ShopTabManager : MonoBehaviour
     {
         [SerializeField] private RectTransform noAds_bg;
+        
 
-        private void Awake()
+        private void Update()
         {
             AutoRotateNoadsBg();
         }
-
-        private async UniTask AutoRotateNoadsBg()
+        
+        private void AutoRotateNoadsBg()
         {
-            while (true)
-            {
-                Vector3 currentRotation = noAds_bg.rotation.eulerAngles;
-                currentRotation.z += 20 * Time.deltaTime;
-                noAds_bg.rotation = Quaternion.Euler(currentRotation);
-            
-                // Wait for next frame
-                await UniTask.Yield();
-            }
+            Vector3 currentRotation = noAds_bg.rotation.eulerAngles;
+            currentRotation.z += 20 * Time.deltaTime;
+            noAds_bg.rotation = Quaternion.Euler(currentRotation);
         }
     }
 }

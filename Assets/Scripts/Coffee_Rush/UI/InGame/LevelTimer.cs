@@ -9,14 +9,14 @@ namespace Coffee_Rush.Level
 {
     public class LevelTimer : MonoBehaviour
     {
-        private static readonly int OutlineColorProperty = Shader.PropertyToID("_OutlineColor");
+        private static readonly int RemainingColorProperty = Shader.PropertyToID("_RemainingColor");
         private static readonly int ProgressProperty = Shader.PropertyToID("_Progress");
 
         [Header("Self Components")]
         [SerializeField] private Text counter;
-        [SerializeField] private Image timerBg;
+        [SerializeField] private Image outline;
         
-        [Header("Timer colors")]
+        [Header("Timer outline settings")]
         [SerializeField] private Color[] timerColors;
         private int currColorIdx;
         [SerializeField] private Color waringColor;
@@ -131,13 +131,13 @@ namespace Coffee_Rush.Level
 
         private void SetTimerOutline(float progress)
         {
-            timerBg.material.SetFloat(ProgressProperty, progress);
+            outline.material.SetFloat(ProgressProperty, progress);
 
             if (currColorIdx != (int)(progress * 4))
             {
                 currColorIdx = (int)(progress * 4);
                 if (currColorIdx > 3) currColorIdx = 3;
-                timerBg.material.SetColor(OutlineColorProperty, timerColors[currColorIdx]);
+                outline.material.SetColor(RemainingColorProperty, timerColors[currColorIdx]);
             }
         }
     }

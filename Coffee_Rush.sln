@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{8c37fccc-6e56-452c-3d1a-0d0d41e9a4e5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityUIExtensions", "UnityUIExtensions.csproj", "{4a01cd8e-32d1-7891-cb66-41879c01d405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityUIExtensions.editor", "UnityUIExtensions.editor.csproj", "{8d09a7de-6a81-ddab-bc60-44915cec51fb}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{e05439f2-fe95-6c24-7327-fd7b44fe2839}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{ce33a306-37fd-40cf-6ff9-00ecccd33870}"
@@ -14,6 +18,10 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8c37fccc-6e56-452c-3d1a-0d0d41e9a4e5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8c37fccc-6e56-452c-3d1a-0d0d41e9a4e5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4a01cd8e-32d1-7891-cb66-41879c01d405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4a01cd8e-32d1-7891-cb66-41879c01d405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8d09a7de-6a81-ddab-bc60-44915cec51fb}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8d09a7de-6a81-ddab-bc60-44915cec51fb}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{e05439f2-fe95-6c24-7327-fd7b44fe2839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{e05439f2-fe95-6c24-7327-fd7b44fe2839}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ce33a306-37fd-40cf-6ff9-00ecccd33870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
