@@ -13,12 +13,12 @@ namespace Framework.UI
         
         [SerializeField] private UnityEvent OnScaleAnimDone;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             selfRectTransform = GetComponent<RectTransform>();
         }
 
-        private async UniTaskVoid OnButtonClickedAsync()
+        protected virtual async UniTaskVoid OnButtonClickedAsync()
         {
             float timer = 0;
             Vector3 curScale = Vector3.one;

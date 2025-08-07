@@ -9,43 +9,48 @@ namespace Coffee_Rush.UI.MainMenu.Home
 {
     public abstract class APopup : MonoBehaviour
     {
+        [Header("UI Elements")]
         [SerializeField] protected BackgroundClickHandler bgClickHandler;
         [SerializeField] protected RectTransform selfRectTransform;
-        [SerializeField] protected Image image;
+        [SerializeField] protected Image popUpImg;
 
 
-        protected float ScaleDuration = 0.2f;
+        [Header("Scale Settings")]
+        [SerializeField] protected float ScaleDuration = 0.2f;
+        [SerializeField] protected Vector3 targetScale;
 
         private void Awake()
         {
             bgClickHandler = GetComponentInParent<BackgroundClickHandler>();
             selfRectTransform = GetComponent<RectTransform>();
-            image = GetComponent<Image>();
+            popUpImg = GetComponent<Image>();
         }
 
-        public void ShowPopup()
+        public virtual void ShowPopup()
         {
             selfRectTransform.localScale = Vector3.one;
-            image.SetAlpha(1);
+            popUpImg.SetAlpha(1);
         }
 
         public void HidePopup() => HidePopupAsync().Forget();
-        protected async UniTaskVoid HidePopupAsync()
+        protected virtual async UniTaskVoid HidePopupAsync()
         {
-            image.FadeAlphaToTarget(ScaleDuration / 4).Forget();
+            popUpImg.FadeAlphaToTarget(0.9f, ScaleDuration).Forget();
             
-            float timer = 0;
-            Vector3 curScale = Vector3.one;
-
-            while (timer < ScaleDuration)
-            {
-                timer += Time.deltaTime;
-                curScale = Vector3.Lerp(curScale, Vector3.zero, timer / ScaleDuration);
-                selfRectTransform.localScale = curScale;
-                await UniTask.Yield();
-            }
-
-            selfRectTransform.localScale = Vector3.zero;
+            // float timer = 0;
+            // Vector3 curScale = Vector3.one;
+            //
+            // while (timer < ScaleDuration)
+            // {
+            //     timer += Time.deltaTime;
+            //     curScale = Vector3.Lerp(curScale, targetScale, timer / ScaleDuration);
+            //     selfRectTransform.localScale = curScale;
+            //     await UniTask.Yield();
+            // }
+            //
+            // selfRectTransform.localScale = targetScale;
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(ScaleDuration));
             
             bgClickHandler.gameObject.SetActive(false);
         }

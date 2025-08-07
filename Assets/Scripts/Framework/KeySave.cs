@@ -14,5 +14,13 @@ namespace Framework
         public static string lastCountdownRemaining = "TimeRemaining";
         
         public static string CoinCountKey = "CoinCount";
+        
+        // Settings keys
+        public static string[] SettingsKeys =
+        {
+            "Music",
+            "SFX",
+            "Vibration"
+        };
     }
 }
