@@ -25,6 +25,7 @@ namespace Coffee_Rush.UI
         private ePageType curPage;
         public ePageType CurPage
         {
+            get => curPage;
             set
             {
                 curPage = value;

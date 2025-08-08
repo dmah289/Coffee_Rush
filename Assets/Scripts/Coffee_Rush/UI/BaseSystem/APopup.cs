@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Framework.Extensions;
 using Framework.UI;
 using UnityEngine;
@@ -15,9 +16,14 @@ namespace Coffee_Rush.UI.MainMenu.Home
         [SerializeField] protected Image popUpImg;
 
 
-        [Header("Scale Settings")]
-        [SerializeField] protected float ScaleDuration = 0.2f;
-        [SerializeField] protected Vector3 targetScale;
+        [Header("Movement Settings")]
+        [SerializeField] protected Vector2 hidenPos;
+        [SerializeField] protected Vector2 shownPos;
+        [SerializeField] protected float animDuration;
+        
+        [SerializeField] protected Ease easeType;
+        [SerializeField] protected float amplitude;
+        [SerializeField] protected float period;
 
         private void Awake()
         {
@@ -28,29 +34,27 @@ namespace Coffee_Rush.UI.MainMenu.Home
 
         public virtual void ShowPopup()
         {
-            selfRectTransform.localScale = Vector3.one;
+            popUpImg.DOKill();
             popUpImg.SetAlpha(1);
+            
+            selfRectTransform.DOKill();
+            selfRectTransform.anchoredPosition = hidenPos;
+            selfRectTransform.DOAnchorPos(shownPos, animDuration)
+                .SetEase(easeType, amplitude, period);
         }
 
         public void HidePopup() => HidePopupAsync().Forget();
         protected virtual async UniTaskVoid HidePopupAsync()
         {
-            popUpImg.FadeAlphaToTarget(0.9f, ScaleDuration).Forget();
+            popUpImg.DOKill();
+            popUpImg.SetAlpha(1);
+            popUpImg.DOFade(0.5f, animDuration);
             
-            // float timer = 0;
-            // Vector3 curScale = Vector3.one;
-            //
-            // while (timer < ScaleDuration)
-            // {
-            //     timer += Time.deltaTime;
-            //     curScale = Vector3.Lerp(curScale, targetScale, timer / ScaleDuration);
-            //     selfRectTransform.localScale = curScale;
-            //     await UniTask.Yield();
-            // }
-            //
-            // selfRectTransform.localScale = targetScale;
+            selfRectTransform.DOKill();
+            selfRectTransform.DOAnchorPos(hidenPos, animDuration * 0.5f)
+                .SetEase(Ease.Linear);
             
-            await UniTask.Delay(TimeSpan.FromSeconds(ScaleDuration));
+            await UniTask.Delay(TimeSpan.FromSeconds(animDuration));
             
             bgClickHandler.gameObject.SetActive(false);
         }

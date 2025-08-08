@@ -4,6 +4,7 @@ using BaseSystem;
 using Coffee_Rush.Board;
 using Coffee_Rush.UI;
 using Coffee_Rush.UI.BaseSystem;
+using Coffee_Rush.UI.InGame;
 using Cysharp.Threading.Tasks;
 using Framework;
 using Framework.DesignPattern;
@@ -24,10 +25,11 @@ namespace Coffee_Rush.Level
         [Header("Manager References")]
         [SerializeField] public BoardController boardController;
         [SerializeField] private PoolingManager poolingManager;
-        [SerializeField] private LoseManager loseManager;
         [SerializeField] private LevelTimer levelTimer;
+        [SerializeField] private LoadingLevel loadingLevel;
+        [SerializeField] private LoosePanel loosePanel;
 
-        public async UniTask EnterLevel()
+        public async UniTask EnterGameplay()
         {
             SelectionController.Instance.EnterGameplay();
             
@@ -36,37 +38,55 @@ namespace Coffee_Rush.Level
             levelTimer.Setup(levelLoader.currLevelData.totalTime);
         }
 
+        public void StopGameplay()
+        {
+            SelectionController.Instance.gameObject.SetActive(false);
+            levelTimer.PauseTimer();
+        }
+
+        public void ResumeGameplay()
+        {
+            SelectionController.Instance.gameObject.SetActive(true);
+            levelTimer.ResumeTimer();
+        }
+
         public async UniTask FailLevel()
         {
-            await UniTask.Delay(1000);
+            await UniTask.Delay(500);
             
-            SelectionController.Instance.gameObject.SetActive(false);
             boardController.ReturnLevelAssetsToPool();
-            levelTimer.PauseTimer();
             
+            loadingLevel.NextPage = ePageType.MainMenu;
             CanvasManager.Instance.CurPage = ePageType.LoadingLevel;
         }
 
-        public void WinLevel()
+        public async UniTask WinLevel()
         {
-            SelectionController.Instance.gameObject.SetActive(false);
+            await UniTask.Delay(500);
+            
             boardController.ReturnLevelAssetsToPool();
 
             PlayerPrefs.SetInt(KeySave.LevelIndexKey,
                 (PlayerPrefs.GetInt(KeySave.LevelIndexKey, 0) + 1) % MaxLevelIndex);
+            
+            loadingLevel.NextPage = ePageType.InGame;
             CanvasManager.Instance.CurPage = ePageType.LoadingLevel;
             
         }
 
         public async UniTask ReplayLevelAsync()
         {
-            await UniTask.Delay(1000);
+            await UniTask.Delay(500);
             
-            SelectionController.Instance.gameObject.SetActive(false);
             boardController.ReturnLevelAssetsToPool();
-            levelTimer.PauseTimer();
             
+            loadingLevel.NextPage = ePageType.InGame;
             CanvasManager.Instance.CurPage = ePageType.LoadingLevel;
+        }
+
+        public void ShowLoosePanel(eLooseReason reason)
+        {
+            loosePanel.Show(reason).Forget();
         }
     }
 }

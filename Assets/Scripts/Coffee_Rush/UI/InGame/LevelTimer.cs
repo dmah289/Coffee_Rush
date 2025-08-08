@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using Coffee_Rush.UI.InGame;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -20,6 +21,9 @@ namespace Coffee_Rush.Level
         [SerializeField] private Color[] timerColors;
         private int currColorIdx;
         [SerializeField] private Color waringColor;
+
+        [Header("References")] 
+        [SerializeField] private LoosePanel loosePanel;
 
         private CancellationTokenSource cts;
         private bool isTimerRunning;
@@ -59,7 +63,7 @@ namespace Coffee_Rush.Level
                 {
                     countDownTimer = 0f;
                     counter.text = "00:00";
-                    LevelManager.Instance.FailLevel();
+                    loosePanel.Show(eLooseReason.TimeOut).Forget();
                 }
             }
         }
@@ -97,7 +101,7 @@ namespace Coffee_Rush.Level
             else ResumeTimer();
         }
 
-        private void ResumeTimer()
+        public void ResumeTimer()
         {
             if(hasStarted && !isTimerRunning && countDownTimer > 0)
                 RunTimerAsync().Forget();

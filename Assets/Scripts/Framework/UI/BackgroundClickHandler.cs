@@ -12,11 +12,16 @@ namespace Framework.UI
     {
         public static float FadeDuration = 0.2f;
         
-        [SerializeField] private Image image;
+        [SerializeField] private Image selfImg;
         
         public UnityEvent OnBackgroundHiden;
         public UnityEvent OnBackgroundShown;
 
+        
+        private void Awake()
+        {
+            selfImg = GetComponent<Image>();
+        }
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -26,14 +31,14 @@ namespace Framework.UI
 
         public void HideBackground()
         {
-            image.FadeAlphaToTarget(FadeDuration).Forget();
+            selfImg.FadeAlphaToTarget(FadeDuration).Forget();
             OnBackgroundHiden?.Invoke();
         }
         
-        public void ShowBackground()
+        public virtual void ShowBackground()
         {
             gameObject.SetActive(true);
-            image.SetAlpha(0.4f);
+            selfImg.SetAlpha(0.4f);
             OnBackgroundShown?.Invoke();
         }
     }

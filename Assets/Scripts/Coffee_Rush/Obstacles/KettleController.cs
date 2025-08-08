@@ -1,6 +1,9 @@
 using System;
 using Coffee_Rush.Block;
 using Coffee_Rush.Level;
+using Coffee_Rush.UI.InGame;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Framework.ObjectPooling;
 using TMPro;
 using UnityEngine;
@@ -25,7 +28,11 @@ namespace Coffee_Rush.Obstacles
                 else
                 {
                     kettleCountdown = 0;
-                    LevelManager.Instance.FailLevel();
+                    LevelManager.Instance.StopGameplay();
+                    transform.DOScale(new Vector3(2f, 2f, 2f), 1f).SetDelay(1f).OnComplete(() =>
+                    {
+                        LevelManager.Instance.ShowLoosePanel(eLooseReason.KettleExplosion);
+                    });
                 }
             }
         }
@@ -49,6 +56,7 @@ namespace Coffee_Rush.Obstacles
         {
             transform.position = pos;
             KettleCountDown = countdown;
+            transform.localScale = Vector3.one;
         }
 
         public void ReturnToPool()

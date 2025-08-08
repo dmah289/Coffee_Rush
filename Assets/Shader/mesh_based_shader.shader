@@ -58,7 +58,7 @@ Shader "Unlit/mesh_based_shader"
             {
                 fixed2 mask = tex2D(_MainTex, i.uv).ra;
                 float pross = _Progress*1.1-0.1;
-                fixed4 finalColor = lerp(_RemainingColor, _ElapsedColor, smoothstep(pross,pross+0.05, mask.x));
+                fixed4 finalColor = lerp(_RemainingColor, _ElapsedColor, smoothstep(pross,pross+0.01, mask.x));
                 finalColor.a *= mask.y;
                 return finalColor;
             }

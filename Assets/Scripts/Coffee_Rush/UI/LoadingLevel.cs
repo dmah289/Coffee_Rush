@@ -17,7 +17,7 @@ namespace Coffee_Rush.UI
             CanvasManager.Instance.CurPage = nextPage;
             
             if(nextPage == ePageType.InGame)
-                LevelManager.Instance.EnterLevel().Forget();
+                LevelManager.Instance.EnterGameplay().Forget();
         }
 
         public void Show()
@@ -25,7 +25,7 @@ namespace Coffee_Rush.UI
             if (!gameObject.activeSelf)
             {
                 gameObject.SetActive(true);
-                StartLoading();
+                StartLoading().Forget();
             }
         }
 

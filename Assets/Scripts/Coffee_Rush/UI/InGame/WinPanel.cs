@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Coffee_Rush.Level;
+using Coffee_Rush.UI.MainMenu.SharedUI;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Framework.ObjectPooling;
 using UnityEngine;
-using UnityEngine.Pool;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -27,6 +26,7 @@ namespace Coffee_Rush.UI.InGame
         [Header("Manager")]
         [SerializeField] private List<RectTransform> coins;
         [SerializeField] private LevelTimer levelTimer;
+        [SerializeField] private CoinSystem coinSystem;
 
         private void Awake()
         {
@@ -42,12 +42,11 @@ namespace Coffee_Rush.UI.InGame
 
         public async UniTask Show()
         {
-            levelTimer.PauseTimer();
+            LevelManager.Instance.StopGameplay();
             
-            await UniTask.Delay(1000);
+            await UniTask.Delay(500);
             
             gameObject.SetActive(true);
-
             coinAmount.text = $"{LevelManager.Instance.levelLoader.currLevelData.coinAmount}";
             selfRect.localScale = Vector3.zero;
             selfRect.DOScale(Vector3.one, 0.2f);
@@ -86,6 +85,8 @@ namespace Coffee_Rush.UI.InGame
         private void SpawnCoins()
         {
             int amount = Random.Range(5, 7);
+            coinSystem.CoinCounter += amount;
+            
             coins.Clear();
             for (int i = 0; i < amount; i++)
             {

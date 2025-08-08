@@ -15,9 +15,12 @@ namespace Coffee_Rush.UI.MainMenu
         
         public void OnPlayBtnClicked()
         {
-            // if (LifeSystem.Instance.CanPlay)
-            loadingLevel.NextPage = ePageType.InGame;
-            CanvasManager.Instance.CurPage = ePageType.LoadingLevel;
+            if (LifeSystem.Instance.CanPlay)
+            {
+                loadingLevel.NextPage = ePageType.InGame;
+                CanvasManager.Instance.CurPage = ePageType.LoadingLevel;
+            }
+            else LifeSystem.Instance.FlashOnOutOfLife();
         }
 
         private void OnEnable()

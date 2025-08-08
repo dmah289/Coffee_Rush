@@ -8,10 +8,31 @@ namespace Framework.UI
 {
     public class ScaleAnimButton : MonoBehaviour, IPointerClickHandler
     {
-        private RectTransform selfRectTransform;
-        [SerializeField] private Vector3 targetScale = new (1.1f, 1.1f, 1.1f);
+        [Header("Self Components")]
+        [SerializeField] protected RectTransform selfRectTransform;
         
-        [SerializeField] private UnityEvent OnScaleAnimDone;
+        [Header("Scale Animation Settings")]
+        [SerializeField] protected Vector3 targetScale = new (1.1f, 1.1f, 1.1f);
+        [SerializeField] protected float lastClickTime;
+        [SerializeField] protected float clickIntervalThreshold;
+        
+        [SerializeField] protected UnityEvent OnScaleAnimDone;
+
+        protected bool CanClick
+        {
+            get
+            {
+                float timeSinceLastClick = Time.time - lastClickTime;
+                
+                if (timeSinceLastClick >= clickIntervalThreshold)
+                {
+                    lastClickTime = Time.time;
+                    return true;
+                }
+
+                return false;
+            }
+        }
 
         protected virtual void Awake()
         {

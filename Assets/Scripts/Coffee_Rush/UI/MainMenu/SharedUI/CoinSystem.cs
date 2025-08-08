@@ -1,13 +1,12 @@
-using System;
 using Framework;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace Coffee_Rush.UI.MainMenu.Home
+namespace Coffee_Rush.UI.MainMenu.SharedUI
 {
     public class CoinSystem : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI counterTxt;
+        [SerializeField] private Text counterTxt;
         
 
         private int coinCount;

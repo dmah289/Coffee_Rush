@@ -1,16 +1,23 @@
 using System;
+using DG.Tweening;
 using Framework;
 using Framework.DesignPattern;
+using Framework.Extensions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Coffee_Rush.UI.MainMenu.Home
 {
     public class LifeSystem : MonoSingleton<LifeSystem>
     {
         [Header("Self Components")]
-        [SerializeField] private TextMeshProUGUI counter;
-        [SerializeField] private TextMeshProUGUI timer;
+        [SerializeField] private Text counter;
+        [SerializeField] private Text timer;
+
+        [Header("Settings")] 
+        [SerializeField] private float targetScale;
+        [SerializeField] private float animDuration;
 
         
         private DateTime lastSaveTime;
@@ -18,7 +25,7 @@ namespace Coffee_Rush.UI.MainMenu.Home
         private float timeForOneLife = 1800;
         private int maxLives = 5;
         
-        private int curLife;
+        [SerializeField] private int curLife;
         public int CurLife
         {
             get => curLife;
@@ -124,6 +131,14 @@ namespace Coffee_Rush.UI.MainMenu.Home
                 int seconds = Mathf.FloorToInt(countdownRemaining % 60);
                 timer.text = $"{minutes:00}:{seconds:00}";
             }
+        }
+
+        public void FlashOnOutOfLife()
+        {
+            counter.DOKill();
+            counter.rectTransform.DOScale(targetScale, animDuration).From(1).SetLoops(4, LoopType.Yoyo)
+                .OnComplete(() => counter.rectTransform.localScale = Vector3.one);
+            counter.DOFade(1, animDuration).From(0.3f).SetLoops(3, LoopType.Yoyo);
         }
     }
 }
