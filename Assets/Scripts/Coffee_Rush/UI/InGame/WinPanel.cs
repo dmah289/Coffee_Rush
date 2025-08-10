@@ -19,7 +19,7 @@ namespace Coffee_Rush.UI.InGame
         [SerializeField] private RectTransform target;
         
         [Header("Claim Button Elements")]
-        [SerializeField] private Text coinAmount;
+        [SerializeField] private Text coinAmountTxt;
         [SerializeField] private RectTransform coinIcon;
         [SerializeField] private RectTransform claimBtn;
         
@@ -27,6 +27,7 @@ namespace Coffee_Rush.UI.InGame
         [SerializeField] private List<RectTransform> coins;
         [SerializeField] private LevelTimer levelTimer;
         [SerializeField] private CoinSystem coinSystem;
+        [SerializeField] private int coinAmount;
 
         private void Awake()
         {
@@ -47,7 +48,8 @@ namespace Coffee_Rush.UI.InGame
             await UniTask.Delay(500);
             
             gameObject.SetActive(true);
-            coinAmount.text = $"{LevelManager.Instance.levelLoader.currLevelData.coinAmount}";
+            coinAmount = LevelManager.Instance.levelLoader.currLevelData.coinAmount;
+            coinAmountTxt.text = $"{coinAmount}";
             selfRect.localScale = Vector3.zero;
             selfRect.DOScale(Vector3.one, 0.2f);
         }
@@ -55,6 +57,8 @@ namespace Coffee_Rush.UI.InGame
         public void OnClaimBtnClicked() => OnClaimBtnClickedAsync().Forget();
         public async UniTask OnClaimBtnClickedAsync()
         {
+            coinSystem.CoinCounter += coinAmount;
+            
             SpawnCoins();
             
             await CollectCoins();
@@ -85,7 +89,6 @@ namespace Coffee_Rush.UI.InGame
         private void SpawnCoins()
         {
             int amount = Random.Range(5, 7);
-            coinSystem.CoinCounter += amount;
             
             coins.Clear();
             for (int i = 0; i < amount; i++)

@@ -303,9 +303,9 @@ MonoBehaviour:
   bgClickHandler: {fileID: 0}
   selfRectTransform: {fileID: 0}
   popUpImg: {fileID: 0}
-  hidenPos: {x: 0, y: -1000}
+  hidenPos: {x: 0, y: -1500}
   shownPos: {x: 0, y: 150}
-  animDuration: 0.2
+  animDuration: 0.7
   easeType: 24
   amplitude: 0.01
   period: 0.5
@@ -1025,9 +1025,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 0.97, y: 0.97, z: 0.97}
-  lastClickTime: 0
-  clickIntervalThreshold: 0.5
+  targetScale: 1.1
+  animDuration: 0.1
+  clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls: []
@@ -1258,7 +1259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &230695686
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1332,6 +1333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillRectTransform: {fileID: 228773975}
+  fillDuration: 3.5
 --- !u!1 &242220046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,9 +2225,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 0.9, y: 0.9, z: 0.9}
-  lastClickTime: 0
+  targetScale: 1.1
+  animDuration: 0.1
   clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls:
@@ -3071,12 +3074,13 @@ MonoBehaviour:
   selfRect: {fileID: 497719288}
   bg_icon: {fileID: 82102231}
   target: {fileID: 1751009581}
-  coinAmount: {fileID: 1977757577}
+  coinAmountTxt: {fileID: 1977757577}
   coinIcon: {fileID: 1859351453}
   claimBtn: {fileID: 354714872}
   coins: []
   levelTimer: {fileID: 488397079}
-  coinSystem: {fileID: 0}
+  coinSystem: {fileID: 1825844155}
+  coinAmount: 0
 --- !u!1 &509511455
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,9 +3808,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 548377311}
-  targetScale: {x: 1.1, y: 1.1, z: 1.1}
-  lastClickTime: 0
+  targetScale: 1.1
+  animDuration: 0.1
   clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls:
@@ -4558,7 +4563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconRect: {fileID: 672084613}
-  title: {fileID: 1106113233}
+  titleTxt: {fileID: 1106113233}
+  titleRect: {fileID: 1106113232}
   selfRatio: 0
 --- !u!1 &672084612
 GameObject:
@@ -4727,7 +4733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &689133531
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4915,7 +4921,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconRect: {fileID: 1067714878}
-  title: {fileID: 1470032368}
+  titleTxt: {fileID: 1470032368}
+  titleRect: {fileID: 1470032367}
   selfRatio: 1
 --- !u!1 &699139455
 GameObject:
@@ -5007,9 +5014,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 1.05, y: 1.05, z: 1.05}
-  lastClickTime: 0
-  clickIntervalThreshold: 1
+  targetScale: 1.1
+  animDuration: 0.1
+  clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls: []
@@ -5321,9 +5329,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 738309510}
-  targetScale: {x: 1.1, y: 1.1, z: 1.1}
-  lastClickTime: 0
-  clickIntervalThreshold: 1
+  targetScale: 1.1
+  animDuration: 0.1
+  clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls:
@@ -5541,9 +5550,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 1.1, y: 1.1, z: 1.1}
-  lastClickTime: 0
-  clickIntervalThreshold: 0
+  targetScale: 1.1
+  animDuration: 0.15
+  clickIntervalThreshold: 0.3
+  actionDelay: 0
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls:
@@ -5823,9 +5833,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 0.95, y: 0.95, z: 0.95}
-  lastClickTime: 0
-  clickIntervalThreshold: 0
+  targetScale: 0.95
+  animDuration: 0.15
+  clickIntervalThreshold: 1
+  actionDelay: 0.3
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls:
@@ -6043,9 +6054,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 0.97, y: 0.97, z: 0.97}
-  lastClickTime: 0
-  clickIntervalThreshold: 0.5
+  targetScale: 1.1
+  animDuration: 0.1
+  clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls: []
@@ -6387,9 +6399,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 0.97, y: 0.97, z: 0.97}
-  lastClickTime: 0
-  clickIntervalThreshold: 0.5
+  targetScale: 1.1
+  animDuration: 0.1
+  clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls: []
@@ -7257,9 +7270,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 0.9, y: 0.9, z: 0.9}
-  lastClickTime: 0
+  targetScale: 1.1
+  animDuration: 0.1
   clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls:
@@ -7652,7 +7666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1106113232
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7861,7 +7875,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconRect: {fileID: 1182349765}
-  title: {fileID: 2052225831}
+  titleTxt: {fileID: 2052225831}
+  titleRect: {fileID: 2052225830}
   selfRatio: 0.5
 --- !u!1 &1118373722
 GameObject:
@@ -7953,9 +7968,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 0.97, y: 0.97, z: 0.97}
-  lastClickTime: 0
-  clickIntervalThreshold: 0.5
+  targetScale: 1.1
+  animDuration: 0.1
+  clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls: []
@@ -8188,7 +8204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -15}
+  m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: 157.5, y: 138}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1182349766
@@ -10071,7 +10087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1470032367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11507,6 +11523,8 @@ MonoBehaviour:
   targetScale: 1.3
   animDuration: 0.5
   curLife: 0
+  isTimerRunning: 0
+  timeForOneLife: 10
 --- !u!1 &1653464681
 GameObject:
   m_ObjectHideFlags: 0
@@ -11596,9 +11614,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 1.05, y: 1.05, z: 1.05}
-  lastClickTime: 0
-  clickIntervalThreshold: 1
+  targetScale: 1.1
+  animDuration: 0.1
+  clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls:
@@ -11778,9 +11797,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 0.9, y: 0.9, z: 0.9}
-  lastClickTime: 0
+  targetScale: 1.1
+  animDuration: 0.1
   clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls:
@@ -12281,9 +12301,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 0.97, y: 0.97, z: 0.97}
-  lastClickTime: 0
-  clickIntervalThreshold: 0.5
+  targetScale: 1.1
+  animDuration: 0.1
+  clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls: []
@@ -13743,9 +13764,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 1.05, y: 1.05, z: 1.05}
-  lastClickTime: 0
-  clickIntervalThreshold: 1
+  targetScale: 1.1
+  animDuration: 0.1
+  clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls: []
@@ -14011,9 +14033,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfRectTransform: {fileID: 0}
-  targetScale: {x: 0.97, y: 0.97, z: 0.97}
-  lastClickTime: 0
-  clickIntervalThreshold: 0.5
+  targetScale: 1.1
+  animDuration: 0.1
+  clickIntervalThreshold: 0
+  actionDelay: 0.1
   OnScaleAnimDone:
     m_PersistentCalls:
       m_Calls: []

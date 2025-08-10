@@ -10,9 +10,9 @@ namespace Coffee_Rush.UI.InGame
         [SerializeField] private eRestartButton btnType;
         public UnityEvent<eRestartButton> OnRestartButtonClicked;
 
-        protected async override UniTaskVoid OnButtonClickedAsync()
+        protected override void OnButtonClicked()
         {
-            base.OnButtonClickedAsync().Forget();
+            base.OnButtonClicked();
             
             OnRestartButtonClicked?.Invoke(btnType);
         }

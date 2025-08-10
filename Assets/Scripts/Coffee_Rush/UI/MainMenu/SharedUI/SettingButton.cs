@@ -19,7 +19,7 @@ namespace Coffee_Rush.UI.MainMenu.SharedUI
             onImg.SetActive(curState == 1);
         }
 
-        protected override async UniTaskVoid OnButtonClickedAsync()
+        protected override void OnButtonClicked()
         {
             if (!CanClick) return;
             
@@ -28,7 +28,7 @@ namespace Coffee_Rush.UI.MainMenu.SharedUI
             PlayerPrefs.SetInt(KeySave.SettingsKeys[selfIndex], newState);
             onImg.SetActive(newState == 1);
             
-            base.OnButtonClickedAsync().Forget();
+            base.OnButtonClicked();
         }
     }
 }

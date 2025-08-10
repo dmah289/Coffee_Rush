@@ -5,8 +5,9 @@ namespace Coffee_Rush.UI.BaseSystem
 {
     public abstract class ALoadingPage : MonoBehaviour
     {
-        [Header("Components")]
+        [Header("Shared Fields")]
         [SerializeField] private RectTransform fillRectTransform;
+        [SerializeField] private float fillDuration = 3.5f;
         
 
         protected abstract UniTaskVoid OnFullFillAmount();
@@ -17,11 +18,11 @@ namespace Coffee_Rush.UI.BaseSystem
             float curWidth = 0;
             fillRectTransform.sizeDelta = new Vector2(curWidth, 55);
 
-            while (timer < 3.5f)
+            while (timer < fillDuration)
             {
                 timer += Time.deltaTime;
 
-                curWidth = (timer / 3.5f) * 825;
+                curWidth = (timer / fillDuration) * 825;
                 fillRectTransform.sizeDelta = new Vector2(curWidth, 55);
                 
                 await UniTask.Yield();

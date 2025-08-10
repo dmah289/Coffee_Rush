@@ -258,4 +258,4 @@ MonoBehaviour:
   kettlesData:
   - row: 0
     col: 0
-    countdown: 1
+    countdown: 3

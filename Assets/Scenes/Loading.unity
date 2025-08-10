@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 1185942628}
   - component: {fileID: 1185942627}
   m_Layer: 5
-  m_Name: bg
+  m_Name: motion_bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -646,7 +646,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.745283, g: 0.5463247, b: 0.39021894, a: 1}
+  m_BackGroundColor: {r: 0.6862745, g: 0.42745098, b: 0.24705882, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

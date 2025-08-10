@@ -2,12 +2,8 @@ using Coffee_Rush.Level;
 using Coffee_Rush.UI.BaseSystem;
 using Coffee_Rush.UI.MainMenu.Home;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using Framework.UI;
-using UnityEngine;
-using UnityEngine.UI;
 
-namespace Coffee_Rush.UI.MainMenu
+namespace Coffee_Rush.UI.MainMenu.SharedUI
 {
     public class SettingPopup : APopup
     {

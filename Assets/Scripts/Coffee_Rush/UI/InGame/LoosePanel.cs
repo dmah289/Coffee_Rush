@@ -1,5 +1,6 @@
 using Coffee_Rush.Level;
 using Coffee_Rush.UI.BaseSystem;
+using Coffee_Rush.UI.MainMenu.Home;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -50,6 +51,7 @@ namespace Coffee_Rush.UI.InGame
 
         public void OnContinueBtnClicked()
         {
+            LifeSystem.Instance.CurLife--;
             LevelManager.Instance.FailLevel().Forget();
             gameObject.SetActive(false);
         }

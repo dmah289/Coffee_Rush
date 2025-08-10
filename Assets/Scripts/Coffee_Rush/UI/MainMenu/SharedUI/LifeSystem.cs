@@ -20,12 +20,15 @@ namespace Coffee_Rush.UI.MainMenu.Home
         [SerializeField] private float animDuration;
 
         
+        [Header("Life System Config")]
+        [SerializeField] private int curLife;
+        private float countdownRemaining;
         private DateTime lastSaveTime;
-        private bool isTimerRunning;
-        private float timeForOneLife = 1800;
+        [SerializeField] private bool isTimerRunning;
+        [SerializeField] private float timeForOneLife = 10;
         private int maxLives = 5;
         
-        [SerializeField] private int curLife;
+        
         public int CurLife
         {
             get => curLife;
@@ -36,7 +39,7 @@ namespace Coffee_Rush.UI.MainMenu.Home
             }
         }
 
-        private float countdownRemaining;
+        
         public float CurCountdown
         {
             get => countdownRemaining;
@@ -49,11 +52,13 @@ namespace Coffee_Rush.UI.MainMenu.Home
         
         public bool CanPlay => CurLife > 0;
 
-        private void OnEnable()
+        protected override void Awake()
         {
+            base.Awake();
+            
             LoadLifeData();
         }
-
+        
         private void Update()
         {
             if (isTimerRunning)
@@ -68,11 +73,6 @@ namespace Coffee_Rush.UI.MainMenu.Home
             }
         }
         
-        private void OnDisable()
-        {
-            SaveLifeData();
-        }
-        
         private void OnApplicationQuit()
         {
             SaveLifeData();
@@ -80,8 +80,8 @@ namespace Coffee_Rush.UI.MainMenu.Home
         
         private void LoadLifeData()
         {
-            CurLife = 0;
-            CurCountdown = timeForOneLife;
+            CurLife = 5;
+            CurCountdown = 0;
             if (PlayerPrefs.HasKey(KeySave.lastSaveTimeKey))
             {
                 DateTime savedTime = DateTime.Parse(PlayerPrefs.GetString(KeySave.lastSaveTimeKey));
@@ -90,7 +90,8 @@ namespace Coffee_Rush.UI.MainMenu.Home
                 
                 float totalSecondsElapsed = (float)elapsedTime.TotalSeconds;
                 int livesToAdd = Mathf.FloorToInt(totalSecondsElapsed / timeForOneLife);
-        
+
+                CurLife = PlayerPrefs.GetInt(KeySave.curLifeKey);
                 if (livesToAdd > 0)
                 {
                     CurLife += livesToAdd;
@@ -105,7 +106,7 @@ namespace Coffee_Rush.UI.MainMenu.Home
         
         private void SaveLifeData()
         {
-            PlayerPrefs.SetInt(KeySave.curLifeKey, CurLife);
+            PlayerPrefs.SetInt(KeySave.curLifeKey, curLife);
             PlayerPrefs.SetString(KeySave.lastSaveTimeKey, DateTime.Now.ToString());
             PlayerPrefs.SetFloat(KeySave.lastCountdownRemaining, countdownRemaining);
             PlayerPrefs.Save();
