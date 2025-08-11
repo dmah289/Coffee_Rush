@@ -47,6 +47,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15d60a3c9a06d044dba76666335ad963
+    m_Address: Assets/Fonts/BalooBhai-Regular SDF.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 176c3f6810f003642a96aec5d3f01ed6
     m_Address: Assets/Prefabs/Gameplay/Obstacles/Blockers/blocker07.prefab
     m_ReadOnly: 0
@@ -97,6 +102,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e245e029c9f4064e9fc60fa2b4ceca0
+    m_Address: Assets/Fonts/BalooBhai-Regular.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5f48c3c4703bffe40b288d96322ce583
     m_Address: Assets/Prefabs/Gameplay/block_type_04.prefab
     m_ReadOnly: 0
@@ -104,6 +114,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 65fea1311386074458d9b5ed5c17feaf
     m_Address: Assets/Prefabs/Gameplay/block_type_03.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68e6db2ebdc24f95958faec2be5558d6
+    m_Address: Assets/TextMesh Pro/Shaders/TMP_SDF.shader
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

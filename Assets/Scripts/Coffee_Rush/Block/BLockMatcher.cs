@@ -21,6 +21,9 @@ namespace Coffee_Rush.Block
         [SerializeField] private GateItem[] collectedGateItems;
         [SerializeField] private bool isBusy;
 
+        [SerializeField] private float a;
+        [SerializeField] private float p;
+
         public static event Action OnBlockFullSlot;
 
         public bool CanSelect
@@ -118,24 +121,46 @@ namespace Coffee_Rush.Block
         
         public void MoveOutOfView(eBlockType blockType)
         {
-            transform.DOMoveZ(-5, BlockConfig.LiftingDuration)
-                .SetEase(Ease.OutBack).OnComplete(() =>
+            transform.DOMoveZ(-3, BlockConfig.LiftingDuration)
+                .SetEase(Ease.OutBack);
+            
+            transform.DOScale(BlockConfig.TargetScaleToMove, BlockConfig.LiftingDuration)
+                .SetEase(Ease.OutFlash).OnComplete(() =>
                 {
-                    transform.DOScale(BlockConfig.targetScaleToMove, BlockConfig.LiftingDuration)
-                        .SetEase(Ease.OutFlash);
-                    
                     float direction = transform.position.x > 0 ? 1 : -1;
                     Vector3 outOfViewPos = new Vector3(
-                        (BoardLayoutGenerator.Instance.HalfWidthWorldPos + 10) * direction,
-                        BoardLayoutGenerator.Instance.HalfHeightWorldPos + 5,
-                        0);
-                    transform.DOJump(outOfViewPos, 5, 1, BlockConfig.LiftingDuration)
-                        .SetEase(Ease.InFlash).OnComplete(() =>
+                        (BoardLayoutGenerator.Instance.HalfWidthWorldPos + 20) * direction,
+                        BoardLayoutGenerator.Instance.HalfHeightWorldPos,
+                        -30);
+                    
+                    // Các tham số lùi lại
+                    float retreatDistance = 1f;
+                    float retreatDuration = BlockConfig.LiftingDuration * 0.3f;
+                    Vector3 retreatPos = transform.position + Vector3.right * (-direction * retreatDistance);
+                    
+                    transform.DOMove(retreatPos, retreatDuration)
+                        .SetEase(Ease.OutBack)
+                        .OnComplete(() =>
                         {
-                            ReturnGateItemsToPool();
-                            ObjectPooler.ReturnToPool(PoolingType.BlockType00 - 1 + (byte)blockType, blockController);
-                            BoardController.Instance.DecreaseBlockCount();
+                            transform.DOMove(outOfViewPos, BlockConfig.LiftingDuration * 2)
+                                .SetEase(Ease.InBack)
+                                .OnComplete(() =>
+                                {
+                                    ReturnGateItemsToPool();
+                                    ObjectPooler.ReturnToPool(
+                                        PoolingType.BlockType00 - 1 + (byte)blockType,
+                                        blockController);
+                                    BoardController.Instance.DecreaseBlockCount();
+                                });
                         });
+                    
+                    // transform.DOJump(outOfViewPos, 5, 1, BlockConfig.LiftingDuration * 2)
+                    //     .SetEase(Ease.InBack, a, p).OnComplete(() =>
+                    //     {
+                    //         ReturnGateItemsToPool();
+                    //         ObjectPooler.ReturnToPool(PoolingType.BlockType00 - 1 + (byte)blockType, blockController);
+                    //         BoardController.Instance.DecreaseBlockCount();
+                    //     });
                 });
         }
 

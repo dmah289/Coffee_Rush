@@ -15,6 +15,7 @@ namespace Coffee_Rush.UI
             base.Awake();
 
             pages = GetComponentsInChildren<IPage>();
+            Application.targetFrameRate = 60;
         }
 
         private void OnEnable()
