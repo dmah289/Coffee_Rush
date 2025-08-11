@@ -122,11 +122,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 93499a147602fee4298d1be73f90f5ff
-    m_Address: Assets/Prefabs/Gameplay/Obstacles/kettle.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9adf7ad742013d441b65b28daf7d66bc
     m_Address: Assets/Prefabs/Gameplay/Obstacles/Blockers/blocker01.prefab
     m_ReadOnly: 0
@@ -134,6 +129,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a132d30f9c934f7449c2043744bed9e4
     m_Address: Assets/Textures/Sprite Sheet.psd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a80000f63c20bbb4dbb32d2756e03e05
+    m_Address: Level 3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -177,6 +177,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea195546742ce5445ae9b41f6ae3b521
+    m_Address: Assets/Prefabs/Gameplay/Obstacles/kettle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f0c5ff9087d427d47bd8578cde4d5d27
     m_Address: Assets/Materials/CupBase.mat
     m_ReadOnly: 0
@@ -189,6 +194,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fbaf2b9276e0f1e4fa6a92f5d643af58
     m_Address: Assets/Materials/Item Main.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc7277f07e824e645b4376e5cb872f66
+    m_Address: Level 4
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

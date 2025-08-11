@@ -55,7 +55,7 @@ namespace Coffee_Rush.Board
 
         public void JumpOnFullSlot()
         {
-            selfTransform.DOLocalMoveY(1, GateItemConfig.PackingDuration / 2)
+            selfTransform.DOLocalMoveY(2, GateItemConfig.PackingDuration / 2)
                 .OnComplete(() => selfTransform.DOLocalMoveY(0, GateItemConfig.PackingDuration / 2));
         }
     }

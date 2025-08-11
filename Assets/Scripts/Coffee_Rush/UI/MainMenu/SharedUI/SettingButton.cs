@@ -26,6 +26,7 @@ namespace Coffee_Rush.UI.MainMenu.SharedUI
             int curState = PlayerPrefs.GetInt(KeySave.SettingsKeys[selfIndex], 1);
             int newState = 1 - curState;
             PlayerPrefs.SetInt(KeySave.SettingsKeys[selfIndex], newState);
+            print(PlayerPrefs.GetInt(KeySave.SettingsKeys[selfIndex]));
             onImg.SetActive(newState == 1);
             
             base.OnButtonClicked();

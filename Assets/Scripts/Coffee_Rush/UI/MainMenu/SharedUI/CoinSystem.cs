@@ -23,7 +23,7 @@ namespace Coffee_Rush.UI.MainMenu.SharedUI
 
         private void OnEnable()
         {
-            CoinCounter = PlayerPrefs.GetInt(KeySave.CoinCountKey, 10);
+            CoinCounter = PlayerPrefs.GetInt(KeySave.CoinCountKey, 0);
         }
     }
 }

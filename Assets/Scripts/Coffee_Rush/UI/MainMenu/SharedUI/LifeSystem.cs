@@ -2,8 +2,6 @@ using System;
 using DG.Tweening;
 using Framework;
 using Framework.DesignPattern;
-using Framework.Extensions;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,7 +73,10 @@ namespace Coffee_Rush.UI.MainMenu.Home
         
         private void OnApplicationQuit()
         {
-            SaveLifeData();
+            PlayerPrefs.SetInt(KeySave.curLifeKey, curLife);
+            PlayerPrefs.SetString(KeySave.lastSaveTimeKey, DateTime.Now.ToString());
+            PlayerPrefs.SetFloat(KeySave.lastCountdownRemaining, countdownRemaining);
+            PlayerPrefs.Save();
         }
         
         private void LoadLifeData()
@@ -102,14 +103,6 @@ namespace Coffee_Rush.UI.MainMenu.Home
                     CurCountdown -= totalSecondsElapsed;
                 }
             }
-        }
-        
-        private void SaveLifeData()
-        {
-            PlayerPrefs.SetInt(KeySave.curLifeKey, curLife);
-            PlayerPrefs.SetString(KeySave.lastSaveTimeKey, DateTime.Now.ToString());
-            PlayerPrefs.SetFloat(KeySave.lastCountdownRemaining, countdownRemaining);
-            PlayerPrefs.Save();
         }
 
         private void UpdateLifeCounterDisplay()
@@ -140,6 +133,12 @@ namespace Coffee_Rush.UI.MainMenu.Home
             counter.rectTransform.DOScale(targetScale, animDuration).From(1).SetLoops(4, LoopType.Yoyo)
                 .OnComplete(() => counter.rectTransform.localScale = Vector3.one);
             counter.DOFade(1, animDuration).From(0.3f).SetLoops(3, LoopType.Yoyo);
+        }
+
+        public void DecreaseOnLifeLost()
+        {
+            CurLife--;
+            CurCountdown = timeForOneLife;
         }
     }
 }

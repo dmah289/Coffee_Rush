@@ -25,14 +25,13 @@ namespace Coffee_Rush.Block
             selfMeshRenderer = GetComponent<MeshRenderer>();
         }
 
-        public async UniTask CollectGateItem(GateItem item)
+        public void CollectGateItem(GateItem item)
         {
             item.transform.SetParent(targetPoint);
-            
-            Tween jumpTween = item.transform.DOLocalJump(Vector3.zero, 5, 1,GateItemConfig.MoveDuration)
-                .SetEase(Ease.OutFlash);
-            await jumpTween.AsyncWaitForCompletion();
-            item.OnJumpedToSlot(targetPoint.parent.parent);
+
+            item.transform.DOLocalJump(Vector3.zero, 7, 1, GateItemConfig.MoveDuration)
+                .SetEase(Ease.OutFlash)
+                .OnStart(() => item.OnJumpedToSlot(targetPoint.parent.parent));
         }
 
         public void Setup(eColorType colorType)

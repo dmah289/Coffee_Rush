@@ -22,7 +22,7 @@ namespace Coffee_Rush.UI.InGame
         {
             bgClickHandler.OnBackgroundHiden?.Invoke();
             
-            LifeSystem.Instance.CurLife--;
+            LifeSystem.Instance.DecreaseOnLifeLost();
             LevelManager.Instance.StopGameplay();
             
             RestartPanel restartPanel = bgClickHandler as RestartPanel;

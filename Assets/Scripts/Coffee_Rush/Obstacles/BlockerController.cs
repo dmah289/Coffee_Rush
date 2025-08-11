@@ -26,10 +26,13 @@ namespace Coffee_Rush.Obstacles
             blockFitting = GetComponent<BlockFitting>();
         }
 
-        public void Setup(Vector3 position, eMovementDirection direction)
+        public void SetupOnLevelStart(Vector3 position, eMovementDirection direction, eBlockType blockerType)
         {
-            SetupMovementDirection(direction);
+            blockType = blockerType;
+            ShowMovementDirection(direction);
             blockFitting.SetCheckPointToTargetTile(position);
+            
+            InitializeAllJobs();
         }
         
         protected override void ApplyJobResults()
@@ -52,7 +55,7 @@ namespace Coffee_Rush.Obstacles
             blockFitting.FitBoard();
         }
 
-        private void SetupMovementDirection(eMovementDirection direction)
+        private void ShowMovementDirection(eMovementDirection direction)
         {
             movementDirection = direction;
             

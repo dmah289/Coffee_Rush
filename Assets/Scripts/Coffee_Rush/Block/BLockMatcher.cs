@@ -75,10 +75,13 @@ namespace Coffee_Rush.Block
                         GateItem item = gate.GetCollectableItem();
 
                         collectedGateItems[currEmptySlotIdx] = item;
-                        await cupHolders[currEmptySlotIdx++].CollectGateItem(item);
+                        cupHolders[currEmptySlotIdx++].CollectGateItem(item);
+                        await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.3f * 1000));
+                        
 
                         if (currEmptySlotIdx == cupHolders.Length)
                         {
+                            await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.7f * 1000));
                             OnBlockFullSlot?.Invoke();
                             CanSelect = false;
                             SelectionController.Instance.DeselectCurrentObject(blockController);
@@ -107,10 +110,10 @@ namespace Coffee_Rush.Block
             {
                 collectedGateItems[i].JumpOnFullSlot();
                 collectedGateItems[i].PackOnFullSlot();
-                await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 * 0.3f));
+                await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 / collectedGateItems.Length));
             }
 
-            await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 * 0.7f));
+            await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 * (1 - 1f / collectedGateItems.Length)));
         }
         
         public void MoveOutOfView(eBlockType blockType)

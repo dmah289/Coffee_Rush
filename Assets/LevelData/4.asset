@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 714346eaba354802aa40ea21ede83876, type: 3}
-  m_Name: 2
+  m_Name: 4
   m_EditorClassIdentifier: 
-  width: 5
-  height: 5
-  levelIndex: 2
+  width: 6
+  height: 6
+  levelIndex: 4
   totalTime: 180
   coinAmount: 30
   cellsData:
@@ -93,56 +93,117 @@ MonoBehaviour:
   - isActive: 1
     blockType: 0
     blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
   blocksData:
-  - row: 3
+  - row: 1
     col: 0
-    blockType: 2
+    blockType: 8
     blockColor: 2
     moveableDir: 2
     countdownIce: 0
-    blockVisualEuler: {x: 0, y: 0, z: 90}
-  - row: 1
-    col: 3
-    blockType: 2
-    blockColor: 3
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 5
+    col: 0
+    blockType: 8
+    blockColor: 6
     moveableDir: 2
     countdownIce: 0
-    blockVisualEuler: {x: 0, y: 0, z: 90}
-  - row: 3
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 5
+    col: 4
+    blockType: 8
+    blockColor: 4
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 2
     col: 2
-    blockType: 7
+    blockType: 3
     blockColor: 1
     moveableDir: 2
     countdownIce: 0
     blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 2
+    col: 3
+    blockType: 3
+    blockColor: 3
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 2
+    col: 4
+    blockType: 2
+    blockColor: 5
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 90}
   gatesData:
+  - row: 5
+    col: 4
+    gateDir: 1
+    itemColors: 0606060606060606
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 010401
+  - row: 4
+    col: 5
+    gateDir: 2
+    itemColors: 06060606060606060505050505050505
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 020102
+  - row: 5
+    col: 1
+    gateDir: 1
+    itemColors: 02020202020202020202020202020202
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 010401
+  - row: 0
+    col: 4
+    gateDir: 3
+    itemColors: 030303030303030303030303
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 030203
   - row: 1
     col: 0
     gateDir: 4
-    itemColors: 01010101010101010101
+    itemColors: 01010101010101010101010104040404040404040404040404040404
     compressedItemPath:
-      turnIndices: 000000000300000005000000
+      turnIndices: 000000000200000004000000
       turnDirections: 040304
-  - row: 3
-    col: 4
-    gateDir: 2
-    itemColors: 01010101010101010101
-    compressedItemPath:
-      turnIndices: 000000000300000005000000
-      turnDirections: 020102
-  - row: 4
-    col: 2
-    gateDir: 1
-    itemColors: 0202020202020202
-    compressedItemPath:
-      turnIndices: 000000000300000005000000
-      turnDirections: 010401
-  - row: 0
-    col: 2
-    gateDir: 3
-    itemColors: 0303030303030303
-    compressedItemPath:
-      turnIndices: 000000000300000005000000
-      turnDirections: 030203
   blockersData: []
   kettlesData: []

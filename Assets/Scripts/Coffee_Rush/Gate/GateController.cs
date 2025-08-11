@@ -22,15 +22,14 @@ namespace Coffee_Rush.Board
         private Collider2D[] colliders = new Collider2D[1];
         [SerializeField] private BlockController currBlock;
         private CancellationTokenSource cts;
+        [SerializeField] private Vector3 initPos, pressedPos; 
         
         
         [Header("GateItem Manager")]
         [SerializeField] private List<GateItem> gateItems;
-        [SerializeField] private eDirection gateDir;
         [SerializeField] private eColorType colorType;
 
 
-        public eDirection GateDir => gateDir;
         public eColorType ColorType
         {
             get => colorType;
@@ -51,8 +50,6 @@ namespace Coffee_Rush.Board
 
         public void Setup(Vector3 tilePos,eDirection gateDir, eColorType[] itemColors, CompressedItemPath itemsPath)
         {
-            this.gateDir = gateDir;
-            
             Vector3 pos = new Vector3(
                 tilePos.x + GateConfig.GateFitTileDir[(byte)gateDir - 1].x * BoardConfig.cellSize / 2,
                 tilePos.y + GateConfig.GateFitTileDir[(byte)gateDir - 1].y * BoardConfig.cellSize / 2,
@@ -65,6 +62,9 @@ namespace Coffee_Rush.Board
             
             selfTransform.position = pos;
             selfTransform.eulerAngles = new Vector3(0, 0, GateConfig.GateZRotByDir[(byte)gateDir-1]);
+            
+            initPos = pos;
+            pressedPos = new Vector3(pos.x, pos.y, pos.z + 0.5f);
             
             SpawnGateItems(gateDir, itemColors, itemsPath);
         }
@@ -127,9 +127,9 @@ namespace Coffee_Rush.Board
             
             GateItem item = gateItems[0];
 
-            selfTransform.DOMove(selfTransform.position + GateConfig.impulseOffset, GateItemConfig.MoveDuration / 2)
+            selfTransform.DOMove(pressedPos, GateItemConfig.MoveDuration * 0.3f)
                 .SetEase(Ease.OutQuad)
-                .OnComplete(() => selfTransform.position -= GateConfig.impulseOffset);
+                .OnComplete(() => selfTransform.position = initPos );
             
             UpdateGateColor();
 
@@ -152,7 +152,7 @@ namespace Coffee_Rush.Board
             {
                 Vector3 targetPos = gateItems[i-1].transform.position;
                 
-                gateItems[i].transform.DOLocalMove(targetPos, GateItemConfig.MoveDuration)
+                gateItems[i].transform.DOLocalMove(targetPos, GateItemConfig.MoveDuration * 0.3f)
                     .SetEase(Ease.OutFlash);
             }
         }

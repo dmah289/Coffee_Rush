@@ -13,6 +13,7 @@ namespace Framework.UI
         public static float FadeDuration = 0.2f;
         
         [SerializeField] private Image selfImg;
+        [SerializeField] private float targetAlpha = 200/255f;
         
         public UnityEvent OnBackgroundHiden;
         public UnityEvent OnBackgroundShown;
@@ -38,7 +39,7 @@ namespace Framework.UI
         public virtual void ShowBackground()
         {
             gameObject.SetActive(true);
-            selfImg.SetAlpha(0.4f);
+            selfImg.SetAlpha(targetAlpha);
             OnBackgroundShown?.Invoke();
         }
     }

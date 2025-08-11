@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 714346eaba354802aa40ea21ede83876, type: 3}
-  m_Name: 0
+  m_Name: 3
   m_EditorClassIdentifier: 
   width: 5
   height: 5
-  levelIndex: 0
+  levelIndex: 3
   totalTime: 180
   coinAmount: 30
   cellsData:
@@ -94,34 +94,62 @@ MonoBehaviour:
     blockType: 0
     blockColor: 0
   blocksData:
+  - row: 4
+    col: 0
+    blockType: 3
+    blockColor: 3
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
   - row: 2
-    col: 1
-    blockType: 4
+    col: 4
+    blockType: 3
     blockColor: 1
     moveableDir: 2
     countdownIce: 0
-    blockVisualEuler: {x: 0, y: 0, z: 90}
-  - row: 2
-    col: 3
-    blockType: 4
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 1
+    col: 0
+    blockType: 8
     blockColor: 2
     moveableDir: 2
     countdownIce: 0
-    blockVisualEuler: {x: 0, y: 0, z: 270}
-  gatesData:
+    blockVisualEuler: {x: 0, y: 0, z: 0}
   - row: 4
-    col: 2
-    gateDir: 1
-    itemColors: 01010101010101010101010101010101
+    col: 3
+    blockType: 8
+    blockColor: 4
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  gatesData:
+  - row: 1
+    col: 0
+    gateDir: 4
+    itemColors: 010101010101
     compressedItemPath:
-      turnIndices: 000000000300000006000000
-      turnDirections: 010401
+      turnIndices: 000000000200000004000000
+      turnDirections: 040304
   - row: 0
-    col: 2
+    col: 3
     gateDir: 3
+    itemColors: 010101010101030303030303030303030303
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 030203
+  - row: 4
+    col: 1
+    gateDir: 1
+    itemColors: 04040404040404040404040404040404
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 010401
+  - row: 3
+    col: 4
+    gateDir: 2
     itemColors: 02020202020202020202020202020202
     compressedItemPath:
-      turnIndices: 000000000300000006000000
-      turnDirections: 030203
+      turnIndices: 000000000200000004000000
+      turnDirections: 020102
   blockersData: []
   kettlesData: []

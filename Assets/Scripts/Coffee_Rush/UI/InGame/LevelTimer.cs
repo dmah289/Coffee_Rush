@@ -63,6 +63,7 @@ namespace Coffee_Rush.Level
                 {
                     countDownTimer = 0f;
                     counter.text = "00:00";
+                    
                     loosePanel.Show(eLooseReason.TimeOut).Forget();
                 }
             }

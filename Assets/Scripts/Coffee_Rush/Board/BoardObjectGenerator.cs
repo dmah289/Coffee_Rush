@@ -52,8 +52,10 @@ namespace Coffee_Rush.Board
                 BlockerController blocker = ObjectPooler.GetFromPool<BlockerController>
                     ((PoolingType)(blockersData[i].blockerType + (byte)PoolingType.BlockerType00 - 1));
                 
-                blocker.Setup(tiles[blockersData[i].row, blockersData[i].col].transform.position, 
-                    blockersData[i].movementDirection);
+                blocker.SetupOnLevelStart(
+                    tiles[blockersData[i].row, blockersData[i].col].transform.position, 
+                    blockersData[i].movementDirection,
+                    blockersData[i].blockerType);
                 
                 blockers[i] = blocker;
             }
@@ -68,7 +70,8 @@ namespace Coffee_Rush.Board
             for (int i = 0; i < kettlesData.Length; i++)
             {
                 KettleController kettle = ObjectPooler.GetFromPool<KettleController>(PoolingType.Kettle);
-                kettle.Setup(tiles[kettlesData[i].row, kettlesData[i].col].transform.position, kettlesData[i].countdown);
+                Vector3 tilePos = tiles[kettlesData[i].row, kettlesData[i].col].transform.position;
+                kettle.Setup(new Vector3(tilePos.x, tilePos.y - 0.5f, tilePos.z), kettlesData[i].countdown);
                 
                 kettles[i] = kettle;
             }

@@ -27,7 +27,7 @@ namespace Coffee_Rush.JobCalculation
             {
                 curTouchToInitTouchDir = math.normalize(curTouchToInitTouchDir);
                 float distance = math.sqrt(distanceSqr);
-                if (distance > 3) distance = 3;
+                if (distance > 5) distance = 5;
                 else distance *= distance / 2f;
                 
                 Velocity.Value = distance * Speed * curTouchToInitTouchDir;
