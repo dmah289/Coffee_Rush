@@ -13,6 +13,12 @@ namespace Coffee_Rush.Board
         [SerializeField] public BoardLayoutGenerator layoutGenerator;
         [SerializeField] private BoardObjectSpawner objectSpawner;
 
+        public int BlockCount
+        {
+            get => objectSpawner.BlockCount;
+            set => objectSpawner.BlockCount = value;
+        }
+
 
         protected override void Awake()
         {

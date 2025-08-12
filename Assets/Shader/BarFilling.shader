@@ -60,13 +60,11 @@
 
             fixed4 frag(interpolator i) : SV_Target
             {
-                
                 fixed4 col = tex2D(_MainTex, i.uv.xy);
                 fixed4 mask = tex2D(_MaskTex, frac(i.uv.zw));
                 col.rgb = lerp(col.rgb, mask.g*col.rgb, mask.a);
 
                 return col;
-                //return fixed4(frac(i.uv.zw),0,1);
             }
             ENDCG
         }

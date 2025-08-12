@@ -7,9 +7,9 @@ namespace Framework.Extensions
     {
         private static readonly int MainTexSt = Shader.PropertyToID("_MainTex_ST");
         private static MaterialPropertyBlock mpb = new MaterialPropertyBlock();
-        private static float ColorTextureHorizontalOffset = 340 / 2048f;
-        private static float ColorTextureVerticalOffset = 428 / 2048f;
-        private static int noElePerRow = 6;
+        private const float ColorTextureHorizontalOffset = 340 / 2048f;
+        private const float ColorTextureVerticalOffset = 428 / 2048f;
+        private const int elementsPerRow = 6;
         
         public static void SetTextureOffsetByColor(this MeshRenderer meshRenderer, eColorType colorType)
         {
@@ -23,8 +23,8 @@ namespace Framework.Extensions
             }
             
             int colorIdx = (byte)colorType - 1;
-            float offsetX = ColorTextureHorizontalOffset * (colorIdx % noElePerRow);
-            float offsetY = ColorTextureVerticalOffset * (colorIdx / noElePerRow);
+            float offsetX = ColorTextureHorizontalOffset * (colorIdx % elementsPerRow);
+            float offsetY = -ColorTextureVerticalOffset * (colorIdx / elementsPerRow);
             
             mpb.SetVector(MainTexSt, new Vector4(1, 1, offsetX, offsetY));
             meshRenderer.SetPropertyBlock(mpb);

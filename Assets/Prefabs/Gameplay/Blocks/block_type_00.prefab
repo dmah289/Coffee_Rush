@@ -191,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider2D: []
   blockController: {fileID: 0}
+  blockVisual: {fileID: 0}
   currEmptySlotIdx: 0
   collectedGateItems: []
   isBusy: 0
@@ -372,6 +373,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 883ce47e6c3483b46ac06266fce3dfed, type: 2}
+  - {fileID: 2100000, guid: 93770a77434b18041828ccbb4c25d551, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -472,6 +474,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 883ce47e6c3483b46ac06266fce3dfed, type: 2}
+  - {fileID: 2100000, guid: 93770a77434b18041828ccbb4c25d551, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -604,6 +607,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 883ce47e6c3483b46ac06266fce3dfed, type: 2}
+  - {fileID: 2100000, guid: 93770a77434b18041828ccbb4c25d551, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1044,6 +1048,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 883ce47e6c3483b46ac06266fce3dfed, type: 2}
+  - {fileID: 2100000, guid: 93770a77434b18041828ccbb4c25d551, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

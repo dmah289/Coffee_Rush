@@ -12,8 +12,8 @@ namespace Coffee_Rush.Block
         #endregion
         
         #region Movement Settings
-        public static readonly float Speed = 50f;
-        public static readonly float LiftingDuration = 0.75f;
+        public static readonly float SpeedOnBoard = 50f;
+        public static readonly float SpeedToMoveOutOfView = 20f;
         public static readonly float TargetScaleToMove = 1.1f;
         #endregion
     }

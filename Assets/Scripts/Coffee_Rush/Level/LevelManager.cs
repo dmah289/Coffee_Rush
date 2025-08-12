@@ -17,7 +17,7 @@ namespace Coffee_Rush.Level
 {
     public class LevelManager : MonoSingleton<LevelManager>
     {
-        private static int MaxLevelIndex = 5;
+        private static int MaxLevelIndex = 6;
         
         [Header("Self Components")]
         [SerializeField] public LevelLoader levelLoader;

@@ -35,9 +35,6 @@ namespace Coffee_Rush.UI.InGame
             
             revievePanel.SetActive(reason == eLooseReason.TimeOut);
             failLevelPanel.gameObject.SetActive(reason != eLooseReason.TimeOut);
-            
-            selfRect.localScale = Vector3.zero;
-            selfRect.DOScale(Vector3.one, 0.2f);
         }
 
         public void OnNoBtnClicked()
@@ -51,7 +48,7 @@ namespace Coffee_Rush.UI.InGame
 
         public void OnContinueBtnClicked()
         {
-            LifeSystem.Instance.CurLife--;
+            LifeSystem.Instance.DecreaseOnLifeLost();
             LevelManager.Instance.FailLevel().Forget();
             gameObject.SetActive(false);
         }

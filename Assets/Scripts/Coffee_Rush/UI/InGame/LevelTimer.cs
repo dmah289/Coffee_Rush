@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using Coffee_Rush.Board;
 using Coffee_Rush.UI.InGame;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -64,7 +65,8 @@ namespace Coffee_Rush.Level
                     countDownTimer = 0f;
                     counter.text = "00:00";
                     
-                    loosePanel.Show(eLooseReason.TimeOut).Forget();
+                    if(BoardController.Instance.BlockCount > 0)
+                        loosePanel.Show(eLooseReason.TimeOut).Forget();
                 }
             }
         }

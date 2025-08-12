@@ -1,13 +1,16 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "OutlinedObject" {
+Shader "iKame/OutlinedObject" {
     Properties {
-        _Thickness ("Thickness", Float) = 0.1
-        _Bias ("Bias", Float) = 0.1
-        _MainTex ("Texture", 2D) = "white" {}
+        _Thickness ("Thickness", Range(0, 0.5)) = 0.1
+        _Bias ("Bias", Range(0, 0.1)) = 0.01
+        _Selected ("Selected", Float) = 0
+        _OutlineColor ("Outline Color", Color) = (1,1,1,1)
     }
-        
+
     SubShader {
+        
+        ZWrite Off
+        ZTest Less
+        
         Pass {
             Cull Front
             Stencil {
@@ -15,23 +18,26 @@ Shader "OutlinedObject" {
                 Comp NotEqual
                 Pass Keep
             }
-        
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            
-            uniform float _Thickness, _Bias;
-                        
+            #include "UnityCG.cginc"
+
+            float _Thickness, _Bias, _Selected;
+            fixed4 _OutlineColor;
+
             float4 vert(float4 vertex : POSITION, float3 normal : NORMAL) : SV_POSITION {
-				float4 pos = UnityObjectToClipPos(vertex + normal * _Thickness);
-				pos.z -= _Bias;
+                float3 extruded = vertex.xyz + normal * (_Thickness * _Selected);
+                float4 pos = UnityObjectToClipPos(float4(extruded, 1));
+                pos.z -= _Bias * _Selected;
                 return pos;
             }
-            
-            float4 frag(void) : COLOR {
-                return float4(1.0, 1.0, 1.0, 1.0);
+
+            fixed4 frag() : SV_Target {
+                return _OutlineColor;
             }
             ENDCG
         }
-    } 
+    }
 }

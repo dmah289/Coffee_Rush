@@ -28,7 +28,6 @@ namespace Coffee_Rush.Obstacles
                 else
                 {
                     kettleCountdown = 0;
-                    LevelManager.Instance.StopGameplay();
                     transform.DOScale(new Vector3(2f, 2f, 2f), 1f).SetDelay(1f).OnComplete(() =>
                     {
                         LevelManager.Instance.ShowLoosePanel(eLooseReason.KettleExplosion);

@@ -64,7 +64,7 @@ namespace Coffee_Rush.Board
             selfTransform.eulerAngles = new Vector3(0, 0, GateConfig.GateZRotByDir[(byte)gateDir-1]);
             
             initPos = pos;
-            pressedPos = new Vector3(pos.x, pos.y, pos.z + 0.5f);
+            pressedPos = new Vector3(pos.x, pos.y, pos.z + 0.3f);
             
             SpawnGateItems(gateDir, itemColors, itemsPath);
         }
@@ -127,8 +127,10 @@ namespace Coffee_Rush.Board
             
             GateItem item = gateItems[0];
 
-            selfTransform.DOMove(pressedPos, GateItemConfig.MoveDuration * 0.3f)
-                .SetEase(Ease.OutQuad)
+            selfTransform.DOKill();
+            selfTransform.DOMove(pressedPos, GateItemConfig.MoveDuration * 0.1f)
+                .SetEase(Ease.OutBack)
+                .OnKill(() => selfTransform.position = initPos )
                 .OnComplete(() => selfTransform.position = initPos );
             
             UpdateGateColor();
@@ -152,7 +154,7 @@ namespace Coffee_Rush.Board
             {
                 Vector3 targetPos = gateItems[i-1].transform.position;
                 
-                gateItems[i].transform.DOLocalMove(targetPos, GateItemConfig.MoveDuration * 0.3f)
+                gateItems[i].transform.DOMove(targetPos, GateItemConfig.MoveDuration * 0.1f)
                     .SetEase(Ease.OutFlash);
             }
         }

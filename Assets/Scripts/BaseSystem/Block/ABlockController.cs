@@ -86,7 +86,7 @@ namespace BaseSystem.Block
             currInitTouchPos = new (Allocator.Persistent);
             velocityCalculationJob = new VelocityCalculationJob
             {
-                Speed = BlockConfig.Speed,
+                Speed = BlockConfig.SpeedOnBoard,
                 CurInitTouchPos = currInitTouchPos,
                 Velocity = finalVelocity
             };

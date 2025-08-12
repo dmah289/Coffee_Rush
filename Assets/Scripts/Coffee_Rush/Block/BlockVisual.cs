@@ -1,5 +1,6 @@
 ﻿using System;
 using Coffee_Rush.Level;
+using DG.Tweening;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -91,6 +92,14 @@ namespace Coffee_Rush.Block
                 horizontalSprite.gameObject.SetActive(false);
                 verticalSprite.gameObject.SetActive(true);
             }
+        }
+
+        public void TiltOnMoveOutOfView(float direction, float duration)
+        {
+            Vector3 targetEuler = new Vector3(0
+                , 20 * -direction
+                , visualParent.localEulerAngles.z);
+            visualParent.DOLocalRotate(targetEuler, duration);
         }
     }
 }

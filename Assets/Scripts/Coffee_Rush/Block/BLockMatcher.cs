@@ -15,14 +15,12 @@ namespace Coffee_Rush.Block
     {
         [SerializeField] private BoxCollider2D[] boxCollider2D;
         [SerializeField] private BlockController blockController;
+        [SerializeField] private BlockVisual blockVisual;
         
         [Header("Matching Settings")]
         [SerializeField] private int currEmptySlotIdx;
         [SerializeField] private GateItem[] collectedGateItems;
         [SerializeField] private bool isBusy;
-
-        [SerializeField] private float a;
-        [SerializeField] private float p;
 
         public static event Action OnBlockFullSlot;
 
@@ -40,6 +38,7 @@ namespace Coffee_Rush.Block
         {
             boxCollider2D = GetComponentsInChildren<BoxCollider2D>();
             blockController = GetComponent<BlockController>();
+            blockVisual = GetComponentInChildren<BlockVisual>();
 
             CanSelect = true;
         }
@@ -79,15 +78,18 @@ namespace Coffee_Rush.Block
 
                         collectedGateItems[currEmptySlotIdx] = item;
                         cupHolders[currEmptySlotIdx++].CollectGateItem(item);
-                        await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.3f * 1000));
+                        await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.1f * 1000));
                         
 
                         if (currEmptySlotIdx == cupHolders.Length)
                         {
-                            await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.7f * 1000));
                             OnBlockFullSlot?.Invoke();
+                            BoardController.Instance.BlockCount--;
                             CanSelect = false;
                             SelectionController.Instance.DeselectCurrentObject(blockController);
+                            transform.position = new Vector3(transform.position.x, transform.position.y, -1.3f);
+                            
+                            await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.9f * 1000));
                             await PackAllGateItems();
                             MoveOutOfView(blockType);
                         }
@@ -109,58 +111,37 @@ namespace Coffee_Rush.Block
 
         private async UniTask PackAllGateItems()
         {
+            await transform.DOMoveZ(-3, 0.5f)
+                .SetEase(Ease.OutBack)
+                .AsyncWaitForCompletion();
+            
             for (int i = 0; i < collectedGateItems.Length; i++)
             {
                 collectedGateItems[i].JumpOnFullSlot();
                 collectedGateItems[i].PackOnFullSlot();
                 await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 / collectedGateItems.Length));
             }
-
-            await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 * (1 - 1f / collectedGateItems.Length)));
+            await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 * 0.5f * (1 - 1f / collectedGateItems.Length)));
         }
         
         public void MoveOutOfView(eBlockType blockType)
         {
-            transform.DOMoveZ(-3, BlockConfig.LiftingDuration)
-                .SetEase(Ease.OutBack);
+            float direction = transform.position.x > 0 ? 1 : -1;
+            Vector3 outOfViewPos = new Vector3(
+                (BoardLayoutGenerator.Instance.HalfWidthWorldPos + 10) * direction,
+                BoardLayoutGenerator.Instance.HalfHeightWorldPos,
+                -15);
+
+            float moveDuration = Vector3.Distance(transform.position, outOfViewPos) / BlockConfig.SpeedToMoveOutOfView;
             
-            transform.DOScale(BlockConfig.TargetScaleToMove, BlockConfig.LiftingDuration)
-                .SetEase(Ease.OutFlash).OnComplete(() =>
+            blockVisual.TiltOnMoveOutOfView(direction, moveDuration * 3);
+            transform.DOScale(BlockConfig.TargetScaleToMove, moveDuration * 3);
+            transform.DOMove(outOfViewPos, moveDuration)
+                .SetEase(Ease.InBack)
+                .OnComplete(() =>
                 {
-                    float direction = transform.position.x > 0 ? 1 : -1;
-                    Vector3 outOfViewPos = new Vector3(
-                        (BoardLayoutGenerator.Instance.HalfWidthWorldPos + 20) * direction,
-                        BoardLayoutGenerator.Instance.HalfHeightWorldPos,
-                        -30);
-                    
-                    // Các tham số lùi lại
-                    float retreatDistance = 1f;
-                    float retreatDuration = BlockConfig.LiftingDuration * 0.3f;
-                    Vector3 retreatPos = transform.position + Vector3.right * (-direction * retreatDistance);
-                    
-                    transform.DOMove(retreatPos, retreatDuration)
-                        .SetEase(Ease.OutBack)
-                        .OnComplete(() =>
-                        {
-                            transform.DOMove(outOfViewPos, BlockConfig.LiftingDuration * 2)
-                                .SetEase(Ease.InBack)
-                                .OnComplete(() =>
-                                {
-                                    ReturnGateItemsToPool();
-                                    ObjectPooler.ReturnToPool(
-                                        PoolingType.BlockType00 - 1 + (byte)blockType,
-                                        blockController);
-                                    BoardController.Instance.DecreaseBlockCount();
-                                });
-                        });
-                    
-                    // transform.DOJump(outOfViewPos, 5, 1, BlockConfig.LiftingDuration * 2)
-                    //     .SetEase(Ease.InBack, a, p).OnComplete(() =>
-                    //     {
-                    //         ReturnGateItemsToPool();
-                    //         ObjectPooler.ReturnToPool(PoolingType.BlockType00 - 1 + (byte)blockType, blockController);
-                    //         BoardController.Instance.DecreaseBlockCount();
-                    //     });
+                    ReturnGateItemsToPool();
+                    ObjectPooler.ReturnToPool(PoolingType.BlockType00 - 1 + (byte)blockType, blockController);
                 });
         }
 

@@ -391,6 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillRectTransform: {fileID: 749545145}
+  fillDuration: 2.5
   newSceneName: Gameplay scene
 --- !u!1 &991203946
 GameObject:

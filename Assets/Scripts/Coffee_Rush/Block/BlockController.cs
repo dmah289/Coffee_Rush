@@ -92,6 +92,10 @@ namespace Coffee_Rush.Block
              return;
             
             base.OnSelect(mousePos);
+            for(int i = 0; i < cupHolders.Length; i++)
+            {
+                cupHolders[i].ShowOutline(true);
+            }
         }
 
         public async UniTaskVoid TryCollectGateItems(GateController gate, CancellationTokenSource cts)
@@ -146,8 +150,11 @@ namespace Coffee_Rush.Block
             if (isDragging) blockVisual.VisualEuler = currentEuler.Value;
             else
             {
-                curEulerNotDragging = Vector3.Lerp(curEulerNotDragging, initBlockVisualEuler, BlockConfig.DampingFactor * Time.deltaTime);
-                blockVisual.VisualEuler = curEulerNotDragging;
+                if (blockMatcher.CanSelect)
+                {
+                    curEulerNotDragging = Vector3.Lerp(curEulerNotDragging, initBlockVisualEuler, BlockConfig.DampingFactor * Time.deltaTime);
+                    blockVisual.VisualEuler = curEulerNotDragging;
+                }
             }
         }
 
@@ -161,6 +168,10 @@ namespace Coffee_Rush.Block
         public override void OnDeselect()
         {
             base.OnDeselect();
+            for(int i = 0; i < cupHolders.Length; i++)
+            {
+                cupHolders[i].ShowOutline(false);
+            }
             if(blockMatcher.CanSelect) blockFitting.FitBoard();
         }
         

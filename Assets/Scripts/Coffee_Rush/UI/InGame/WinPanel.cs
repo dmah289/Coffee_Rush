@@ -15,6 +15,7 @@ namespace Coffee_Rush.UI.InGame
     {
         [Header("UI Elements")]
         [SerializeField] private RectTransform selfRect;
+        [SerializeField] private RectTransform visualRect;
         [SerializeField] private RectTransform bg_icon;
         [SerializeField] private RectTransform target;
         
@@ -52,16 +53,18 @@ namespace Coffee_Rush.UI.InGame
         {
             LevelManager.Instance.StopGameplay();
             
-            await UniTask.Delay(500);
+            await UniTask.Delay(2500);
             
             gameObject.SetActive(true);
             coinAmount = LevelManager.Instance.levelLoader.currLevelData.coinAmount;
             coinAmountTxt.text = $"{coinAmount}";
-            selfRect.localScale = Vector3.zero;
-            selfRect.DOScale(Vector3.one, 0.2f);
+            visualRect.localScale = Vector3.zero;
+            visualRect.DOScale(Vector3.one, 0.75f)
+                .SetEase(Ease.OutBack);
         }
         
         public void OnClaimBtnClicked() => OnClaimBtnClickedAsync().Forget();
+        
         public async UniTask OnClaimBtnClickedAsync()
         {
             coinSystem.CoinCounter += coinAmount;
@@ -70,7 +73,7 @@ namespace Coffee_Rush.UI.InGame
             await CollectCoins();
             await UniTask.Delay(1000);
             
-            LevelManager.Instance.WinLevel();
+            LevelManager.Instance.WinLevel().Forget();
             gameObject.SetActive(false);
         }
 

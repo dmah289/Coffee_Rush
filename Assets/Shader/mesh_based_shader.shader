@@ -1,4 +1,4 @@
-Shader "Unlit/mesh_based_shader"
+Shader "Unlit/level_timer"
 {
     Properties
     {
@@ -57,8 +57,8 @@ Shader "Unlit/mesh_based_shader"
             fixed4 frag(interpolator i) : SV_Target
             {
                 fixed2 mask = tex2D(_MainTex, i.uv).ra;
-                float pross = _Progress*1.1-0.1;
-                fixed4 finalColor = lerp(_RemainingColor, _ElapsedColor, smoothstep(pross,pross+0.01, mask.x));
+                float pross = 1 - _Progress;
+                fixed4 finalColor = lerp(_ElapsedColor, _RemainingColor, smoothstep(pross,pross+0.01, mask.x));
                 finalColor.a *= mask.y;
                 return finalColor;
             }

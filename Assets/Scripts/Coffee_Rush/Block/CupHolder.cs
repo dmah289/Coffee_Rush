@@ -11,6 +11,8 @@ namespace Coffee_Rush.Block
 {
     public class CupHolder : MonoBehaviour
     {
+        private static readonly int Selected = Shader.PropertyToID("_Selected");
+
         [Header("Self Components")]
         [SerializeField] private Transform selfTransform;
         [SerializeField] private MeshRenderer selfMeshRenderer;
@@ -37,6 +39,15 @@ namespace Coffee_Rush.Block
         public void Setup(eColorType colorType)
         {
             selfMeshRenderer.SetTextureOffsetByColor(colorType);
+        }
+
+        public void ShowOutline(bool selected)
+        {
+            MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+            selfMeshRenderer.GetPropertyBlock(mpb);
+            mpb.SetFloat(Selected, selected ? 1 : 0);
+            selfMeshRenderer.SetPropertyBlock(mpb);
+
         }
     }
 }

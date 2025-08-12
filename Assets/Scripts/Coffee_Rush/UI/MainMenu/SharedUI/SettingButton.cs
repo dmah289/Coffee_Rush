@@ -21,8 +21,6 @@ namespace Coffee_Rush.UI.MainMenu.SharedUI
 
         protected override void OnButtonClicked()
         {
-            if (!CanClick) return;
-            
             int curState = PlayerPrefs.GetInt(KeySave.SettingsKeys[selfIndex], 1);
             int newState = 1 - curState;
             PlayerPrefs.SetInt(KeySave.SettingsKeys[selfIndex], newState);

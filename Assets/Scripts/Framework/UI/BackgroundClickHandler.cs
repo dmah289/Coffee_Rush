@@ -15,10 +15,32 @@ namespace Framework.UI
         [SerializeField] private Image selfImg;
         [SerializeField] private float targetAlpha = 200/255f;
         
+        [SerializeField] protected float clickIntervalThreshold;
+        [SerializeField] protected float lastClickTime;
+        
         public UnityEvent OnBackgroundHiden;
         public UnityEvent OnBackgroundShown;
-
         
+        protected bool CanClick
+        {
+            get
+            {
+                float timeSinceLastClick = Time.time - lastClickTime;
+                if (timeSinceLastClick >= clickIntervalThreshold)
+                {
+                    lastClickTime = Time.time;
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        private void OnEnable()
+        {
+            lastClickTime = Time.time;
+        }
+
+
         private void Awake()
         {
             selfImg = GetComponent<Image>();
@@ -26,7 +48,7 @@ namespace Framework.UI
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (eventData.pointerCurrentRaycast.gameObject == gameObject)
+            if (eventData.pointerCurrentRaycast.gameObject == gameObject && CanClick)
                 HideBackground();
         }
 

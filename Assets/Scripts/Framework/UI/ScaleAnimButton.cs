@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,7 +16,7 @@ namespace Framework.UI
         [SerializeField] protected float animDuration = 0.1f;
         [SerializeField] protected float clickIntervalThreshold;
         [SerializeField] protected float actionDelay;
-        protected float lastClickTime;
+        [SerializeField] protected float lastClickTime;
         
         [SerializeField] protected UnityEvent OnScaleAnimDone;
 
@@ -39,10 +40,18 @@ namespace Framework.UI
         {
             selfRectTransform = GetComponent<RectTransform>();
         }
-        
+
+        private void OnEnable()
+        {
+            lastClickTime = -clickIntervalThreshold;
+        }
+
         public void OnPointerClick(PointerEventData eventData)
         {
-            OnButtonClicked();
+            if (CanClick)
+            {
+                OnButtonClicked();
+            }
         }
 
         protected virtual void OnButtonClicked()
