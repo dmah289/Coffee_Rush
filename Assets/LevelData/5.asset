@@ -15,8 +15,8 @@ MonoBehaviour:
   width: 6
   height: 6
   levelIndex: 5
-  totalTime: 0
-  coinAmount: 0
+  totalTime: 180
+  coinAmount: 30
   cellsData:
   - isActive: 1
     blockType: 0

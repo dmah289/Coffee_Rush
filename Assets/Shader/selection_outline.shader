@@ -9,7 +9,6 @@ Shader "iKame/OutlinedObject" {
     SubShader {
         
         ZWrite Off
-        ZTest Less
         
         Pass {
             Cull Front

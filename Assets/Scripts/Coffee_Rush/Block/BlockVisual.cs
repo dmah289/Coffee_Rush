@@ -97,7 +97,7 @@ namespace Coffee_Rush.Block
         public void TiltOnMoveOutOfView(float direction, float duration)
         {
             Vector3 targetEuler = new Vector3(0
-                , 20 * -direction
+                , 10 * direction
                 , visualParent.localEulerAngles.z);
             visualParent.DOLocalRotate(targetEuler, duration);
         }

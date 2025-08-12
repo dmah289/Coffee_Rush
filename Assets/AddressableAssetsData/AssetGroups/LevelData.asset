@@ -142,6 +142,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93770a77434b18041828ccbb4c25d551
+    m_Address: Assets/Materials/MyMat/outline.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9adf7ad742013d441b65b28daf7d66bc
     m_Address: Assets/Prefabs/Gameplay/Obstacles/Blockers/blocker01.prefab
     m_ReadOnly: 0

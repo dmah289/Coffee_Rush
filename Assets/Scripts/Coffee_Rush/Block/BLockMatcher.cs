@@ -78,7 +78,7 @@ namespace Coffee_Rush.Block
 
                         collectedGateItems[currEmptySlotIdx] = item;
                         cupHolders[currEmptySlotIdx++].CollectGateItem(item);
-                        await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.1f * 1000));
+                        await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.15f * 1000));
                         
 
                         if (currEmptySlotIdx == cupHolders.Length)
@@ -87,9 +87,8 @@ namespace Coffee_Rush.Block
                             BoardController.Instance.BlockCount--;
                             CanSelect = false;
                             SelectionController.Instance.DeselectCurrentObject(blockController);
-                            transform.position = new Vector3(transform.position.x, transform.position.y, -1.3f);
                             
-                            await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.9f * 1000));
+                            await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.85f * 1000));
                             await PackAllGateItems();
                             MoveOutOfView(blockType);
                         }
@@ -111,7 +110,7 @@ namespace Coffee_Rush.Block
 
         private async UniTask PackAllGateItems()
         {
-            await transform.DOMoveZ(-3, 0.5f)
+            await transform.DOMoveZ(-7, 0.3f)
                 .SetEase(Ease.OutBack)
                 .AsyncWaitForCompletion();
             
@@ -134,8 +133,8 @@ namespace Coffee_Rush.Block
 
             float moveDuration = Vector3.Distance(transform.position, outOfViewPos) / BlockConfig.SpeedToMoveOutOfView;
             
-            blockVisual.TiltOnMoveOutOfView(direction, moveDuration * 3);
-            transform.DOScale(BlockConfig.TargetScaleToMove, moveDuration * 3);
+            blockVisual.TiltOnMoveOutOfView(-direction, moveDuration);
+            transform.DOScale(BlockConfig.TargetScaleToMove, moveDuration);
             transform.DOMove(outOfViewPos, moveDuration)
                 .SetEase(Ease.InBack)
                 .OnComplete(() =>
