@@ -50,6 +50,7 @@
     <type fullname="ReporterMessageReceiver" preserve="all" />
     <type fullname="Zego.MirrorImage" preserve="all" />
     <type fullname="Coffee_Rush.Level.BlockData" preserve="nothing" serialized="true" />
+    <type fullname="Coffee_Rush.Level.BlockerData" preserve="nothing" serialized="true" />
     <type fullname="Coffee_Rush.Level.CompressedItemPath" preserve="nothing" serialized="true" />
     <type fullname="Coffee_Rush.Level.GateData" preserve="nothing" serialized="true" />
     <type fullname="Coffee_Rush.Level.TileData" preserve="nothing" serialized="true" />

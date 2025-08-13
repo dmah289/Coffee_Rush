@@ -95,7 +95,7 @@ namespace BaseSystem.Block
         public virtual void OnSelect(Vector3 mousePos)
         {
             DOTween.Kill(gameObject);
-            transform.DOMoveZ(-1f, 0.2f);
+            transform.DOMoveZ(-1f, 0.15f);
             selfRb.isKinematic = false;
             
             SetupJobConfigs(mousePos);

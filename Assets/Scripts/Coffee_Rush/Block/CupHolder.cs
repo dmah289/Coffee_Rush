@@ -31,7 +31,7 @@ namespace Coffee_Rush.Block
         {
             item.transform.SetParent(targetPoint);
 
-            item.transform.DOLocalJump(Vector3.zero, 7, 1, GateItemConfig.MoveDuration)
+            item.transform.DOLocalJump(Vector3.zero, 5, 1, GateItemConfig.MoveDuration)
                 .SetEase(Ease.OutFlash)
                 .OnStart(() => item.OnJumpedToSlot(targetPoint.parent.parent));
         }
@@ -43,10 +43,10 @@ namespace Coffee_Rush.Block
 
         public void ShowOutline(bool selected)
         {
-            MaterialPropertyBlock mpb = new MaterialPropertyBlock();
-            selfMeshRenderer.GetPropertyBlock(mpb);
-            mpb.SetFloat(Selected, selected ? 1 : 0);
-            selfMeshRenderer.SetPropertyBlock(mpb);
+            // MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+            // selfMeshRenderer.GetPropertyBlock(mpb);
+            // mpb.SetFloat(Selected, selected ? 1 : 0);
+            // selfMeshRenderer.SetPropertyBlock(mpb);
 
         }
     }

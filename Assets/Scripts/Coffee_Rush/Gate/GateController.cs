@@ -83,8 +83,19 @@ namespace Coffee_Rush.Board
             {
                 GateItem gateItem = ObjectPooler.GetFromPool<GateItem>(PoolingType.GateItem);
 
-                if (currTurnIdx < itemsPath.turnIndices.Length - 1 && i >= itemsPath.turnIndices[currTurnIdx + 1])
-                    currTurnIdx++;
+                if (currTurnIdx < itemsPath.turnIndices.Length - 1)
+                {
+                    if(i == itemsPath.turnIndices[currTurnIdx + 1])
+                    {
+                        float multiplier = GetMultiplierTurning(itemsPath.turnDirections[currTurnIdx], itemsPath.turnDirections[currTurnIdx + 1]);
+                        
+                        curPos += GateItemConfig.ItemDir[(byte)itemsPath.turnDirections[currTurnIdx] - 1] *
+                                  GateItemConfig.Distance * multiplier;
+                        
+                        currTurnIdx++;
+                    }
+                }
+                    
 
                 if (i != 0)
                     curPos += GateItemConfig.ItemDir[(byte)itemsPath.turnDirections[currTurnIdx] - 1] * GateItemConfig.Distance;
@@ -129,7 +140,7 @@ namespace Coffee_Rush.Board
 
             selfTransform.DOKill();
             selfTransform.DOMove(pressedPos, GateItemConfig.MoveDuration * 0.1f)
-                .SetEase(Ease.OutBack)
+                .SetEase(Ease.Linear)
                 .OnKill(() => selfTransform.position = initPos )
                 .OnComplete(() => selfTransform.position = initPos );
             
@@ -154,8 +165,8 @@ namespace Coffee_Rush.Board
             {
                 Vector3 targetPos = gateItems[i-1].transform.position;
                 
-                gateItems[i].transform.DOMove(targetPos, GateItemConfig.MoveDuration * 0.1f)
-                    .SetEase(Ease.OutFlash);
+                gateItems[i].transform.DOMove(targetPos, GateItemConfig.MoveDuration * 0.2f)
+                    .SetEase(Ease.Linear);
             }
         }
 
@@ -167,6 +178,16 @@ namespace Coffee_Rush.Board
             gateItems.Clear();
             
             ObjectPooler.ReturnToPool(PoolingType.Gate, this);
+        }
+
+        private float GetMultiplierTurning(eDirection curDir, eDirection nextDir)
+        {
+            if (curDir == eDirection.Left && nextDir == eDirection.Down
+                || curDir == eDirection.Down && nextDir == eDirection.Right
+                || curDir == eDirection.Right && nextDir == eDirection.Up)
+                return 0.7f;
+
+            return 0.5f;
         }
     }
 }

@@ -26,8 +26,8 @@ namespace Coffee_Rush
         public Tile[,] tiles;
         public List<ABorder> borders;
         
-        public float HalfWidthWorldPos => Mathf.Abs(tiles[0, 0].transform.position.x);
-        public float HalfHeightWorldPos => Mathf.Abs(tiles[0, 0].transform.position.y);
+        public float HalfWidthWorldPos => tiles.GetLength(1) / 2f * BoardConfig.cellSize;
+        public float HalfHeightWorldPos => tiles.GetLength(0) / 2f * BoardConfig.cellSize;
 
 
         protected override void Awake()

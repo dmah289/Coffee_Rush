@@ -1,0 +1,304 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714346eaba354802aa40ea21ede83876, type: 3}
+  m_Name: 8
+  m_EditorClassIdentifier: 
+  width: 7
+  height: 7
+  levelIndex: 8
+  totalTime: 180
+  coinAmount: 30
+  cellsData:
+  - isActive: 0
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 0
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 0
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 0
+    blockType: 0
+    blockColor: 0
+  blocksData:
+  - row: 6
+    col: 1
+    blockType: 6
+    blockColor: 9
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 270}
+  - row: 5
+    col: 6
+    blockType: 6
+    blockColor: 4
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 180}
+  - row: 4
+    col: 1
+    blockType: 1
+    blockColor: 7
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 4
+    col: 2
+    blockType: 3
+    blockColor: 3
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 90}
+  - row: 4
+    col: 5
+    blockType: 6
+    blockColor: 8
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 3
+    col: 0
+    blockType: 3
+    blockColor: 4
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 90}
+  - row: 3
+    col: 3
+    blockType: 3
+    blockColor: 2
+    moveableDir: 0
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 3
+    col: 5
+    blockType: 2
+    blockColor: 1
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 2
+    col: 0
+    blockType: 2
+    blockColor: 5
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 2
+    col: 1
+    blockType: 2
+    blockColor: 7
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 90}
+  - row: 1
+    col: 5
+    blockType: 6
+    blockColor: 5
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 180}
+  - row: 1
+    col: 1
+    blockType: 8
+    blockColor: 6
+    moveableDir: 2
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 0
+    col: 3
+    blockType: 3
+    blockColor: 1
+    moveableDir: 1
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 90}
+  gatesData:
+  - row: 0
+    col: 1
+    gateDir: 3
+    itemColors: 0101010101010101010101010505050505050505
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 030203
+  - row: 1
+    col: 6
+    gateDir: 2
+    itemColors: 0707070707070707050505050505050505050505040404040404040404040404
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 020102
+  - row: 4
+    col: 6
+    gateDir: 2
+    itemColors: 040404040404040404040404
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 020102
+  - row: 6
+    col: 3
+    gateDir: 1
+    itemColors: 02020202020202020202020209090909090909090909090908080808080808080808080806060606060606060606060606060606
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 010401
+  - row: 4
+    col: 0
+    gateDir: 4
+    itemColors: 010101010101010107070707
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 040304
+  - row: 1
+    col: 0
+    gateDir: 4
+    itemColors: 030303030303030303030303
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 040304
+  blockersData: []
+  kettlesData: []

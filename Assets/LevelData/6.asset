@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 714346eaba354802aa40ea21ede83876, type: 3}
-  m_Name: 0
+  m_Name: 6
   m_EditorClassIdentifier: 
   width: 5
-  height: 5
-  levelIndex: 0
+  height: 6
+  levelIndex: 6
   totalTime: 180
   coinAmount: 30
   cellsData:
@@ -93,35 +93,78 @@ MonoBehaviour:
   - isActive: 1
     blockType: 0
     blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
+  - isActive: 1
+    blockType: 0
+    blockColor: 0
   blocksData:
-  - row: 2
+  - row: 1
     col: 1
-    blockType: 4
-    blockColor: 1
-    moveableDir: 2
+    blockType: 6
+    blockColor: 5
+    moveableDir: 0
     countdownIce: 0
-    blockVisualEuler: {x: 0, y: 0, z: 90}
-  - row: 2
-    col: 3
-    blockType: 4
+    blockVisualEuler: {x: 0, y: 0, z: 180}
+  - row: 3
+    col: 1
+    blockType: 8
     blockColor: 2
-    moveableDir: 2
+    moveableDir: 1
     countdownIce: 0
-    blockVisualEuler: {x: 0, y: 0, z: 270}
-  gatesData:
+    blockVisualEuler: {x: 0, y: 0, z: 0}
   - row: 4
     col: 2
-    gateDir: 1
-    itemColors: 01010101010101010101010101010101
-    compressedItemPath:
-      turnIndices: 000000000200000004000000
-      turnDirections: 010401
+    blockType: 6
+    blockColor: 6
+    moveableDir: 0
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 0}
+  - row: 5
+    col: 0
+    blockType: 3
+    blockColor: 3
+    moveableDir: 1
+    countdownIce: 0
+    blockVisualEuler: {x: 0, y: 0, z: 90}
+  gatesData:
   - row: 0
-    col: 2
+    col: 1
     gateDir: 3
-    itemColors: 02020202020202020202020202020202
+    itemColors: 050505050505050505050505
     compressedItemPath:
       turnIndices: 000000000200000004000000
       turnDirections: 030203
+  - row: 0
+    col: 3
+    gateDir: 3
+    itemColors: 060606060606060606060606
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 030203
+  - row: 3
+    col: 4
+    gateDir: 2
+    itemColors: 02020202020202020202020202020202
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 020102
+  - row: 5
+    col: 4
+    gateDir: 1
+    itemColors: 030303030303030303030303
+    compressedItemPath:
+      turnIndices: 000000000200000004000000
+      turnDirections: 010401
   blockersData: []
   kettlesData: []

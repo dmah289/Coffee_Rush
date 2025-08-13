@@ -62,6 +62,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b56f7d43b8adae47a1ed52c22dee515
+    m_Address: Level 8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1c48040f16eaebc4db7d2a88aa790dac
     m_Address: Assets/Prefabs/Gameplay/Obstacles/Blockers/blocker08.prefab
     m_ReadOnly: 0
@@ -112,6 +117,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e36ddc498f420c41bc6cd85f6ec0b5c
+    m_Address: Assets/Prefabs/Gameplay/Layout/Straight_Ray.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5f48c3c4703bffe40b288d96322ce583
     m_Address: Assets/Prefabs/Gameplay/block_type_04.prefab
     m_ReadOnly: 0
@@ -127,8 +137,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b1582b4918facd4ab0bf47341992849
+    m_Address: Assets/Prefabs/Gameplay/Layout/OuterConner_Ray.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6c65cd143dfc9b449ab54b2411402e04
     m_Address: Assets/Prefabs/Gameplay/block_type_06.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7e82b92f301464845a5fcdabe6f447e6
+    m_Address: Level 7
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -147,6 +167,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 974e4ddb0c5827f48a707b14acfbe0db
+    m_Address: Level 10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9adf7ad742013d441b65b28daf7d66bc
     m_Address: Assets/Prefabs/Gameplay/Obstacles/Blockers/blocker01.prefab
     m_ReadOnly: 0
@@ -159,6 +184,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a80000f63c20bbb4dbb32d2756e03e05
     m_Address: Level 3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af1a7840b1a8ac94cbd04832e6233b51
+    m_Address: Level 9
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -187,6 +217,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c30443fbc5c299e4f883a43b0ddcd33e
+    m_Address: Level 12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3dba6d955ecc764c9ee6438839a9d2b
+    m_Address: Level 6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c60cca484bc73dd4c98819bf69620e00
     m_Address: Assets/Prefabs/Gameplay/Obstacles/Blockers/blocker04.prefab
     m_ReadOnly: 0
@@ -202,6 +242,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddaf77e9cdc10f246ace0ef9c8e68ff6
+    m_Address: Level 11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ea195546742ce5445ae9b41f6ae3b521
     m_Address: Assets/Prefabs/Gameplay/Obstacles/kettle.prefab
     m_ReadOnly: 0
@@ -214,6 +259,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f2a58ea9bf562504986b0a3531ccacd4
     m_Address: Assets/Prefabs/Gameplay/Obstacles/Blockers/blocker00.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f5c9c315f6cbc7140aefa6753df3d8d3
+    m_Address: Level 13
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

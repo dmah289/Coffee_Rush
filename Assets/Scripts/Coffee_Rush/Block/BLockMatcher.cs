@@ -110,7 +110,7 @@ namespace Coffee_Rush.Block
 
         private async UniTask PackAllGateItems()
         {
-            await transform.DOMoveZ(-7, 0.3f)
+            await transform.DOMoveZ(-7, 0.5f)
                 .SetEase(Ease.OutBack)
                 .AsyncWaitForCompletion();
             

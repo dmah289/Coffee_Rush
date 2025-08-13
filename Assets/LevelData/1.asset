@@ -129,14 +129,14 @@ MonoBehaviour:
     gateDir: 1
     itemColors: 01010101010101010101010101010101
     compressedItemPath:
-      turnIndices: 000000000200000005000000
+      turnIndices: 000000000200000004000000
       turnDirections: 010401
   - row: 0
     col: 3
     gateDir: 3
     itemColors: 02020202020202020202020202020202
     compressedItemPath:
-      turnIndices: 000000000200000005000000
+      turnIndices: 000000000200000004000000
       turnDirections: 030203
   blockersData: []
   kettlesData: []

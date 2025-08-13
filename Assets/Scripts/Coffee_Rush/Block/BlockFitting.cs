@@ -17,7 +17,7 @@ namespace Coffee_Rush.Block
             Vector3 coordPos = BoardLayoutGenerator.Instance.GetCoordPos(worldPos);
 
             Vector3 target = coordPos + centerToCheckPointOffset;
-            transform.DOMove(target, 0.2f).SetEase(Ease.OutFlash);
+            transform.DOMove(target, 0.1f).SetEase(Ease.OutFlash);
         }
         
         public void SetCheckPointToTargetTile(Vector3 targetTilePos)

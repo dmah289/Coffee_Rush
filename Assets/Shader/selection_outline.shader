@@ -1,22 +1,16 @@
 Shader "iKame/OutlinedObject" {
     Properties {
-        _Thickness ("Thickness", Range(0, 0.5)) = 0.1
+        _Thickness ("Thickness", Float) = 0.1
         _Bias ("Bias", Range(0, 0.1)) = 0.01
         _Selected ("Selected", Float) = 0
         _OutlineColor ("Outline Color", Color) = (1,1,1,1)
     }
 
     SubShader {
-        
-        ZWrite Off
-        
         Pass {
+            ZWrite Off
+            Blend One Zero
             Cull Front
-            Stencil {
-                Ref 1
-                Comp NotEqual
-                Pass Keep
-            }
 
             CGPROGRAM
             #pragma vertex vert
