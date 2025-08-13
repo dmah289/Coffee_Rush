@@ -17,12 +17,12 @@ namespace Coffee_Rush.Board
     {
         [Header("Self Components")]
         [SerializeField] private Transform selfTransform;
+        [SerializeField] private Transform visualTransform;
         [SerializeField] private MeshRenderer selfMeshRenderer;
         [SerializeField] private Transform checkPoint;
         private Collider2D[] colliders = new Collider2D[1];
         [SerializeField] private BlockController currBlock;
         private CancellationTokenSource cts;
-        [SerializeField] private Vector3 initPos, pressedPos; 
         
         
         [Header("GateItem Manager")]
@@ -62,9 +62,6 @@ namespace Coffee_Rush.Board
             
             selfTransform.position = pos;
             selfTransform.eulerAngles = new Vector3(0, 0, GateConfig.GateZRotByDir[(byte)gateDir-1]);
-            
-            initPos = pos;
-            pressedPos = new Vector3(pos.x, pos.y, pos.z + 0.3f);
             
             SpawnGateItems(gateDir, itemColors, itemsPath);
         }
@@ -138,11 +135,11 @@ namespace Coffee_Rush.Board
             
             GateItem item = gateItems[0];
 
-            selfTransform.DOKill();
-            selfTransform.DOMove(pressedPos, GateItemConfig.MoveDuration * 0.1f)
+            visualTransform.DOKill();
+            visualTransform.DOLocalMove(GateConfig.PressedPos, GateItemConfig.MoveDuration * 0.1f)
                 .SetEase(Ease.Linear)
-                .OnKill(() => selfTransform.position = initPos )
-                .OnComplete(() => selfTransform.position = initPos );
+                .OnKill(() => visualTransform.localPosition = Vector3.zero )
+                .OnComplete(() => visualTransform.localPosition = Vector3.zero );
             
             UpdateGateColor();
 
@@ -165,7 +162,7 @@ namespace Coffee_Rush.Board
             {
                 Vector3 targetPos = gateItems[i-1].transform.position;
                 
-                gateItems[i].transform.DOMove(targetPos, GateItemConfig.MoveDuration * 0.2f)
+                gateItems[i].transform.DOMove(targetPos, GateItemConfig.MoveDuration * 0.18f)
                     .SetEase(Ease.Linear);
             }
         }

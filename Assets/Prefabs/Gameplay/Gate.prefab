@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfTransform: {fileID: 1055525523227200242}
+  visualTransform: {fileID: 198489312775860490}
   selfMeshRenderer: {fileID: 2384320893940778289}
   checkPoint: {fileID: 7650909308172413780}
   currBlock: {fileID: 0}

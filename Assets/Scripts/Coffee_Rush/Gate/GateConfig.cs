@@ -13,5 +13,7 @@ namespace Coffee_Rush.Gate
             new (-1, -1),     // Down
             new (-1, 1)       // Left
         };
+
+        public static readonly Vector3 PressedPos = new(0, 0, 0.3f);
     }
 }
