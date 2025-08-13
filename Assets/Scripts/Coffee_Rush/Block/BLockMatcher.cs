@@ -83,6 +83,7 @@ namespace Coffee_Rush.Block
 
                         if (currEmptySlotIdx == cupHolders.Length)
                         {
+                            blockVisual.HideKettle();
                             OnBlockFullSlot?.Invoke();
                             BoardController.Instance.BlockCount--;
                             CanSelect = false;

@@ -57,6 +57,7 @@ namespace Coffee_Rush.Level
         public eMovementDirection moveableDir;
         public int countdownIce;
         public Vector3 blockVisualEuler;
+        public int kettleCountDown;
     }
     
     [CreateAssetMenu(fileName = "LevelData", menuName = "Coffee Rush/Level Data", order = 1)]

@@ -68,10 +68,6 @@ namespace Framework.ObjectPooling
             AsyncOperationHandle<GameObject> gatePrefabHandle = Addressables.LoadAssetAsync<GameObject>(gatePrefab);
             await gatePrefabHandle;
             ObjectPooler.SetUpPool(PoolingType.Gate, 2, gatePrefabHandle.Result.GetComponent<GateController>());
-            
-            AsyncOperationHandle<GameObject> kettlePrefabHandle = Addressables.LoadAssetAsync<GameObject>(kettlePrefab);
-            await kettlePrefabHandle;
-            ObjectPooler.SetUpPool(PoolingType.Kettle, 2, kettlePrefabHandle.Result.GetComponent<KettleController>());
 
             for (int i = 0; i < blockerPrefabs.Length; i++)
             {

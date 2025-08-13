@@ -1,5 +1,6 @@
 ﻿using System;
 using Coffee_Rush.Level;
+using Coffee_Rush.UI.InGame;
 using DG.Tweening;
 using TMPro;
 using Unity.Mathematics;
@@ -12,6 +13,8 @@ namespace Coffee_Rush.Block
         [Header("Self Components")]
         [SerializeField] private Transform selfTransform;
         [SerializeField] private GameObject ice;
+        [SerializeField] private GameObject kettle;
+        [SerializeField] private TextMeshPro kettleTxt;
         [SerializeField] private TextMeshPro countdownTxt;
         [SerializeField] private Transform visualParent;
         [SerializeField] private Transform colliderTransform;
@@ -26,17 +29,43 @@ namespace Coffee_Rush.Block
             get => curIceCountdown;
             set
             {
-                if (value > 0)
+                bool hasIce = value > 0;
+                curIceCountdown = hasIce ? value : 0;
+                ice.SetActive(hasIce);
+                countdownTxt.gameObject.SetActive(hasIce);
+                
+                countdownTxt.text = $"{curIceCountdown}";
+            }
+        }
+        
+        private int curKettleCountdown;
+
+        public int KettleCountDown
+        {
+            get => curKettleCountdown;
+            set
+            {
+                if (value == 0)
                 {
-                    curIceCountdown = value;
-                    ice.SetActive(true);
+                    if(curKettleCountdown > 0)
+                    {
+                        curKettleCountdown = 0;
+                        kettle.transform.DOScale(1.5f, 0.7f).SetDelay(1f).OnComplete(() =>
+                        {
+                            LevelManager.Instance.ShowLoosePanel(eLooseReason.KettleExplosion);
+                            kettle.SetActive(false);
+                        });
+                    }
+                    else kettle.SetActive(false);
                 }
                 else
                 {
-                    curIceCountdown = 0;
-                    ice.SetActive(false);
+                    curKettleCountdown = value;
+                    kettle.SetActive(true);
+                    kettle.transform.localScale = Vector3.one;
                 }
-                countdownTxt.text = $"{curIceCountdown}";
+                
+                kettleTxt.text = $"{curKettleCountdown}";
             }
         }
         
@@ -58,6 +87,8 @@ namespace Coffee_Rush.Block
             }
         }
 
+        
+
         private void Awake()
         {
             selfTransform = transform;
@@ -67,6 +98,8 @@ namespace Coffee_Rush.Block
         public void OnBlockColected()
         {
             IceCountDown--;
+            if(kettle.activeSelf)
+                KettleCountDown--;
         }
 
         public void ShowDirectionSprite(eMovementDirection direction)
@@ -100,6 +133,11 @@ namespace Coffee_Rush.Block
                 , 10 * direction
                 , visualParent.localEulerAngles.z);
             visualParent.DOLocalRotate(targetEuler, duration);
+        }
+
+        public void HideKettle()
+        {
+            kettle.SetActive(false);
         }
     }
 }

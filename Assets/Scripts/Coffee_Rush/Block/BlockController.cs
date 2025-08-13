@@ -68,6 +68,7 @@ namespace Coffee_Rush.Block
             blockVisual.ColliderEuler = initBlockVisualEuler;
             
             blockVisual.IceCountDown = blockData.countdownIce;
+            blockVisual.KettleCountDown = blockData.kettleCountDown;
             movementDirection = blockData.moveableDir;
             blockVisual.ShowDirectionSprite(blockData.moveableDir);
             blockFitting.SetCheckPointToTargetTile(tilePos);

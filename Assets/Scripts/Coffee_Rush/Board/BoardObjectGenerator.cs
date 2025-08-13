@@ -15,7 +15,6 @@ namespace Coffee_Rush.Board
         [Header("Manager")]
         [SerializeField] private BlockController[] blocks;
         [SerializeField] private GateController[] gates;
-        [SerializeField] private KettleController[] kettles;
         [SerializeField] private BlockerController[] blockers;
 
         private int blockCount;
@@ -37,7 +36,6 @@ namespace Coffee_Rush.Board
         {
             SpawnBlocks(levelData.blocksData, tiles);
             SpawnGates(levelData.gatesData, tiles);
-            SpawnKettles(levelData.kettlesData, tiles);
             SpawnBlockers(levelData.blockersData, tiles);
             await UniTask.DelayFrame(3);
         }
@@ -58,22 +56,6 @@ namespace Coffee_Rush.Board
                     blockersData[i].blockerType);
                 
                 blockers[i] = blocker;
-            }
-        }
-
-        private void SpawnKettles(KettleData[] kettlesData, Tile[,] tiles)
-        {
-            if (kettlesData.Length == 0)
-                return;
-            
-            kettles = new KettleController[kettlesData.Length];
-            for (int i = 0; i < kettlesData.Length; i++)
-            {
-                KettleController kettle = ObjectPooler.GetFromPool<KettleController>(PoolingType.Kettle);
-                Vector3 tilePos = tiles[kettlesData[i].row, kettlesData[i].col].transform.position;
-                kettle.Setup(new Vector3(tilePos.x, tilePos.y - 0.5f, tilePos.z), kettlesData[i].countdown);
-                
-                kettles[i] = kettle;
             }
         }
 
@@ -115,9 +97,6 @@ namespace Coffee_Rush.Board
             
             for (int i = 0; i < gates.Length; i++)
                 gates[i].ReturnToPool();
-            
-            for (int i = 0; i < kettles.Length; i++)
-                kettles[i].ReturnToPool();
             
             for (int i = 0; i < blockers.Length; i++)
                 blockers[i].ReturnToPool();
