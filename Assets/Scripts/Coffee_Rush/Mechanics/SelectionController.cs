@@ -20,6 +20,8 @@ namespace BaseSystem
 
         [SerializeField] private LayerMask gridLayer;
         [SerializeField] private Camera cam;
+        private RaycastHit[] hits = new RaycastHit[1];
+        private Vector3 outOfViewPos = new (int.MaxValue, int.MaxValue, int.MaxValue);
         
 
         protected override void Awake()
@@ -41,7 +43,6 @@ namespace BaseSystem
 
         private void HandleOnMobile()
         {
-            print("HandleOnMobile called");
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
@@ -81,6 +82,8 @@ namespace BaseSystem
         {
             Vector3 touchPos = GetWorldTouchPosOnGrid();
             
+            if (touchPos.Equals(outOfViewPos)) return;
+            
             int numHits = Physics2D.OverlapPointNonAlloc(touchPos, colliders);
             if (numHits > 0)
             {
@@ -107,6 +110,9 @@ namespace BaseSystem
         private void HandleMouseDrag()
         {
             Vector3 mousePos = GetWorldTouchPosOnGrid();
+
+            if (mousePos.Equals(outOfViewPos)) return;
+            
             selectedObject?.OnDrag(mousePos);
         }
         
@@ -137,10 +143,12 @@ namespace BaseSystem
             Ray ray = cam.ScreenPointToRay(screenPos);
             // Debug.DrawRay(ray.origin, ray.direction * 500f, Color.red, 3f);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 500f, gridLayer))
-                return hit.point;
+            int hitCount = Physics.RaycastNonAlloc(ray, hits, 500f, gridLayer);
+    
+            if (hitCount > 0)
+                return hits[0].point;
 
-            return new Vector3(int.MaxValue, int.MaxValue, int.MaxValue);
+            return outOfViewPos;
         }
     }
 }

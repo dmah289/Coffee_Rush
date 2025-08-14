@@ -47,6 +47,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 15cb0892957955e4f85838b7a9dbd4bd
+    m_Address: Assets/Materials/ray.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 15d60a3c9a06d044dba76666335ad963
     m_Address: Assets/Fonts/BalooBhai-Regular SDF.asset
     m_ReadOnly: 0

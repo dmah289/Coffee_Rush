@@ -15,7 +15,7 @@ namespace Coffee_Rush.Level
         public async UniTask LoadCurrentLevel()
         {
             int levelIndex = PlayerPrefs.GetInt(KeySave.LevelIndexKey, 0);
-            AsyncOperationHandle<LevelData> levelLoaderHandle = Addressables.LoadAssetAsync<LevelData>($"Level {levelIdx}");
+            AsyncOperationHandle<LevelData> levelLoaderHandle = Addressables.LoadAssetAsync<LevelData>($"Level {levelIndex}");
 
             await levelLoaderHandle;
             currLevelData = levelLoaderHandle.Result;

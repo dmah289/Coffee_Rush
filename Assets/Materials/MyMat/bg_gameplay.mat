@@ -7,18 +7,16 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: timer
-  m_Shader: {fileID: 4800000, guid: e9c4fe64f3ff429a8a5d2b8d2864a0cd, type: 3}
+  m_Name: bg_gameplay
+  m_Shader: {fileID: 4800000, guid: 8693227f9da14c91b0a3b4956a8079af, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _DIRECTION_HORIZONTAL
-  - _FILLMODE_LEFTTORIGHT_UP
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -63,39 +61,37 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AnimSpeed: 4.1
     - _BumpScale: 1
-    - _ColorMask: 15
+    - _ColorMask: 18.9
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _Direction: 0
     - _DstBlend: 0
-    - _FillAmount: 0.5
-    - _FillMode: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _GradientSpeed: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineWidth: 6.59
     - _Parallax: 0.02
-    - _Progress: 1
+    - _Smoothness: 0.264
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 0.7
     - _SrcBlend: 1
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
+    - _StencilReadMask: -297.3
+    - _StencilWriteMask: 192.68
     - _UVSec: 0
     - _UseUIAlphaClip: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.28773582, b: 0.28773582, a: 1}
-    - _ElapsedColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
+    - _BottomColor: {r: 0, g: 0, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1: {r: 0.5990566, g: 0.7995283, b: 1, a: 1}
+    - _Color2: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0.33784264, g: 0.9811321, b: 0.40847835, a: 0}
-    - _RemainingColor: {r: 0.33784264, g: 0.9811321, b: 0.40847835, a: 1}
+    - _TopColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

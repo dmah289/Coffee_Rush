@@ -40,11 +40,6 @@ namespace Coffee_Rush.Board
             ColorType = colorType;
         }
 
-        public void OnJumpedToSlot(Transform parent)
-        {
-            selfTransform.rotation = Quaternion.LookRotation(parent.forward, parent.up);
-        }
-
         public void PackOnFullSlot()
         {
             cupLidTransform.localScale = Vector3.one;

@@ -23,5 +23,6 @@ namespace Coffee_Rush.Gate
             new (1, -1, -0.3f),      // Down
             new (-1f, -1, 0)         // Left
         };
+        public static readonly Vector3 WorldEulerOnBlock = new Vector3(90, -90, 90);
     }
 }
