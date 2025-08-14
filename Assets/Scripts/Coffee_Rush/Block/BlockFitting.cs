@@ -15,9 +15,10 @@ namespace Coffee_Rush.Block
             Vector3 worldPos = checkPoint.position;
             
             Vector3 coordPos = BoardLayoutGenerator.Instance.GetCoordPos(worldPos);
-
+            
             Vector3 target = coordPos + centerToCheckPointOffset;
-            transform.DOMove(target, 0.1f).SetEase(Ease.OutFlash)
+            float duration = Vector3.Distance(target, transform.position) / BlockConfig.SnappingSpeed;
+            transform.DOMove(target, duration)
                 .OnKill(() => transform.position = target);
         }
         

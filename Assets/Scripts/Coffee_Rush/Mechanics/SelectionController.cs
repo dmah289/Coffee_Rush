@@ -18,6 +18,10 @@ namespace BaseSystem
         [Header("References")]
         [SerializeField] private LevelTimer levelTimer;
 
+        [SerializeField] private LayerMask gridLayer;
+        [SerializeField] private Camera cam;
+        
+
         protected override void Awake()
         {
             base.Awake();
@@ -28,29 +32,54 @@ namespace BaseSystem
         
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+#if UNITY_EDITOR
+            HandleOnEditor();
+#elif UNITY_ANDROID || UNITY_IOS
+            HandleOnMobile();
+#endif
+        }
+
+        private void HandleOnMobile()
+        {
+            print("HandleOnMobile called");
+            if (Input.touchCount > 0)
             {
-                HandleMouseDown();
-            }
-            else if (Input.GetMouseButton(0) && selectedObject != null)
-            {
-                HandleMouseDrag();
-            }
-            else if (Input.GetMouseButtonUp(0) && selectedObject != null)
-            {
-                HandleMouseUp();
+                Touch touch = Input.GetTouch(0);
+
+                switch (touch.phase)
+                {
+                    case TouchPhase.Began:
+                        HandleMouseDown();
+                        break;
+                    
+                    case TouchPhase.Moved:
+                    case TouchPhase.Stationary:
+                        if(selectedObject != null)
+                            HandleMouseDrag();
+                        break;
+                    
+                    case TouchPhase.Ended:
+                    case TouchPhase.Canceled:
+                        if(selectedObject != null)
+                            HandleMouseUp();
+                        break;
+                }
             }
         }
 
-        public void HandleMouseUp()
+        private void HandleOnEditor()
         {
-            selectedObject?.OnDeselect();
-            selectedObject = null;
+            if (Input.GetMouseButtonDown(0))
+                HandleMouseDown();
+            else if (Input.GetMouseButton(0) && selectedObject != null)
+                HandleMouseDrag();
+            else if (Input.GetMouseButtonUp(0) && selectedObject != null)
+                HandleMouseUp();
         }
 
         private void HandleMouseDown()
         {
-            Vector3 touchPos = CameraHelper.GetMouseWorldPosTitledCamera2D();
+            Vector3 touchPos = GetWorldTouchPosOnGrid();
             
             int numHits = Physics2D.OverlapPointNonAlloc(touchPos, colliders);
             if (numHits > 0)
@@ -77,21 +106,41 @@ namespace BaseSystem
 
         private void HandleMouseDrag()
         {
-            Vector3 mousePos = CameraHelper.GetMouseWorldPosTitledCamera2D();
+            Vector3 mousePos = GetWorldTouchPosOnGrid();
             selectedObject?.OnDrag(mousePos);
+        }
+        
+        public void HandleMouseUp()
+        {
+            selectedObject?.OnDeselect();
+            selectedObject = null;
         }
 
         public void DeselectCurrentObject(ISelectable selectable)
         {
             if (selectedObject == selectable)
                 HandleMouseUp();
-            
         }
 
         public void EnterGameplay()
         {
             isFirstBlockMoved = true;
             gameObject.SetActive(true);
+        }
+
+        private Vector3 GetWorldTouchPosOnGrid()
+        {
+            Vector3 screenPos = Input.touchCount > 0
+                ? Input.GetTouch(0).position
+                : Input.mousePosition;
+
+            Ray ray = cam.ScreenPointToRay(screenPos);
+            // Debug.DrawRay(ray.origin, ray.direction * 500f, Color.red, 3f);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, 500f, gridLayer))
+                return hit.point;
+
+            return new Vector3(int.MaxValue, int.MaxValue, int.MaxValue);
         }
     }
 }

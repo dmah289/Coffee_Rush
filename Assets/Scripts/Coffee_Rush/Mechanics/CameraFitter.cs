@@ -15,7 +15,7 @@ namespace Coffee_Rush.Mechanics
 
         public void CameraFitBoard(int boardWidthCoord)
         {
-            mainCam.orthographicSize = 2f * boardWidthCoord + 5f;
+            mainCam.orthographicSize = 2f * boardWidthCoord + 3f;
         }
     }
 }

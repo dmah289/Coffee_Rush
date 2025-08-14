@@ -110,7 +110,7 @@ MonoBehaviour:
     countdownIce: 0
     blockVisualEuler: {x: 0, y: 0, z: 90}
     kettleCountDown: 0
-  - row: 2
+  - row: 3
     col: 3
     blockType: 2
     blockColor: 3

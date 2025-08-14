@@ -50,6 +50,7 @@ namespace Coffee_Rush.Block
                     if(curKettleCountdown > 0)
                     {
                         curKettleCountdown = 0;
+                        LevelManager.Instance.StopGameplay();
                         kettle.transform.DOScale(1.5f, 0.7f).SetDelay(1f).OnComplete(() =>
                         {
                             LevelManager.Instance.ShowLoosePanel(eLooseReason.KettleExplosion);

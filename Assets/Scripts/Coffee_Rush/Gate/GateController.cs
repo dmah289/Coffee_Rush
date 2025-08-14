@@ -162,7 +162,7 @@ namespace Coffee_Rush.Board
             {
                 Vector3 targetPos = gateItems[i-1].transform.position;
                 
-                gateItems[i].transform.DOMove(targetPos, GateItemConfig.MoveDuration * 0.18f)
+                gateItems[i].transform.DOMove(targetPos, GateItemConfig.MoveDuration * 0.2f)
                     .SetEase(Ease.Linear);
             }
         }

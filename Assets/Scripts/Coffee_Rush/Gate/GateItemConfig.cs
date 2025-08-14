@@ -5,9 +5,9 @@ namespace Coffee_Rush.Gate
     public static class GateItemConfig
     {
         public static readonly float Distance = 0.9f;
-        public static readonly float MoveDuration = 0.6f;
+        public static readonly float MoveDuration = 0.5f;
         public static readonly Vector3 CupLidFloatingPos = new (0, 2, 0);
-        public static readonly float PackingDuration = 0.4f;
+        public static readonly float PackingDuration = 0.35f;
         public static readonly Vector3[] ItemDir =
         {
             Vector3.up,

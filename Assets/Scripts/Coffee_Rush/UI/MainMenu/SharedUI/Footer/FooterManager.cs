@@ -15,7 +15,7 @@ namespace Coffee_Rush.UI.MainMenu.Footer
         
         private float minSelectionPosX;
         private float maxSelectionPosX;
-        private float speed = 3f;
+        private float speed = 4f;
         private float targetRatio;
         private float normDirection;
 
