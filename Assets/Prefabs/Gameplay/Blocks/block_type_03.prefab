@@ -101,6 +101,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &372998387426396606
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +380,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &1960791278175493429
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +513,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &2515945387839077565
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +661,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &2864721506477413661
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +851,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &3515355532303439186
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +984,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &3797259775352447362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,6 +1287,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &4738313990609226101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1420,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &5085146124116293088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,6 +1553,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &5386389168059965421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,6 +1873,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &5684184099463510373
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,6 +2059,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &6288073897080627920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2212,6 +2223,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &6663707046300586832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2537,6 +2549,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &8115946807578815865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,6 +2651,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &8347332340172844954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2739,6 +2753,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &8351384899864948573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,6 +2855,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 7271264744491491421}
 --- !u!1 &8371481125569659782
 GameObject:
   m_ObjectHideFlags: 0

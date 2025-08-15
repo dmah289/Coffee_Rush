@@ -411,6 +411,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 6870990227133881032}
 --- !u!1 &3343730900761502475
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +513,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 6870990227133881032}
 --- !u!1 &3678435471141129063
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,6 +820,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 6870990227133881032}
 --- !u!1 &5283336613115176823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,6 +1265,7 @@ MonoBehaviour:
   selfTransform: {fileID: 0}
   selfMeshRenderer: {fileID: 0}
   targetPoint: {fileID: 0}
+  blockTransform: {fileID: 6870990227133881032}
 --- !u!1 &8423385289275633537
 GameObject:
   m_ObjectHideFlags: 0

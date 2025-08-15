@@ -16,6 +16,7 @@ namespace Coffee_Rush.Block
         [SerializeField] private BoxCollider2D[] boxCollider2D;
         [SerializeField] private BlockController blockController;
         [SerializeField] private BlockVisual blockVisual;
+        [SerializeField] private Transform selfTransform;
         
         [Header("Matching Settings")]
         [SerializeField] private int currEmptySlotIdx;
@@ -36,6 +37,7 @@ namespace Coffee_Rush.Block
 
         private void Awake()
         {
+            selfTransform = transform;
             boxCollider2D = GetComponentsInChildren<BoxCollider2D>();
             blockController = GetComponent<BlockController>();
             blockVisual = GetComponentInChildren<BlockVisual>();
@@ -89,7 +91,7 @@ namespace Coffee_Rush.Block
                             CanSelect = false;
                             SelectionController.Instance.DeselectCurrentObject(blockController);
                             
-                            await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.85f * 1000));
+                            await UniTask.Delay((int)(GateItemConfig.MoveDuration * 0.15f * 1000));
                             await PackAllGateItems();
                             MoveOutOfView(blockType);
                         }
@@ -111,6 +113,7 @@ namespace Coffee_Rush.Block
 
         private async UniTask PackAllGateItems()
         {
+            blockVisual.VisualEuler = new Vector3(0, 0, blockVisual.VisualEuler.z);
             await transform.DOMoveZ(-7, 0.5f)
                 .SetEase(Ease.OutBack)
                 .AsyncWaitForCompletion();
@@ -124,6 +127,25 @@ namespace Coffee_Rush.Block
             await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 * 0.5f * (1 - 1f / collectedGateItems.Length)));
         }
         
+        // TODO : Balance cup using JobSystem
+        private void BalanceCup()
+        {
+            Quaternion targetEuler = Quaternion.LookRotation(blockVisual.transform.parent.transform.up, -blockVisual.transform.parent.transform.forward);
+            for(int i = 0; i < collectedGateItems.Length; i++)
+            {
+                if (collectedGateItems[i])
+                {
+                    //collectedGateItems[i].transform.rotation = Quaternion.Slerp(collectedGateItems[i].transform.rotation, targetEuler, 0.5f* Time.deltaTime);
+                    collectedGateItems[i].transform.DORotateQuaternion(targetEuler, 0.7f);
+                }
+            }
+        }
+
+        private void LateUpdate()
+        {
+            BalanceCup();
+        }
+
         public void MoveOutOfView(eBlockType blockType)
         {
             float direction = transform.position.x > 0 ? 1 : -1;

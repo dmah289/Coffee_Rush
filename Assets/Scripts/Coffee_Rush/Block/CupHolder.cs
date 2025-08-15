@@ -19,6 +19,7 @@ namespace Coffee_Rush.Block
         
         [Header("References")]
         [SerializeField] private Transform targetPoint;
+        [SerializeField] private Transform blockTransform;
 
         private void Awake()
         {
@@ -36,9 +37,15 @@ namespace Coffee_Rush.Block
                 .OnStart(() =>
                 {
                     item.transform.rotation =
-                        Quaternion.LookRotation(targetPoint.parent.parent.forward, targetPoint.parent.parent.up);
+                        Quaternion.LookRotation(blockTransform.up, -blockTransform.forward);
+                })
+                .OnComplete(() =>
+                {
+                    item.transform.rotation =
+                        Quaternion.LookRotation(blockTransform.up, -blockTransform.forward);
                     item.transform.eulerAngles = GateItemConfig.WorldEulerOnBlock;
                 });
+
         }
 
         public void Setup(eColorType colorType)

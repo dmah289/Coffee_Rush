@@ -20,7 +20,7 @@ namespace BaseSystem.Block
         
         [Header("Movement Data")]
         [SerializeField] protected Vector3 centerToTouchOffset;
-        [SerializeField] protected bool isDragging;
+        [SerializeField] public bool isDragging;
         
         [Header("Data")]
         [SerializeField] protected eColorType colorType;
@@ -129,7 +129,7 @@ namespace BaseSystem.Block
             velocityCalculationJobHandle = velocityCalculationJob.Schedule();
         }
 
-        private void LateUpdate()
+        protected virtual void LateUpdate()
         {
             ApplyJobResults();
         }
