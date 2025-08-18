@@ -33,18 +33,7 @@ namespace Coffee_Rush.Block
             item.transform.SetParent(targetPoint);
 
             item.transform.DOLocalJump(Vector3.zero, 5, 1, GateItemConfig.MoveDuration)
-                .SetEase(Ease.OutFlash)
-                .OnStart(() =>
-                {
-                    item.transform.rotation =
-                        Quaternion.LookRotation(blockTransform.up, -blockTransform.forward);
-                })
-                .OnComplete(() =>
-                {
-                    item.transform.rotation =
-                        Quaternion.LookRotation(blockTransform.up, -blockTransform.forward);
-                    item.transform.eulerAngles = GateItemConfig.WorldEulerOnBlock;
-                });
+                .SetEase(Ease.OutFlash);
 
         }
 

@@ -1,0 +1,1 @@
+﻿- Link .apk: [![Latest Release](https://img.shields.io/github/v/release/dmah289/Coffee_Rush)](https://github.com/dmah289/Coffee_Rush/releases/tag/Official)

@@ -1,5 +1,6 @@
 ﻿using System;
 using Coffee_Rush.Gate;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Framework.Extensions;
 using UnityEngine;
@@ -13,6 +14,10 @@ namespace Coffee_Rush.Board
         [SerializeField] private MeshRenderer cupLidMeshRenderer;
         [SerializeField] private Transform selfTransform;
         [SerializeField] private Transform cupLidTransform;
+
+        public float elapsedTime;
+        public bool isBalancing;
+        float balancingDuration = 0.07f;
         
 
         private eColorType colorType;
@@ -52,6 +57,30 @@ namespace Coffee_Rush.Board
         {
             selfTransform.DOLocalMoveY(2, GateItemConfig.PackingDuration / 2)
                 .OnComplete(() => selfTransform.DOLocalMoveY(0, GateItemConfig.PackingDuration / 2));
+        }
+
+        // TODO : Consider using Job System for learning purposes
+        public async UniTaskVoid BalanceOnBlock(Quaternion targetRotation)
+        {
+            if (!isBalancing)
+            {
+                isBalancing = true;
+
+                Quaternion initRotation = selfTransform.rotation;
+                float startTime = Time.time;
+                while (Time.time - startTime < balancingDuration)
+                {
+                    float elapsedTime = Time.time - startTime;
+                    float normalizedTime = elapsedTime / balancingDuration;
+                    if (selfTransform != null)
+                        selfTransform.rotation = Quaternion.Slerp(initRotation, targetRotation, normalizedTime);
+                    await UniTask.Yield();
+                }
+                if (selfTransform != null)
+                    selfTransform.rotation = targetRotation;
+                
+                isBalancing = false;
+            }
         }
     }
 }

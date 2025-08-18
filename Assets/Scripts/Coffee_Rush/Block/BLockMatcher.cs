@@ -126,24 +126,19 @@ namespace Coffee_Rush.Block
             }
             await UniTask.Delay((int)(GateItemConfig.PackingDuration * 1000 * 0.5f * (1 - 1f / collectedGateItems.Length)));
         }
-        
-        // TODO : Balance cup using JobSystem
-        private void BalanceCup()
-        {
-            Quaternion targetEuler = Quaternion.LookRotation(blockVisual.transform.parent.transform.up, -blockVisual.transform.parent.transform.forward);
-            for(int i = 0; i < collectedGateItems.Length; i++)
-            {
-                if (collectedGateItems[i])
-                {
-                    //collectedGateItems[i].transform.rotation = Quaternion.Slerp(collectedGateItems[i].transform.rotation, targetEuler, 0.5f* Time.deltaTime);
-                    collectedGateItems[i].transform.DORotateQuaternion(targetEuler, 0.7f);
-                }
-            }
-        }
 
         private void LateUpdate()
         {
-            BalanceCup();
+            BalanceCollectedCups();
+        }
+        
+        private void BalanceCollectedCups()
+        {
+            Quaternion targetEuler = Quaternion.LookRotation(
+                blockVisual.transform.parent.transform.up, 
+                -blockVisual.transform.parent.transform.forward);
+            for(int i = 0; i < collectedGateItems.Length; i++)
+                collectedGateItems[i]?.BalanceOnBlock(targetEuler);
         }
 
         public void MoveOutOfView(eBlockType blockType)

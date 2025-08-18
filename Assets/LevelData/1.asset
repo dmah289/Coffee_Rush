@@ -15,7 +15,7 @@ MonoBehaviour:
   width: 5
   height: 6
   levelIndex: 1
-  totalTime: 180
+  totalTime: 10
   coinAmount: 30
   cellsData:
   - isActive: 1
@@ -116,6 +116,7 @@ MonoBehaviour:
     moveableDir: 2
     countdownIce: 0
     blockVisualEuler: {x: 0, y: 0, z: 0}
+    kettleCountDown: 0
   - row: 2
     col: 1
     blockType: 8
@@ -123,6 +124,7 @@ MonoBehaviour:
     moveableDir: 2
     countdownIce: 0
     blockVisualEuler: {x: 0, y: 0, z: 0}
+    kettleCountDown: 0
   gatesData:
   - row: 5
     col: 1

@@ -80,7 +80,7 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineWidth: 6.59
     - _Parallax: 0.02
-    - _Progress: 0.746929
+    - _Progress: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -97,5 +97,5 @@ Material:
     - _ElapsedColor: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0.33784264, g: 0.9811321, b: 0.40847835, a: 0}
-    - _RemainingColor: {r: 0.8584906, g: 0.81953377, b: 0.23891956, a: 1}
+    - _RemainingColor: {r: 0.33784264, g: 0.9811321, b: 0.40847835, a: 1}
   m_BuildTextureStacks: []
